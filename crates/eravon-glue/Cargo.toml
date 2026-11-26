@@ -1,0 +1,12 @@
+[package]
+name = "eravon-glue"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "The family's storage primitives under the sealed layer: the ledger directory, its codes, layout and trace, landing a file whole, the sealed magic"
+
+[dependencies]
+eravon-os = { path = "../eravon-os" }
+eravon-face = { path = "../eravon-face" }
+zikaron-core = { package = "zikaron", path = "../../vendor/zikaron-crates/crates/zikaron" }

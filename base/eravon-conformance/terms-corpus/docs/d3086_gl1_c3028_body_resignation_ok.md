@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"amanah":"0x82823e9bb6cb3c22541b4710330c23621ce85fd2cba58a42e63656da7fe53643","category":"unlawful-subject","clause":"8","statement_md":"the terms name a subject this seat does not sell judgment on","subjectRef":{"kind":"hash","sha256":"0x000000000000000000000000000000000000000000000000000000000000005a"}},"entryType":"resignation","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0xede81ab596414a8353d68e600b4c8d37d98ba6e296e12c8cd6025ffcfd887dec","seq":3,"sig":"0x9aadf5adb002f0b3f8a01f32641e3eb372b61361537a06f9c9667c69b7dbce8828e92436fbdf74fb77f052a8aee04a882a04e85a147c8af33b49579204306b251c","spec":"galeed/1"}
+```

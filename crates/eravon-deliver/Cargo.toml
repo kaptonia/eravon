@@ -1,0 +1,23 @@
+[package]
+name = "eravon-deliver"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Delivery: delivery manifests (courtevidence/1) and claimDelivery while Funded, the hand-over gate on the claim's finality, and grant to-dos after a terminal state"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-evidence = { path = "../eravon-evidence" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-watch = { path = "../eravon-watch" }
+
+[dev-dependencies]
+eravon-vault = { path = "../eravon-vault", features = ["testing"] }

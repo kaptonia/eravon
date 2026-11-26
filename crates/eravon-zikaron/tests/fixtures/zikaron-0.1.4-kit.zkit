@@ -1,0 +1,43 @@
+zikaron-kit-file/1
+manifest.json
+793
+{"contents":[{"content":"0x5070ecb67db0851f93c395c80d873c5581cafa79243cd54354c2506067856d11","path":"notes/delivery.txt"},{"content":"0xf957b19529906961933c5c30f8713c500a9bb5d9d0695c40d48c97a26a3594ec","path":"b.txt"}],"entries":["0x42c73b6ebc59fd6f195de8432aa78f8b48e355010a686387c58eea036b702e9e","0x7991618b676f37c9f1264dedbf19778993bef3125f071c9ad35fc638718f36c3"],"files":[{"path":"b.txt","sha256":"0xf957b19529906961933c5c30f8713c500a9bb5d9d0695c40d48c97a26a3594ec","size":12},{"path":"notes/delivery.txt","sha256":"0x5070ecb67db0851f93c395c80d873c5581cafa79243cd54354c2506067856d11","size":47},{"path":"verify.md","sha256":"0xdc2cddc5727efb6049c5f4a4f9910029ef182fd31d4e3eba5cb47803106a28a6","size":994}],"note_md":"A4 外来字节夹具","proofs":[],"root":null,"spec":"zikaron.kit/1"}
+entries/42c73b6ebc59fd6f195de8432aa78f8b48e355010a686387c58eea036b702e9e.zk1
+301
+{"author":"0xe0b7ab4537dac59d3d7550f87062dbaf3bd38447","body":{"statement_md":"A4 fixture ledger"},"entryType":"genesis","prev":null,"seq":0,"sig":"0x5bc8cbaba36a292205444e5f0c7e0c72a48204f4c7380bba3bcec997955405b3444f892d5f6616295e1ad4ee7de241dd155ffee11bb8663e0fb538b303ff9c421b","spec":"zikaron/1"}
+entries/7991618b676f37c9f1264dedbf19778993bef3125f071c9ad35fc638718f36c3.zk1
+560
+{"author":"0xe0b7ab4537dac59d3d7550f87062dbaf3bd38447","body":{"content":"0x5070ecb67db0851f93c395c80d873c5581cafa79243cd54354c2506067856d11","mode":{"mark":"bytes-sha256/1","toolchain":"0xb7f3c4a226684d6da684b0ac82d36ed5bcba7bb61d09c955bff9437f84a52a4d"},"note_md":"记一份中文名的档"},"entryType":"history","prev":"0x42c73b6ebc59fd6f195de8432aa78f8b48e355010a686387c58eea036b702e9e","seq":1,"sig":"0xee50af7e169cc967dc12bca6562a0c2fa373c4c04a683364aebd36204eabf83237c46c66ba8f8d0703a7b1901c41c918c2d9689482526c520c4f23786f4d971e1c","spec":"zikaron/1"}
+files/b.txt
+12
+second file
+
+files/notes/delivery.txt
+47
+这是一份交付说明。
+ERAVON A4 fixture.
+
+files/verify.md
+994
+# 怎么核这一包
+
+1. 逐档算 sha256,对 `manifest.json` 里 `files` 与 `proofs` 各行的 `sha256`;
+2. `entries/` 下每一档的 sha256 即它的档名(去 `.zk1`),也即 `entries` 表里那一行;
+3. 每一枚条目按 zikaron/1 §4.3 判十三步;
+4. 清单外的档一件也不该有。
+
+本束:条目 2 枚 · 档 3 件 · 证明 0 件。
+
+出包时已由 zikaron.kit/1 的 `verify_kit` 自验,KIT_OK 才落盘(不变式 9)。
+
+# How to verify this kit
+
+1. Compute each file's sha256 and compare it with the `sha256` of its row under `files` and `proofs` in `manifest.json`;
+2. Each file under `entries/` is named by its own sha256 (less `.zk1`), which is also its row in the `entries` table;
+3. Judge each entry by the thirteen steps of zikaron/1 §4.3;
+4. There should be no file outside the manifest.
+
+This kit: 2 entries · 3 files · 0 proofs.
+
+Before it was written, the kit verified itself with `verify_kit` of zikaron.kit/1, and it was written only on KIT_OK (invariant 9).
+

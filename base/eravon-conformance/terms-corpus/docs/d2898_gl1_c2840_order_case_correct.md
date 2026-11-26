@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"A":1,"Z":2,"a":3,"z":4},"entryType":"windmill","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0x846bcc3ffed0ab29ae00115dab473180659e147dd6e8a123e118b78ee4481b73686df7e7f70240bd8548d13d427dd8bf906be1e16b2346b15c44da96e0cd96191b","spec":"galeed/1"}
+```

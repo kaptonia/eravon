@@ -1,0 +1,1 @@
+sec 7.4: the retiring seq is the smallest over every chain: the succession at seq 1 on chain 1 and the one at seq 2 on chain 2, both in the handing off's second, give 1, so the chain-2 record is one at which the old key has retired, DISCARDED, and its succession admits nobody; K3's record is DISCARDED and its entry EXCLUDED; COMPLETE with four entries.

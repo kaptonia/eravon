@@ -1,0 +1,132 @@
+#![forbid(unsafe_code)]
+
+use std::path::PathBuf;
+use std::process::ExitCode;
+
+fn main() -> ExitCode {
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    match run(&args) {
+        Ok(said) => {
+            println!("{said}");
+            ExitCode::SUCCESS
+        }
+        Err(e) => {
+            eprintln!("eravon-pack: {e}");
+            ExitCode::from(1)
+        }
+    }
+}
+
+fn read(p: &str) -> Result<Vec<u8>, String> {
+    std::fs::read(p).map_err(|e| format!("cannot read {p}: {e}"))
+}
+fn write(p: &str, b: &[u8]) -> Result<(), String> {
+    std::fs::write(p, b).map_err(|e| format!("cannot write {p}: {e}"))
+}
+
+fn run(args: &[String]) -> Result<String, String> {
+    match args.first().map(String::as_str) {
+        Some("notices") => {
+            let (mut target, mut out, mut roots, mut with) = (None, None, Vec::new(), Vec::new());
+            let mut it = args[1..].iter();
+            while let Some(a) = it.next() {
+                let v = it.next().ok_or_else(|| format!("{a} wants a value"))?;
+                match a.as_str() {
+                    "--target" => target = Some(v.clone()),
+                    "--out" => out = Some(v.clone()),
+                    "--root" => roots.push(v.clone()),
+                    "--with" => with.push(PathBuf::from(v)),
+                    other => return Err(format!("unknown argument {other}")),
+                }
+            }
+            let target = target.ok_or("--target is required")?;
+            let out = out.ok_or("--out is required")?;
+            if roots.is_empty() {
+                return Err("at least one --root is required".into());
+            }
+            let manifest = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../Cargo.toml");
+            let cargo = std::env::var("CARGO").unwrap_or_else(|_| "cargo".to_string());
+            let r: Vec<&str> = roots.iter().map(String::as_str).collect();
+            let text = eravon_pack::notices::make(&cargo, &manifest, &target, &r, &with)?;
+            write(&out, text.as_bytes())?;
+            Ok(format!("notices: {} crates for {target} written to {out}", text.lines().take_while(|l| !l.trim().is_empty()).count()))
+        }
+        Some("hfs-owners") => {
+            let [_, img, flag, epoch] = args else { return Err("usage: hfs-owners <image> --epoch <seconds>".into()) };
+            if flag != "--epoch" {
+                return Err("usage: hfs-owners <image> --epoch <seconds>".into());
+            }
+            let epoch: u64 = epoch.parse().map_err(|_| format!("--epoch {epoch} is not a number of seconds"))?;
+            let mut b = read(img)?;
+            let r = eravon_pack::hfs::neutral_owners(&mut b, epoch)?;
+            write(img, &b)?;
+            Ok(format!("hfs-owners: {} records, {} owners changed, {} attribute records", r.records, r.owners_changed, r.attribute_records))
+        }
+        Some("dmg-names") => {
+            let [_, img] = args else { return Err("usage: dmg-names <image>".into()) };
+            let (b, n) = eravon_pack::udif::neutral_names(&read(img)?)?;
+            write(img, &b)?;
+            Ok(format!("dmg-names: {n} names rewritten"))
+        }
+        Some("elf-comment") if args.len() > 1 => {
+            let mut said = Vec::new();
+            for f in &args[1..] {
+                let mut b = read(f)?;
+                let n = eravon_pack::elf::neutral_comment(&mut b).map_err(|e| format!("{f}: {e}"))?;
+                write(f, &b)?;
+                said.push(format!("{n} bytes"));
+            }
+            Ok(format!("elf-comment: zeroed {}", said.join(", ")))
+        }
+        Some("windows") => {
+            let (mut target, mut out) = (eravon_pack::windows::TARGET.to_string(), None);
+            let mut it = args[1..].iter();
+            while let Some(a) = it.next() {
+                let v = it.next().ok_or_else(|| format!("{a} wants a value"))?;
+                match a.as_str() {
+                    "--target" => target = v.clone(),
+                    "--out" => out = Some(PathBuf::from(v)),
+                    other => return Err(format!("unknown argument {other}")),
+                }
+            }
+            let out = out.ok_or("--out is required")?;
+            let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
+            let at = eravon_pack::windows::package(&root, &target, &out)?;
+            Ok(format!("windows: laid out {}", at.display()))
+        }
+        Some("appimage-runtime") => {
+            let (f, arch) = match &args[1..] {
+                [f] => (f, "x86_64"),
+                [f, flag, a] if flag == "--arch" => (f, a.as_str()),
+                _ => return Err("usage: appimage-runtime <file> [--arch <arch>]".into()),
+            };
+            let digest = eravon_pack::runtime::check_for(arch, &read(f)?).map_err(|e| format!("{f}: {e}"))?;
+            Ok(format!("appimage-runtime: {f} is type2-runtime {} for {arch} (sha256 {digest})", eravon_pack::runtime::COMMIT))
+        }
+        Some("rustflags") => {
+            let root = eravon_pack::windows::plain(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../.."));
+            let target_dir = match &args[1..] {
+                [] => std::env::var_os("CARGO_TARGET_DIR").filter(|v| !v.is_empty()).map(PathBuf::from).unwrap_or_else(|| root.join("target")),
+                [flag, d] if flag == "--target-dir" => PathBuf::from(d),
+                _ => return Err("usage: rustflags [--target-dir <dir>]".into()),
+            };
+            Ok(eravon_pack::windows::encoded_flags(&root, &target_dir))
+        }
+        Some("no-paths") if args.len() > 1 => {
+            let cwd = std::env::current_dir().ok().map(|p| p.display().to_string());
+            let needles = eravon_pack::paths::needles(|k| std::env::var(k).ok(), cwd);
+            let mut hits = Vec::new();
+            for f in &args[1..] {
+                for (path, at, form) in eravon_pack::paths::found(&read(f)?, &needles) {
+                    hits.push(format!("{f}: {form} {path:?} at byte {at}"));
+                }
+            }
+            if hits.is_empty() {
+                Ok(format!("no-paths: {} files, none of this machine's {} paths", args.len() - 1, needles.len()))
+            } else {
+                Err(format!("no-paths: {} places carry this machine's paths:\n{}", hits.len(), hits.join("\n")))
+            }
+        }
+        _ => Err("usage: eravon-pack notices|hfs-owners|dmg-names|elf-comment|windows|appimage-runtime|no-paths ...".into()),
+    }
+}

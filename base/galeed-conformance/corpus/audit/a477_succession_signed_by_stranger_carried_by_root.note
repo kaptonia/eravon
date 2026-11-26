@@ -1,0 +1,1 @@
+sec 7.4/8.4: a succession signed by a key outside the lineage names k2, but the lineage is decided by signatures: k2 is not admitted, the root's counted record carrying the stranger's entry is CARRIED_MALFORMED FOREIGN, k2's own records are discarded and its entry excluded; BROKEN_CHAIN.

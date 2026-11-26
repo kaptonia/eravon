@@ -1,0 +1,23 @@
+[package]
+name = "eravon-watch"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Arrival watch and deployment: pasted receipts bound, budget address and case id computed, balance polled per block, one Multicall3 deployment with init when funded, expiry branch, startup catch-up scan"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-roster = { path = "../eravon-roster" }
+eravon-cands = { path = "../eravon-cands" }
+eravon-goods = { path = "../eravon-goods" }
+
+[features]

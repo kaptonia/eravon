@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"effective":8263904283124750,"recipient":"age1IF7-_8Z"},"entryType":"keybinding","judge":"0x7ec30184c8170e680fcd6d8a29d61b8b8d42752b","prev":"0x94c8a62ca4c050ed4d97b5a0b65e141dbda4f5af4d3aacf77203c4b7b77c2bb5","seq":510781,"sig":"0x83c92c2193b2fee8260796fab0841709a13060b77fc6e0ec67a5d4b30e428042620cead2263057d380686fb04f0f59c8cd75647eeff512dda480a0209a31855e1b","spec":"galeed/1"}
+```

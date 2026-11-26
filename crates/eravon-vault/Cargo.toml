@@ -1,0 +1,37 @@
+[package]
+name = "eravon-vault"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Vault, passcode and keys: key store file sealing, three ways to unlock, passcode rules, attempt counting and lockout, mnemonic recovery, derivation table"
+
+[dependencies]
+eravon = { path = "../eravon" }
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-os = { path = "../eravon-os" }
+eravon-store = { path = "../eravon-store" }
+eravon-glue = { path = "../eravon-glue" }
+eravon-seal = { path = "../eravon-seal" }
+eravon-send = { path = "../eravon-send" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-net = { path = "../eravon-net" }
+
+scrypt = { version = "0.11", default-features = false }
+aes = "0.8"
+ctr = "0.9"
+bip39 = { version = "2", default-features = false, features = ["alloc"] }
+hmac = "0.12"
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+sha2 = "0.10"
+k256 = { version = "0.13", default-features = false, features = ["arithmetic"] }
+chacha20poly1305 = { version = "0.10", default-features = false, features = ["alloc"] }
+hkdf = "0.12"
+
+[features]
+testing = []
+
+[[bin]]
+name = "ers"
+path = "src/bin/ers.rs"

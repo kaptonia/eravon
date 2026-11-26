@@ -1,0 +1,1 @@
+sec 7.4/8.4: the same, with the old key's own record of that second carrying the successor's entry at seq 4: the bytes are not its own, so it has not retired at that record, which stands; the successor being outside the lineage, the record charges CARRIED_MALFORMED with token FOREIGN; BROKEN_CHAIN.

@@ -1,0 +1,1 @@
+sec 9.4: fromBlock and toBlock bound an inclusive range; a record at fromBlock, inside the inclusive range is reached.

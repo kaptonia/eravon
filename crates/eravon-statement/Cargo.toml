@@ -1,0 +1,22 @@
+[package]
+name = "eravon-statement"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Statement and compliance page: figures taken from the dossier index and event history, never computed; the compliance page from the dossier's compliance block"
+
+[dependencies]
+eravon-dossier = { path = "../eravon-dossier" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-export = { path = "../eravon-export" }
+eravon-recheck = { path = "../eravon-recheck" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-watch = { path = "../eravon-watch" }
+
+[features]

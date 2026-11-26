@@ -1,0 +1,221 @@
+use std::io::{Read, Write};
+use std::net::{TcpListener, TcpStream};
+use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::{Arc, Mutex};
+use std::time::{Duration, Instant};
+use eravon::json::Value;
+use eravon_chain::rpc::{self, Endpoint, Http, Trouble};
+use eravon_chain::said::{self, Refusal};
+use eravon_chain::wire::{self, W};
+use eravon_chain::send;
+
+fn read_request(s: &mut TcpStream) -> Option<Vec<u8>> {
+    let mut raw = Vec::new();
+    let mut buf = [0u8; 4096];
+    loop {
+        if let Some(i) = raw.windows(4).position(|w| w == b"\r\n\r\n") {
+            let head = String::from_utf8_lossy(&raw[..i]).to_ascii_lowercase();
+            let len: usize = head.lines().find_map(|l| l.strip_prefix("content-length:").and_then(|n| n.trim().parse().ok())).unwrap_or(0);
+            if raw.len() >= i + 4 + len {
+                return Some(raw[i + 4..i + 4 + len].to_vec());
+            }
+        }
+        match s.read(&mut buf) {
+            Ok(0) | Err(_) => return None,
+            Ok(n) => raw.extend_from_slice(&buf[..n]),
+        }
+    }
+}
+
+enum Reply {
+    Say(u16, String),
+    Drop,
+}
+
+fn node(rule: impl Fn(&str, usize) -> Reply + Send + Sync + 'static) -> (String, Arc<Mutex<Vec<String>>>) {
+    let l = TcpListener::bind("127.0.0.1:0").expect("bind");
+    let url = format!("http://{}/", l.local_addr().expect("addr"));
+    let asked: Arc<Mutex<Vec<String>>> = Arc::new(Mutex::new(Vec::new()));
+    let (a, rule) = (asked.clone(), Arc::new(rule));
+    std::thread::spawn(move || {
+        for s in l.incoming().flatten() {
+            let (a, rule) = (a.clone(), rule.clone());
+            std::thread::spawn(move || {
+                let mut s = s;
+                while let Some(body) = read_request(&mut s) {
+                    let v = eravon::json::parse(&body).unwrap_or(Value::Null);
+                    let member = |k: &str| match &v {
+                        Value::Obj(m) => m.iter().find(|(n, _)| n == k).map(|(_, x)| x.clone()),
+                        _ => None,
+                    };
+                    let id = member("id").map(|i| String::from_utf8_lossy(&eravon::json::canon_bytes(&i)).to_string()).unwrap_or_default();
+                    let method = match member("method") {
+                        Some(Value::Str(m)) => m,
+                        _ => String::new(),
+                    };
+                    let n = {
+                        let mut g = a.lock().unwrap_or_else(|e| e.into_inner());
+                        g.push(method.clone());
+                        g.len() - 1
+                    };
+                    match rule(&method, n) {
+                        Reply::Drop => return,
+                        Reply::Say(status, body) => {
+                            let body = body.replace("{id}", &id);
+                            let head = format!("HTTP/1.1 {status} X\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n", body.len());
+                            let _ = s.write_all(head.as_bytes());
+                            let _ = s.write_all(body.as_bytes());
+                            return;
+                        }
+                    }
+                }
+            });
+        }
+    });
+    (url, asked)
+}
+
+fn ask_once(status: u16, body: &str) -> Result<W, Trouble> {
+    let body = body.to_string();
+    let (url, _) = node(move |_, _| Reply::Say(status, body.clone()));
+    Http::new(&url).expect("an endpoint").call("eth_getTransactionByHash", &Value::Arr(vec![Value::Str("0x01".into())]))
+}
+
+fn shapeless(t: &Result<W, Trouble>) -> bool {
+    matches!(t, Err(Trouble::Transport(rpc::Broke::Shapeless { .. })))
+}
+
+#[test]
+fn only_an_answer_to_this_question_is_the_nodes_word() {
+    assert!(shapeless(&ask_once(200, "{\"message\":\"Too Many Requests\"}")), "①");
+    assert_eq!(ask_once(429, "{\"message\":\"Too Many Requests\"}").err().as_ref().and_then(said::refusal), Some(Refusal::RateLimited), "②");
+    assert_eq!(ask_once(403, "<html>forbidden</html>").err().as_ref().and_then(said::refusal), Some(Refusal::Auth), "③");
+    match ask_once(502, "<html>bad gateway</html>") {
+        Err(t @ Trouble::Transport(_)) => assert_eq!(rpc::status_of(&t), Some(502), "④ {t:?}"),
+        other => panic!("④ {other:?}"),
+    }
+    assert!(shapeless(&ask_once(200, "{\"jsonrpc\":\"2.0\",\"id\":99,\"result\":\"0x1\"}")), "⑤");
+    assert_eq!(ask_once(200, "{\"id\":{id},\"result\":null}").map(|v| v.is_null()), Ok(true), "⑥");
+    assert_eq!(ask_once(200, "{\"id\":{id},\"error\":null,\"result\":\"0x1\"}").ok().and_then(|v| v.as_str().map(str::to_string)), Some("0x1".into()), "⑦");
+    assert!(shapeless(&ask_once(200, "[{\"id\":{id},\"result\":\"0x1\"}]")), "⑧");
+    assert!(shapeless(&ask_once(200, "{\"id\":{id},\"error\":{\"code\":1,\"message\":\"x\"},\"result\":\"0x1\"}")));
+    assert!(shapeless(&ask_once(200, "{\"id\":{id}}")));
+    assert_eq!(ask_once(200, "{\"id\":null,\"error\":{\"code\":-32005,\"message\":\"rate limit exceeded\"}}").err().as_ref().and_then(said::refusal), Some(Refusal::RateLimited));
+    assert_eq!(ask_once(429, "{\"error\":{\"code\":-32600,\"message\":\"invalid request\"}}").err().as_ref().and_then(said::refusal).map(|r| matches!(r, Refusal::Coded(_))), Some(true));
+    assert!(shapeless(&ask_once(200, "{\"id\":null,\"result\":\"0x1\"}")));
+    assert!(shapeless(&ask_once(200, "{\"result\":\"0x1\"}")));
+    assert!(shapeless(&ask_once(200, "{\"id\":7,\"error\":{\"code\":1,\"message\":\"x\"}}")));
+    assert!(matches!(ask_once(500, "{\"id\":{id},\"error\":{\"code\":-32000,\"message\":\"no\"}}"), Err(Trouble::Node(_))));
+    assert!(matches!(ask_once(400, "{\"id\":{id},\"result\":\"0x2\"}"), Ok(_)));
+    assert!(matches!(ask_once(200, "<html>ok</html>"), Err(Trouble::Transport(rpc::Broke::NotJson))));
+    assert_eq!(ask_once(503, "{\"message\":\"down\"}").err().and_then(|t| rpc::status_of(&t)), Some(503));
+}
+
+#[test]
+fn a_broadcast_is_asked_exactly_once_and_a_read_once_more() {
+    let (url, asked) = node(|m, n| match (m, n) {
+        ("eth_blockNumber", 0) => Reply::Drop,
+        ("eth_blockNumber", _) => Reply::Say(200, "{\"id\":{id},\"result\":\"0x5\"}".into()),
+        _ => Reply::Drop,
+    });
+    let mut ep = Http::new(&url).expect("an endpoint");
+    assert_eq!(ep.call("eth_blockNumber", &Value::Arr(vec![])).ok().and_then(|v| v.as_str().map(str::to_string)), Some("0x5".into()));
+    assert!(ep.call(rpc::BROADCAST, &Value::Arr(vec![Value::Str("0x00".into())])).is_err());
+    assert_eq!(*asked.lock().expect("asked"), vec!["eth_blockNumber", "eth_blockNumber", rpc::BROADCAST]);
+}
+
+#[test]
+fn an_estimate_is_refused_by_the_one_table_and_a_broadcast_goes_once() {
+    eravon_chain::patience::set_waits(Some(Duration::ZERO));
+    let t = eravon_chain::transport::Auto::web_roots().expect("a transport");
+    let who = "0x0000000000000000000000000000000000000001";
+    let estimate_says = |reply: fn() -> Reply| {
+        let (url, asked) = node(move |m, _| match m {
+            "eth_chainId" => Reply::Say(200, "{\"id\":{id},\"result\":\"0x7a69\"}".into()),
+            "eth_estimateGas" => reply(),
+            _ => Reply::Drop,
+        });
+        let table = eravon_chain::table::Table::new(vec![url]).expect("a table");
+        let got = eravon_chain::gas::estimate_pinned(&t, &table, 0x10, Some(who), who, Some("0x0"), Some("0x")).err().map(|f| f.name());
+        assert_eq!(asked.lock().expect("asked").iter().filter(|m| *m == rpc::BROADCAST).count(), 0, "nothing sent");
+        got
+    };
+    for (form, reply) in [
+        ("429", (|| Reply::Say(429, "Too Many Requests".into())) as fn() -> Reply),
+        ("rate", || Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":-32005,\"message\":\"daily request limit exceeded\"}}".into())),
+        ("auth", || Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":-32000,\"message\":\"unauthorized: bad api key\"}}".into())),
+        ("method", || Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":-32601,\"message\":\"the method does not exist/is not available\"}}".into())),
+        ("chain", || Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":-32000,\"message\":\"invalid chain id\"}}".into())),
+        ("uncoded", || Reply::Say(200, "{\"id\":{id},\"error\":{\"message\":\"node says no\"}}".into())),
+    ] {
+        let e = estimate_says(reply);
+        assert!(matches!(e, Some("E_CHAIN_ENDPOINT" | "E_CHAIN_TRANSPORT")), "{form}: the endpoint's: {e:?}");
+    }
+    for (form, reply) in [
+        ("revert", (|| Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":3,\"message\":\"execution reverted\"}}".into())) as fn() -> Reply),
+        ("coded", || Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":-32000,\"message\":\"node says no\"}}".into())),
+        ("internal", || Reply::Say(200, "{\"id\":{id},\"error\":{\"code\":-32603,\"message\":\"internal error\"}}".into())),
+    ] {
+        assert_eq!(estimate_says(reply), Some("E_CHAIN_EXECUTION"), "{form}: the call's");
+    }
+    let (url, asked) = node(|m, _| match m {
+        "eth_chainId" => Reply::Say(200, "{\"id\":{id},\"result\":\"0x7a69\"}".into()),
+        "eth_getTransactionByHash" => Reply::Say(200, "{\"id\":{id},\"result\":null}".into()),
+        _ => Reply::Drop,
+    });
+    let table = eravon_chain::table::Table::new(vec![url]).expect("a table");
+    let got = eravon_chain::sending::send_everywhere(&t, &table, &[0x02], &format!("0x{}", "ab".repeat(32)));
+    assert!(got.is_err(), "no node took it: {got:?}");
+    assert_eq!(asked.lock().expect("asked").iter().filter(|m| *m == rpc::BROADCAST).count(), 1, "the broadcast is asked exactly once");
+}
+
+#[test]
+fn a_receipt_wait_is_one_deadline_over_every_question() {
+    let held = Arc::new(AtomicUsize::new(0));
+    let h = held.clone();
+    let l = TcpListener::bind("127.0.0.1:0").expect("bind");
+    let silent = format!("http://{}/", l.local_addr().expect("addr"));
+    std::thread::spawn(move || {
+        for s in l.incoming().flatten() {
+            h.fetch_add(1, Ordering::SeqCst);
+            std::thread::spawn(move || {
+                let mut s = s;
+                let _ = read_request(&mut s);
+                std::thread::sleep(Duration::from_secs(10));
+            });
+        }
+    });
+    let (other, asked) = node(|_, _| Reply::Say(200, "{\"id\":{id},\"result\":null}".into()));
+    let mut a = Http::new(&silent).expect("endpoint").with_limits(rpc::Limits { deadline: Duration::from_secs(8), max_answer: 0 });
+    let mut b = Http::new(&other).expect("endpoint").with_limits(rpc::Limits { deadline: Duration::from_secs(8), max_answer: 0 });
+    let began = Instant::now();
+    let got = send::confirm_each(&mut [&mut a, &mut b], &[1u8; 32], Duration::from_millis(500), &[]);
+    let took = began.elapsed();
+    assert!(took < Duration::from_millis(500) + Duration::from_millis(1500), "took {took:?}");
+    assert!(matches!(got, send::Confirm::Unreachable(_)), "{got:?}");
+    assert_eq!(held.load(Ordering::SeqCst), 1);
+    assert!(asked.lock().expect("asked").is_empty(), "the wait was spent on the first node: the second is not asked");
+}
+
+#[test]
+fn a_receipt_wait_of_zero_asks_one_round() {
+    struct Count(usize, Result<W, Trouble>);
+    impl Endpoint for Count {
+        fn call(&mut self, _: &str, _: &Value) -> Result<W, Trouble> {
+            self.0 += 1;
+            self.1.clone()
+        }
+        fn name(&self) -> String {
+            "count".into()
+        }
+        fn place(&self) -> String {
+            self.name()
+        }
+    }
+    assert!(matches!(send::confirm_each(&mut [], &[1u8; 32], Duration::ZERO, &[]), send::Confirm::Unreachable(_)));
+    let mut refusing = Count(0, Err(Trouble::Node("{\"code\":-32005,\"message\":\"rate limit\"}".into())));
+    let mut empty = Count(0, Ok(W::of(wire::Body::Null)));
+    let got = send::confirm_each(&mut [&mut refusing, &mut empty], &[1u8; 32], Duration::ZERO, &[]);
+    assert!(matches!(got, send::Confirm::NotYet), "{got:?}");
+    assert_eq!((refusing.0, empty.0), (1, 1));
+}

@@ -1,0 +1,21 @@
+[package]
+name = "eravon-seal"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+eravon = { path = "../eravon" }
+eravon-glue = { path = "../eravon-glue" }
+eravon-os = { path = "../eravon-os" }
+eravon-literals = { path = "../eravon-literals" }
+chacha20poly1305 = { version = "0.10", default-features = false, features = ["alloc"] }
+hkdf = "0.12"
+hmac = "0.12"
+sha2 = "0.10"
+scrypt = { version = "0.11", default-features = false }
+aes = "0.8"
+ctr = "0.9"
+
+[features]

@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"amanah":"0x0e54198dd82d1329d7f619fdd90bcfe0ac567d255a9047fc281094e72622ca32","category":"unlawful-subject","clause":"$","statement_md":"'́é\u00147(\u0013C\u0002‭","subjectRef":{"kind":"hash","sha256":"0x94f8811121d6483067e780b094a019f38de2cb2b216820cbb7be18223747c8b7"}},"entryType":"resignation","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0xf61d1a64c8ca126f9d2fe5373e16ef08fa9bc20c757bd796983e92a8a1532608","seq":11731,"sig":"0xbc3b5e23df11def8e71c2ded87cb6e56b2645eb79fa12bb0a55a0eae14deeabb197ed79a53de8862216b75f5e500fbcb4fc65cf3b602542286f8654bbdba688b1c","spec":"galeed/1"}
+```

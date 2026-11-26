@@ -1,0 +1,1 @@
+sec 9.4: a basis bounded before the new-spec record's block does not reach it, so an input carrying it has no label; the reader narrows the anchor set with the basis.

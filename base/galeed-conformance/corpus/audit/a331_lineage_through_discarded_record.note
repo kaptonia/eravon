@@ -1,0 +1,1 @@
+sec 8.6/7.4: the root's succession is carried only by a stranger's record; the record is DISCARDED with its bytes, yet lineage is decided by signatures, so k2 joins the lineage and its own records count. The succession itself is no ledger entry, so seq 1 is a SEQ_GAP and the label is GAPS.

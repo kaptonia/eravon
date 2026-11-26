@@ -1,0 +1,1 @@
+input arrays reversed: sec 7.3/7.4/8.2: a migration reached across a gap still closes the ledger; the entry after it, carried at the migration's second, is DISCARDED; GAPS from the gap before the migration.

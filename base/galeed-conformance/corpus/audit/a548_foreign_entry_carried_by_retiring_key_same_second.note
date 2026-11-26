@@ -1,0 +1,1 @@
+sec 7.4/8.4: in its handing off's second the old key carries a stranger's entry at the position after it: the record is one at which the key has not retired (the bytes are not its own), so it counts and records CARRIED_MALFORMED with token FOREIGN; BROKEN_CHAIN.

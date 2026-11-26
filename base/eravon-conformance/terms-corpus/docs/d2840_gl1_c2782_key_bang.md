@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"!":"v","note_md":"n"},"entryType":"annotation","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0x70df994405610d315990250499570555dfca171fc1ce4a65a0357da53b23a1593273ad08f39eb353c71918a93e3f8ef9bc5dcd0518fb6c7e70f1e2d5eb52765a1b","spec":"galeed/1"}
+```

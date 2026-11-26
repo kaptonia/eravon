@@ -1,0 +1,26 @@
+{
+ "anchors": [],
+ "basis": {
+  "chains": [
+   {
+    "chainId": 1,
+    "fromBlock": 9,
+    "registries": [],
+    "senders": [
+     "0x01187a68996839920363a58d942b2c51df0da731"
+    ],
+    "toBlock": 9
+   },
+   {
+    "chainId": 1,
+    "fromBlock": 10,
+    "registries": [],
+    "senders": [
+     "0x01187a68996839920363a58d942b2c51df0da731"
+    ],
+    "toBlock": 20
+   }
+  ]
+ },
+ "root": "0x01187a68996839920363a58d942b2c51df0da731"
+}

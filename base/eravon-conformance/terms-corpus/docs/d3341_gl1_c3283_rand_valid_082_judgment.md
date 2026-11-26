@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"amanah":"0xb75f32a624d47160e179fc825a01c0673f43370f22e87ecea033db38a8d36755","decision":{"rung":7},"e*4 ":{},"subjectRef":{"$j:":{},"kind":"WwGPIB>["},"txRefs":["0xb9c8af2796869bc2f7f581c0847fde4dc5724ab762dec5111c9cdaa3eae64b12"],"verdict_md":"\u0013\u0007`#\u000bpDq1T\u0003U\u0007"},"entryType":"judgment","judge":"0x7ec30184c8170e680fcd6d8a29d61b8b8d42752b","prev":"0x9c581aca4bf20770ad4a5c7fe62b126c8a52bda7beac5d64df757263a8b46ce9","seq":916603,"sig":"0x9e2cbdd8025a74920e801d871fbff2522b24ffef9e1d651f9afddb4d800dce61301bea96e38e3b417fb9f99e2a7a192194832295d7a17f73ff541eb90b7b8d051b","spec":"galeed/1"}
+```

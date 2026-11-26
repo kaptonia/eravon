@@ -1,0 +1,1 @@
+sec 7.4/8.1: a VOID migration retires its key all the same and is no ledger entry; the entry the key signs at a position after it, carried at that second, is DISCARDED; the ledger ends before the migration's position; COMPLETE.

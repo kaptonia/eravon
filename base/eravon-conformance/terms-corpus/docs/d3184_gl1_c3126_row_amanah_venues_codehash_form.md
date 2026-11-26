@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"text_md":"covenant 3","venues":[{"chainId":1,"codeHash":"0x12","contract":"0x0000000000000000000000000000000000000002"}],"version":3},"entryType":"amanah","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xf6b5e17177dc29ac6626af6aed64ac76e08177576f78a500306d7b0931727af77155bf4c3f2f3181e621bdfc70384fac295d64ee9953dec348a2405efab039b41b","spec":"galeed/1"}
+```

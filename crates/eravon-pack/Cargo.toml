@@ -1,0 +1,12 @@
+[package]
+name = "eravon-pack"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+
+[[bin]]
+name = "eravon-pack"
+path = "src/main.rs"

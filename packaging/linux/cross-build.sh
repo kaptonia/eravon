@@ -1,0 +1,101 @@
+#!/bin/bash
+# packaging-release · family version 4
+# Build the Linux x86_64 packages (.deb and AppImage) from another host, such as a Mac.
+#
+# Usage: packaging/linux/cross-build.sh
+#
+# Needs: zig, cargo-zigbuild (`cargo install --locked cargo-zigbuild`), mksquashfs, python3, curl.
+# The binaries target glibc 2.31 (Ubuntu 20.04 and later). On a Linux machine, packaging/linux/build.sh
+# does the same natively.
+#
+# Output goes to dist/: eravon-app_<version>_amd64.deb and ERAVON-<version>-x86_64.AppImage.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$ROOT"
+VERSION="$(sed -n 's/^version *= *"\(.*\)"/\1/p' Cargo.toml | head -1)"
+TRIPLE=x86_64-unknown-linux-gnu
+# One build of the binaries, with the system notifier (`real-notify`): no other build turns the notifier on.
+FEATURES=app/real-notify
+TARGET_DIR="${CARGO_TARGET_DIR:-$ROOT/target}"
+DIST="$ROOT/dist"
+export CARGO_TARGET_DIR="$TARGET_DIR"
+WORK="$DIST/linux-work"
+PACK="$TARGET_DIR/release/eravon-pack"
+NOTICE_TARGET="$TRIPLE"
+# Every date the packages record: the moment of the commit being built, unless SOURCE_DATE_EPOCH says another
+# (make_deb.py and mksquashfs read it).
+export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git log -1 --format=%ct 2>/dev/null || echo 0)}"
+# The AppImage runtime is pinned by its bytes (`eravon-pack appimage-runtime`: type2-runtime 8f39b89, the one
+# the shipped AppImages carry). The download below is the moving `continuous` build; when it is no longer
+# that build the check stops here, and the pinned file is given as APPIMAGE_RUNTIME.
+RUNTIME_URL="https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64"
+
+# Keep local paths (home directory, checkout, build directory) out of the shipped binaries: the packaging tool
+# is built first and gives the flags, from the one table of path mappings (`eravon-pack rustflags`).
+# The packaging pieces run here, on the building machine.
+cargo build --release --locked -p eravon-pack
+CARGO_ENCODED_RUSTFLAGS="$("$PACK" rustflags --target-dir "$TARGET_DIR")"
+export CARGO_ENCODED_RUSTFLAGS
+rustup target add "$TRIPLE" >/dev/null
+cargo zigbuild --release --locked --target "$TRIPLE.2.31" --features "$FEATURES" -p app -p eravon-cli
+BIN="$TARGET_DIR/$TRIPLE/release"
+# The built binaries carry no path of this machine (`eravon-pack no-paths`); no package is made if they do.
+"$PACK" no-paths "$BIN/eravon-app" "$BIN/eravon"
+
+rm -rf "$WORK"
+mkdir -p "$WORK" "$DIST"
+# The notices for everything the packages install, with the licences of the three fonts this build embeds.
+"$PACK" notices --target "$NOTICE_TARGET" --root app --root eravon-cli \
+  --with crates/eravon-ui/fonts/OFL-Inter.txt --with crates/eravon-ui/fonts/OFL-JetBrainsMono.txt \
+  --with crates/eravon-ui/fonts/OFL-NotoSansSC.txt --out "$WORK/THIRD-PARTY-LICENSES.txt"
+
+stage() {
+  local root="$1"
+  install -d "$root/usr/bin" "$root/usr/share/applications" "$root/usr/share/doc/eravon-app" \
+    "$root/usr/share/icons/hicolor/scalable/apps"
+  install -m755 "$BIN/eravon-app" "$root/usr/bin/eravon-app"
+  install -m755 "$BIN/eravon" "$root/usr/bin/eravon"
+  # The toolchain words in each binary's `.comment` (not loaded at run time) zeroed in the staged copies.
+  "$PACK" elf-comment "$root/usr/bin/eravon-app" "$root/usr/bin/eravon"
+  install -m644 packaging/linux/eravon-app.desktop "$root/usr/share/applications/eravon-app.desktop"
+  for s in 16 24 32 48 64 128 256 512; do
+    install -d "$root/usr/share/icons/hicolor/${s}x${s}/apps"
+    install -m644 "packaging/icon/hicolor/$s.png" "$root/usr/share/icons/hicolor/${s}x${s}/apps/eravon-app.png"
+  done
+  install -m644 packaging/icon/eravon.svg "$root/usr/share/icons/hicolor/scalable/apps/eravon-app.svg"
+  install -m644 LICENSE "$root/usr/share/doc/eravon-app/copyright"
+  install -m644 "$WORK/THIRD-PARTY-LICENSES.txt" "$root/usr/share/doc/eravon-app/THIRD-PARTY-LICENSES.txt"
+}
+
+# .deb: an ar archive of debian-binary, control.tar.gz and data.tar.gz, every file owned by root.
+DEB_ROOT="$WORK/deb"
+stage "$DEB_ROOT"
+DEB="$DIST/eravon-app_${VERSION}_amd64.deb"
+python3 packaging/linux/make_deb.py "$DEB_ROOT" packaging/linux/control "$VERSION" amd64 "$DEB"
+
+# AppImage: the AppImage runtime followed by a squashfs image of the AppDir.
+APPDIR="$WORK/ERAVON.AppDir"
+stage "$APPDIR"
+cp packaging/linux/eravon-app.desktop "$APPDIR/eravon-app.desktop"
+cp packaging/icon/hicolor/256.png "$APPDIR/eravon-app.png"
+ln -s eravon-app.png "$APPDIR/.DirIcon"
+cat > "$APPDIR/AppRun" <<'EOF'
+#!/bin/sh
+HERE="$(dirname "$(readlink -f "$0")")"
+[ "$#" -eq 0 ] && set -- window
+exec "$HERE/usr/bin/eravon-app" "$@"
+EOF
+chmod 755 "$APPDIR/AppRun"
+RUNTIME="${APPIMAGE_RUNTIME:-$WORK/runtime-x86_64}"
+[ -f "$RUNTIME" ] || curl -fsSL -o "$RUNTIME" "$RUNTIME_URL"
+"$PACK" appimage-runtime "$RUNTIME" --arch x86_64
+mksquashfs "$APPDIR" "$WORK/image.squashfs" -root-owned -noappend -comp zstd -quiet -no-xattrs
+APPIMAGE="$DIST/ERAVON-$VERSION-x86_64.AppImage"
+cat "$RUNTIME" "$WORK/image.squashfs" > "$APPIMAGE"
+chmod 755 "$APPIMAGE"
+
+rm -rf "$WORK"
+( cd "$DIST" && shasum -a 256 "$(basename "$DEB")" "$(basename "$APPIMAGE")" > "SHA256SUMS-linux-x86_64.txt" )
+echo "built: $DEB"
+echo "built: $APPIMAGE"

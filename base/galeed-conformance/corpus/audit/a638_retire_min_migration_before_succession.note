@@ -1,0 +1,1 @@
+sec 7.4: the migration carried at T0 retires the key before its later succession's record at T0+10; the stray anchor at T0+5 and the succession are DISCARDED; COMPLETE.

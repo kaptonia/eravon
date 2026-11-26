@@ -1,0 +1,1 @@
+HARNESS: 0x alone spells the empty byte string; sec 8.4 finds the carried empty string malformed (E_JSON) and hard.

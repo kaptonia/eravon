@@ -1,0 +1,24 @@
+[package]
+name = "eravon-dispute"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Dispute side: refund card and refund(), evidence commits, settlement offers, pasted buyer signatures, ruling and resignation entries checked against the judge lineage, sweeps and redraws"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-zikaron = { path = "../eravon-zikaron" }
+eravon-evidence = { path = "../eravon-evidence" }
+eravon-store = { path = "../eravon-store" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-watch = { path = "../eravon-watch" }
+
+[dev-dependencies]
+galeed = { path = "../../vendor/galeed-crates/crates/galeed" }
+galeed-evidence = { path = "../../vendor/galeed-crates/crates/galeed-evidence" }

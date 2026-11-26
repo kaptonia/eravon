@@ -1,0 +1,7 @@
+[workspace]
+resolver = "3"
+members = ["crates/zikaron"]
+
+[profile.release]
+debug = false
+overflow-checks = true

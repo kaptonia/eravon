@@ -1,0 +1,15 @@
+[package]
+name = "eravon-net"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "The one transport: one HTTP/1.1 exchange over TCP or TLS, within one deadline and an answer cap, the way out chosen once"
+
+[dependencies]
+eravon-os = { path = "../eravon-os" }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+webpki-roots = "1"
+rquickjs = { version = "=0.14.0", default-features = false, features = ["disable-assertions"] }
+
+[features]

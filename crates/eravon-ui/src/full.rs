@@ -1,0 +1,166 @@
+use crate::motion::{self, Curve};
+use crate::palette::{c, C};
+use crate::tokens;
+use egui::{pos2, vec2, Rect};
+
+pub fn cover<R>(ctx: &egui::Context, id_salt: &str, side: f32, add: impl FnOnce(&mut egui::Ui, f32) -> R) -> R {
+    let id = egui::Id::new(("eravon-cover", id_salt));
+    let screen = ctx.content_rect();
+    let a = crate::layer::entrance(ctx, &[id.with("keep")], id.with("age"), tokens::MID);
+    let age = motion::age(ctx, id.with("age"), 0);
+    let settle = Curve::Ease.at((age / tokens::SLOW).clamp(0.0, 1.0));
+    if age < tokens::SLOW {
+        ctx.request_repaint();
+    }
+    let layer = egui::LayerId::new(egui::Order::Middle, id);
+    crate::layer::place(ctx, layer, None);
+    let r = crate::layer::over(ctx, layer).show(ctx, |ui| {
+        if side > 0.0 {
+            crate::layer::under(ui, crate::layer::Under::Ground(egui::Color32::TRANSPARENT));
+            let (strip, rest) = screen.split_left_right_at_x(screen.left() + side);
+            ui.painter().rect_filled(strip, 0.0, crate::material::rail_ground().gamma_multiply(a));
+            ui.painter().rect_filled(rest, 0.0, c(C::Ground).gamma_multiply(a));
+        } else {
+            crate::layer::under(ui, crate::layer::Under::Ground(c(C::Ground).gamma_multiply(a)));
+        }
+        ui.set_clip_rect(screen);
+        let mut child = ui.new_child(egui::UiBuilder::new().max_rect(screen).layout(egui::Layout::top_down(egui::Align::Min)));
+        child.multiply_opacity(a);
+        add(&mut child, 10.0 * (1.0 - settle))
+    });
+    crate::layer::keep(ctx, id.with("keep"), layer, tokens::MID, 1.0, screen.center(), egui::Vec2::ZERO);
+    r.inner
+}
+
+pub fn centered_w(rect: Rect, width: f32) -> f32 {
+    width.min(rect.width() - 32.0).max(0.0)
+}
+
+pub fn bar_room(ui: &egui::Ui) -> f32 {
+    let s = &ui.spacing().scroll;
+    s.bar_width + s.bar_inner_margin + s.bar_outer_margin
+}
+
+pub fn centered<R>(ui: &mut egui::Ui, id_salt: &str, rect: Rect, width: f32, drop: f32, add: impl FnOnce(&mut egui::Ui) -> R) -> R {
+    let id = egui::Id::new(("eravon-centered", id_salt));
+    let h = ui.ctx().data(|d| d.get_temp::<f32>(id)).unwrap_or(0.0);
+    let w = centered_w(rect, width);
+    let top = (rect.center().y - h / 2.0).max(rect.top() + 24.0) + drop;
+    let col = Rect::from_min_size(pos2(rect.center().x - w / 2.0, rect.top()), vec2(w + bar_room(ui), rect.height()));
+    let mut child = ui.new_child(egui::UiBuilder::new().max_rect(col).layout(egui::Layout::top_down(egui::Align::Min)));
+    child.set_clip_rect(rect);
+    let out = crate::scroll::page(&mut child, egui::ScrollArea::vertical().id_salt(id.with("scroll")).max_height(rect.height()).auto_shrink([false, true]), |ui| {
+        ui.add_space((top - rect.top()).max(0.0));
+        let r = ui.vertical(|ui| {
+            ui.set_width(w);
+            add(ui)
+        });
+        ui.add_space(24.0);
+        (r.inner, r.response.rect.height())
+    });
+    let (inner, got) = out.inner;
+    if (got - h).abs() > 0.5 {
+        ui.ctx().data_mut(|d| d.insert_temp(id, got));
+        ui.ctx().request_discard("centered column height changed");
+    }
+    inner
+}
+
+pub struct Step<'a> {
+    pub label: &'a str,
+    pub done: bool,
+    pub later: bool,
+    pub reachable: bool,
+}
+
+pub fn steps(ui: &mut egui::Ui, steps: &[Step], current: usize) -> Option<usize> {
+    let id = ui.id().with("eravon-wizard-steps");
+    let w = ui.available_width();
+    let row_h = 40.0;
+    let (area, _) = ui.allocate_exact_size(vec2(w, row_h * steps.len() as f32), egui::Sense::hover());
+    let p = ui.painter().clone();
+    let mut hit = None;
+    for (i, s) in steps.iter().enumerate() {
+        let r = Rect::from_min_size(pos2(area.left(), area.top() + row_h * i as f32), vec2(w, row_h));
+        let cy = r.center().y;
+        let bc = pos2(r.left() + 11.0, cy);
+        if i > 0 {
+            p.line_segment([pos2(bc.x, cy - row_h / 2.0 - 9.0 + 11.0), pos2(bc.x, cy - 11.0)], egui::Stroke::new(1.5_f32, c(C::Line)));
+        }
+        let resp = ui.interact(r, id.with(i), if s.reachable { egui::Sense::click() } else { egui::Sense::hover() });
+        let on = i == current;
+        let done = motion::flag(ui.ctx(), id.with(("done", i)), s.done, tokens::MID);
+        let lit = motion::flag(ui.ctx(), id.with(("on", i)), on, tokens::MID);
+        let hot = motion::states(ui.ctx(), id.with(("step", i)), resp.hovered(), resp.is_pointer_button_down_on(), resp.has_focus(), s.reachable).hover;
+        let edge = crate::palette::mix(crate::palette::mix(c(C::Line), c(C::Accent), lit), c(C::Ok), done);
+        p.circle_filled(bc, 11.0, crate::palette::mix(c(C::Surface), c(C::Ok), done));
+        if s.later && !s.done {
+            let n = 16;
+            for k in 0..n {
+                if k % 2 == 0 {
+                    let a0 = std::f32::consts::TAU * k as f32 / n as f32;
+                    let a1 = std::f32::consts::TAU * (k + 1) as f32 / n as f32;
+                    p.line_segment([pos2(bc.x + 10.25 * a0.cos(), bc.y + 10.25 * a0.sin()), pos2(bc.x + 10.25 * a1.cos(), bc.y + 10.25 * a1.sin())], egui::Stroke::new(1.5_f32, edge));
+                }
+            }
+        } else {
+            p.circle_stroke(bc, 10.25, egui::Stroke::new(1.5_f32, edge));
+        }
+        if s.done {
+            crate::icons::glyph_at(&p, crate::icons::Glyph::Ok, bc, 12.0, egui::Color32::WHITE.gamma_multiply(done));
+        } else {
+            let num = crate::palette::mix(c(C::Ink3), c(C::Accent), lit);
+            p.text(bc, egui::Align2::CENTER_CENTER, (i + 1).to_string(), egui::FontId::new(tokens::Type::Micro.size(), crate::fonts::strong()), num);
+        }
+        let ink = crate::palette::mix(crate::palette::mix(c(C::Ink3), c(C::Ink), hot), c(C::Ink), lit);
+        let font = if on { egui::FontId::new(tokens::Type::Small.size(), crate::fonts::strong()) } else { crate::tokens::Type::Small.font() };
+        p.text(pos2(r.left() + 34.0, cy), egui::Align2::LEFT_CENTER, s.label, font, ink);
+        if s.reachable && resp.clicked() {
+            hit = Some(i);
+        }
+        if s.reachable {
+            let _ = resp.on_hover_cursor(egui::CursorIcon::PointingHand);
+        }
+    }
+    hit
+}
+
+pub fn radio_row(ui: &mut egui::Ui, id: egui::Id, on: bool, title: &str, pill: Option<&str>, sub: &str) -> egui::Response {
+    let w = ui.available_width();
+    let text_x = 14.0 + 8.0 + 8.0 + 10.0;
+    let mut job = egui::text::LayoutJob::single_section(sub.to_string(), egui::TextFormat { font_id: crate::tokens::Type::Small.font(), color: c(C::Ink2), line_height: Some(crate::tokens::Type::Small.line()), ..Default::default() });
+    job.wrap.max_width = (w - text_x - 14.0).max(1.0);
+    let sub_g = ui.fonts_mut(|f| f.layout_job(job));
+    let two = !sub.is_empty();
+    let lines_h = crate::tokens::Type::Strong.line() + if two { 2.0 + sub_g.size().y.max(crate::tokens::Type::Small.line()) } else { 0.0 };
+    let h = 12.0 + lines_h + 12.0;
+    let (rect, resp) = ui.allocate_exact_size(vec2(w, h), egui::Sense::click());
+    let lit = motion::flag(ui.ctx(), id.with("on"), on, tokens::FAST);
+    let dot = motion::to(ui.ctx(), id.with("dot"), if on { 1.0 } else { 0.0 }, tokens::FAST, Curve::Spring);
+    let p = ui.painter().clone();
+    let fill = crate::palette::mix(c(C::Tone), c(C::Sel), lit);
+    let round = crate::tokens::Radius::Menu;
+    if lit > 0.0 {
+        p.rect_stroke(rect.expand(2.0), egui::CornerRadius::same(round.px() as u8 + 2), egui::Stroke::new(4.0_f32, c(C::Focus).gamma_multiply(lit)), egui::StrokeKind::Middle);
+    }
+    p.rect(rect, round.egui(), fill, egui::Stroke::new(1.0_f32, c(C::Accent).gamma_multiply(0.7 * lit)), egui::StrokeKind::Inside);
+    let edge = crate::palette::mix(c(C::Dash), c(C::Accent), lit);
+    let rc = pos2(rect.left() + 14.0 + 8.0, rect.center().y);
+    p.circle_stroke(rc, 7.5, egui::Stroke::new(1.5_f32, edge));
+    if dot > 0.0 {
+        p.circle_filled(rc, 4.5 * dot, c(C::Accent));
+    }
+    let x = rect.left() + text_x;
+    let ty = rect.center().y - lines_h / 2.0;
+    let tr = p.text(pos2(x, ty + crate::tokens::Type::Strong.line() / 2.0), egui::Align2::LEFT_CENTER, title, crate::tokens::Type::Strong.font(), c(C::Ink));
+    if let Some(s) = pill {
+        let pw = crate::mark::pill_w(ui, s, false);
+        let pr = Rect::from_min_size(pos2(tr.right() + 8.0, tr.center().y - tokens::PILL_H / 2.0), vec2(pw, tokens::PILL_H));
+        let mut child = ui.new_child(egui::UiBuilder::new().max_rect(pr));
+        crate::mark::pill(&mut child, s, crate::palette::Tone::Ok);
+    }
+    if two {
+        p.galley(pos2(x, ty + crate::tokens::Type::Strong.line() + 2.0), sub_g, c(C::Ink2));
+    }
+    resp.on_hover_cursor(egui::CursorIcon::PointingHand)
+}

@@ -1,0 +1,28 @@
+[package]
+name = "eravon-goods"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Goods and payment links: one terms document and one instance per good; drafts with missing fields; terms generated and read back; candidates resolved; offers signed per candidate; payload, link and QR code; re-signing and lock to-dos; listing; leave guard"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-roster = { path = "../eravon-roster" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-store = { path = "../eravon-store" }
+eravon-cands = { path = "../eravon-cands" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-link = { path = "../eravon-link" }
+eravon-payways = { path = "../eravon-payways" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-qr = { path = "../eravon-qr" }
+png = "0.18"
+
+[dev-dependencies]
+eravon-vault = { path = "../eravon-vault", features = ["testing"] }
+
+[features]

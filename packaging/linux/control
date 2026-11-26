@@ -1,0 +1,13 @@
+Package: eravon-app
+Version: @VERSION@
+Architecture: @ARCH@
+Maintainer: Kaptonia <kaptonia@users.noreply.github.com>
+Installed-Size: @SIZE@
+Depends: libc6, libdbus-1-3, libgcc-s1, libxkbcommon0, libxkbcommon-x11-0, libwayland-client0, libx11-6, libxcursor1, libxrandr2, libxi6, libgl1
+Recommends: xdg-desktop-portal, xdg-desktop-portal-gtk
+Section: utils
+Priority: optional
+Description: ERAVON desktop app
+ Sells goods through payment links whose funds are held on chain until the
+ order completes, with a judge or a guild of judges named in the terms to
+ rule a dispute. Includes the `eravon` command line.

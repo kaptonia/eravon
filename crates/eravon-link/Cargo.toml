@@ -1,0 +1,16 @@
+[package]
+name = "eravon-link"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "eravon.link/1 checks: five documents, three bindings, link resolution, transport and identity over a record set, library plus the `erl` command"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-terms = { path = "../eravon-terms" }
+
+[[bin]]
+name = "erl"
+path = "src/bin/erl.rs"

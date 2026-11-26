@@ -1,0 +1,24 @@
+[package]
+name = "eravon-orders"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Orders: local archive merged with chain scans, order numbers, thirteen state words, search, five detail tabs"
+
+[dependencies]
+eravon-scan = { path = "../eravon-scan" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-watch = { path = "../eravon-watch" }
+eravon-goods = { path = "../eravon-goods" }
+eravon-deliver = { path = "../eravon-deliver" }
+eravon-dispute = { path = "../eravon-dispute" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-os = { path = "../eravon-os" }
+eravon-galeed = { path = "../eravon-galeed" }
+
+[features]

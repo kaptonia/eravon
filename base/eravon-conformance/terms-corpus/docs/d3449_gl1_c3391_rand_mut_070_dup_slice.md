@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"text_md":"","venues":[{"chainId":367398,"codeHash":"0xf53c893ca11d441bbaeb2be1316e39b3181d6d1ad99ecaca3122ef76f4b70524","contract":"0xf6b86333f570005d1eaf21edab1687b938d70e3d"},{"chainId":484241,"codeHash":"0xfb70657bd4beb617a2319287775c5b87033a67afac9e0dc6b8ed173624e46341","contract":"0x57888e65bb5fe27ee19b5cd569fc30ec0adca846"}],"version":6937500120548635},"entryType":"tryType":"amanah","judge":"0x7ec30184c8170e680fcd6d8a29d61b8b8d42752b","prev":"0x98eecfc3d3f008c03b2fd0a0ff94545827966df1f30b4380b2c1b8e66cf73336","seq":978651,"sig":"0x58f1b16cddb4d519b84f9ede424a634268923a3b56271c80f7dfa19b30be1c3b4b0353ef4edaae57b6a5c9058da690fe1d64d87e25b8c60f4f4a72b3d37e57f21c","spec":"galeed/1"}
+```

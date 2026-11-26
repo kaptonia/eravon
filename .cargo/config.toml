@@ -1,0 +1,12 @@
+# app-skeleton · family version 21
+# Build-time settings every build of this workspace takes (family `.cargo/config.toml`).
+[env]
+# The most bytes one trace file holds (eravon-literals `trace::CAP_BYTES`): past it, one named step says the cap was reached
+# and nothing more is recorded.
+ERAVON_TRACE_CAP_BYTES = "8388608"
+# The GALEED snapshot's `galeed` (vendor/galeed-crates, galeed-desk 27208ce1) reads this build variable with `env!`; its value
+# is the snapshot's own `.cargo/config.toml`. Cargo reads only this workspace root's configuration when it builds vendor/.
+GALEED_DESK_TRACE_CAP_BYTES = "8388608"
+# The ZIKARON core snapshot's `zikaron` (vendor/zikaron-crates, zikaron-desk c07358e1) reads this build variable with
+# `env!`; its value is the snapshot's own `.cargo/config.toml`.
+ZIKARON_TRACE_CAP_BYTES = "8388608"

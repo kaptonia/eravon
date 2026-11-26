@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"entry_id":"0x0000000000000000000000000000000000000000000000000000000000000007","newRoot":"0x01187a68996839920363a58d942b2c51df0da731","spec":"galeed/2","statement_md":"the seat moves to galeed/2 under this key"},"entryType":"migration","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xa93d4a787753c7d155bc835da7f427b97bbbd4a7a2b6b47d11492a5f8aa7b8a301f3d40af9c6e2d7a2b03cde55a6656a5ad9945e020621a5cd9968543c889f781b","spec":"galeed/1"}
+```

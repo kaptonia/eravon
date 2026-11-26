@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"5":{"9*":[true,{"i]Q/-t":5857417421698103,"l%":5799551315888832},{"\\pI_md":null}]},"Z_":[{"#Q1R_md":"E⁩7[S\u001d\u001a\u0001q`","D/_md":{"/U;U1ad":true}}],"amanah":"0xb864eb907b7347164a905ec4b9a55a2b07df599e3f68b62342ec4ed5078ada4a","decision":{"rung":1},"subjectRef":{"kind":"a8(J5&"},"terms":"0x4898bf118e6a3e563fd646dfec6af9125c40ac7f98efb768d4ed6aef964bd3ac","verdict_md":"‭v6SLy6~D|Q\u0017\u0001\u0013x4_["},"entryType":"judgment","judge":"0x7ec30184c8170e680fcd6d8a29d61b8b8d42752b","prev":"0x04ab6fc21d63bf5e43de56cc6b76ffb1a3d2768d44349ea626a0e8f9d3e3676c","seq":981517,"sig":"0x31ea79b66a2f9e3d89bd84f2246c64d20bfa213e83091f051801d0f6c091bebd132980a774567cb7d9d3b2e0952d44d52d12cf9d8aea255151515db0a2f07c0e1b","spec":"galeed/1"}
+```

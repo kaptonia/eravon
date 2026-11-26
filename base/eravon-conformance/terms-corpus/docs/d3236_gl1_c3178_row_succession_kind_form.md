@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"effective":1700000000,"kind":"a b","statement_md":"handed","to":"0x0000000000000000000000000000000000000005"},"entryType":"succession","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xef4dc59d3cd118cec2a14bc936f33401c9f01ee1b8a91c22cb2ad5ad85add5ea26b7c13fd2a3ad8ef650bbcc17d91343142b74de04723ce77201693086be5df01c","spec":"galeed/1"}
+```

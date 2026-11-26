@@ -1,0 +1,22 @@
+[package]
+name = "eravon-cands"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Judges and guilds: local candidate table (judges by address, guilds by pointer, each labelled); every open re-reads judge documents and rosters without persisting member lists; absence states named; quotes laid out from their bytes; re-signing flagged on new versions"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-roster = { path = "../eravon-roster" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-literals = { path = "../eravon-literals" }
+
+[[bin]]
+name = "erq"
+path = "src/bin/erq.rs"

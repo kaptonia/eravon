@@ -1,0 +1,1 @@
+sec 8.1: a VOID record carries junk; MALFORMED lists it, the VOID row carries it, and nothing else moves.

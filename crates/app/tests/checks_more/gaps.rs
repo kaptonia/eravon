@@ -1,0 +1,351 @@
+use app::fault::Known;
+use app::local::{self, Doc, Expect, Ident, Owner, Unread};
+use std::path::{Path, PathBuf};
+use super::vault_open;
+
+fn scratch(name: &str) -> PathBuf {
+    let d = std::env::temp_dir().join(format!("zk-gaps-{name}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&d);
+    d
+}
+
+fn src() -> PathBuf {
+    Path::new(env!("CARGO_MANIFEST_DIR")).join("src")
+}
+
+fn code_only(s: &str) -> String {
+    s.lines().filter(|l| !l.trim_start().starts_with("//")).collect::<Vec<_>>().join("\n")
+}
+
+fn reason(r: Result<Vec<u8>, app::fault::Fault>) -> Option<Unread> {
+    match r {
+        Ok(_) => None,
+        Err(f) => {
+            assert_eq!(f.which(), Some(Known::LocalSeal), "{}", f.said());
+            Unread::of(&f)
+        }
+    }
+}
+
+fn rpc_node(answer: fn(&str) -> Option<String>) -> String {
+    serve(move |body| {
+        let method = body.split("\"method\":\"").nth(1).and_then(|r| r.split('"').next()).unwrap_or("").to_string();
+        let id = body.split("\"id\":").nth(1).and_then(|r| r.split(|c| c == ',' || c == '}').next()).unwrap_or("1").trim().to_string();
+        let result = answer(&method)?;
+        let body = format!("{{\"id\":{id},\"jsonrpc\":\"2.0\",\"result\":{result}}}");
+        Some(format!("HTTP/1.1 200 OK\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}", body.len()))
+    })
+}
+
+fn status_node(line: &'static str) -> String {
+    serve(move |_| {
+        let body = "<html>busy</html>";
+        Some(format!("HTTP/1.1 {line}\r\nContent-Type: text/html\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{body}", body.len()))
+    })
+}
+
+fn serve(reply: impl Fn(&str) -> Option<String> + Send + Sync + Copy + 'static) -> String {
+    use std::io::{Read, Write};
+    let l = std::net::TcpListener::bind("127.0.0.1:0").expect("bind");
+    let url = format!("http://{}", l.local_addr().expect("addr"));
+    std::thread::spawn(move || {
+        for s in l.incoming().flatten() {
+            std::thread::spawn(move || {
+                let mut s = s;
+                let mut raw = Vec::new();
+                let mut buf = [0u8; 4096];
+                let body = loop {
+                    match s.read(&mut buf) {
+                        Ok(0) | Err(_) => return,
+                        Ok(n) => raw.extend_from_slice(&buf[..n]),
+                    }
+                    let text = String::from_utf8_lossy(&raw).to_string();
+                    if let Some(i) = text.find("\r\n\r\n") {
+                        let len: usize = text[..i].lines().find_map(|l| l.to_ascii_lowercase().strip_prefix("content-length:").and_then(|n| n.trim().parse().ok())).unwrap_or(0);
+                        if raw.len() >= i + 4 + len {
+                            break text[i + 4..].to_string();
+                        }
+                    }
+                };
+                let Some(out) = reply(&body) else { return };
+                let _ = s.write_all(out.as_bytes());
+            });
+        }
+    });
+    url
+}
+
+fn eps(urls: &[&String]) -> Vec<app::chainx::Endpoint> {
+    urls.iter().map(|u| app::chainx::Endpoint::parse(&format!("31337={u}")).expect("an endpoint")).collect()
+}
+
+fn quick() {
+    eravon_chain::patience::set_waits(Some(std::time::Duration::ZERO));
+}
+
+fn node_at_256(m: &str) -> Option<String> {
+    Some(match m {
+        "eth_chainId" => "\"0x7a69\"".into(),
+        "eth_blockNumber" => "\"0x100\"".into(),
+        _ => "null".into(),
+    })
+}
+fn node_at_192(m: &str) -> Option<String> {
+    Some(match m {
+        "eth_blockNumber" => "\"0xc0\"".into(),
+        other => return node_at_256(other),
+    })
+}
+fn node_at_191(m: &str) -> Option<String> {
+    Some(match m {
+        "eth_blockNumber" => "\"0xbf\"".into(),
+        other => return node_at_256(other),
+    })
+}
+
+#[test]
+fn an_inner_frame_of_another_owner_is_swapped_garbage_framing_is_unopenable_an_unknown_tag_is_another_kind() {
+    if super::alone_in(module_path!(), "an_inner_frame_of_another_owner_is_swapped_garbage_framing_is_unopenable_an_unknown_tag_is_another_kind") {
+        return;
+    }
+    let key: [u8; 32] = std::array::from_fn(|i| i as u8);
+    let nonce: [u8; 24] = std::array::from_fn(|i| 0x40 + i as u8);
+    let mine = Owner::Home("000102030405060708090a0b0c0d0e0f".into());
+    let logical = "settings/desk.json";
+    let asked = Ident { owner: mine.clone(), doc: Doc::Settings, logical: logical.into() };
+    let ex = Expect { owner: Some(mine.clone()), doc: Doc::Settings, rel: Some(logical.into()) };
+    let plain = b"{\"capBytes\":0}";
+    let tag = Doc::Settings.tag().as_bytes();
+    let mut head = local::MAGIC_V2.to_vec();
+    head.push(local::ALG_KEYED);
+    head.push(tag.len() as u8);
+    head.extend_from_slice(tag);
+    head.extend_from_slice(&Doc::Settings.version().to_be_bytes());
+    head.extend_from_slice(&asked.digest_keyed(&key));
+    head.extend_from_slice(&nonce);
+    let sealed_with = |body: &[u8]| {
+        let ct = app::cryptx::xchacha_seal(&key, &nonce, &head, body).expect("seals");
+        let mut out = head.clone();
+        out.extend_from_slice(&ct);
+        out
+    };
+    let frame = |owner: &str, logical: &str| {
+        let mut b = Vec::new();
+        for part in [owner.as_bytes(), logical.as_bytes()] {
+            b.extend_from_slice(&(part.len() as u16).to_be_bytes());
+            b.extend_from_slice(part);
+        }
+        b.extend_from_slice(plain);
+        b
+    };
+    let right = sealed_with(&frame(&mine.text(), logical));
+    assert_eq!(right, local::envelope(&key, &asked, &nonce, plain).expect("seals"), "the hand-made envelope is the product's");
+    assert_eq!(local::unseal(&key, &ex, &right, "t").expect("opens"), plain);
+    for (form, owner, at) in [
+        ("another home inside", "home:ffffffffffffffffffffffffffffffff".to_string(), logical),
+        ("the machine inside", "machine".to_string(), logical),
+        ("another place inside", mine.text(), "settings/queue.json"),
+        ("no owner's spelling inside", "nobody".to_string(), logical),
+    ] {
+        assert_eq!(reason(local::unseal(&key, &ex, &sealed_with(&frame(&owner, at)), "t")), Some(Unread::Swapped), "{form}");
+    }
+    for (form, body) in [("a length past the bytes", vec![0xff, 0xff, b'x']), ("empty", Vec::new()), ("not text", vec![0x00, 0x02, 0xc3, 0x28, 0x00, 0x00])] {
+        assert_eq!(reason(local::unseal(&key, &ex, &sealed_with(&body), "t")), Some(Unread::Unopenable), "{form}");
+    }
+    let unknown = b"zzzzzzzz";
+    assert_eq!(unknown.len(), tag.len());
+    assert_eq!(Doc::from_tag("zzzzzzzz"), None, "a tag no kind has");
+    let mut patched = right.clone();
+    let at = local::MAGIC_V2.len() + 2;
+    assert_eq!(&patched[at..at + tag.len()], tag);
+    patched[at..at + tag.len()].copy_from_slice(unknown);
+    assert_eq!(reason(local::unseal(&key, &ex, &patched, "t")), Some(Unread::OtherKind));
+}
+
+#[test]
+fn a_relabelled_home_on_a_coarse_time_volume_reads_by_its_new_number() {
+    if super::alone_in(module_path!(), "a_relabelled_home_on_a_coarse_time_volume_reads_by_its_new_number") {
+        return;
+    }
+    vault_open();
+    let dir = scratch("relabel");
+    let home = app::home::Home::open_or_create(&dir).expect("a home");
+    let root = home.root().to_path_buf();
+    local::check_label(&root, None, true).expect("a writer labels it");
+    let old = local::read_label(&root).expect("reads").expect("a label").number;
+    let room = home.dir(app::home::Slot::Settings);
+    let at = room.join(app::settings::FILE);
+    let rel = format!("{}/{}", app::home::Slot::Settings.as_str(), app::settings::FILE);
+    let plain = b"{\"capBytes\":0}";
+    local::put(&room, app::settings::FILE, Doc::Settings, plain).expect("a settings file under the old number");
+    let old_file = std::fs::read(&at).expect("written");
+    assert!(local::read(&at, Doc::Settings).expect("reads").is_some());
+    let label_at = local::label_path(&root);
+    let before = std::fs::metadata(&label_at).expect("the label");
+    let new = local::Label::new(None).expect("a number").number;
+    assert_ne!(new, old);
+    let relabelled = local::seal(&local::label_ident(), &local::Label { number: new.clone(), whose: None }.to_bytes()).expect("sealed");
+    std::fs::write(&label_at, &relabelled).expect("relabelled");
+    let f = std::fs::OpenOptions::new().write(true).open(&label_at).expect("the label");
+    f.set_modified(before.modified().expect("a time")).expect("the time put back");
+    drop(f);
+    let after = std::fs::metadata(&label_at).expect("the label");
+    assert_eq!((after.len(), after.modified().ok()), (before.len(), before.modified().ok()), "same length, same time: the coarse volume's view");
+    let label_ex = Expect { owner: Some(Owner::Label), doc: Doc::HomeLabel, rel: Some(format!("{}/{}", app::home::Slot::Settings.as_str(), local::LABEL_FILE)) };
+    let on_disk = local::open_with(&app::keybox::local_key().expect("the key"), &label_ex, &std::fs::read(&label_at).expect("reads"), "label").expect("opens");
+    assert_eq!(local::Label::parse(&on_disk).expect("a label").number, new, "the label on disk is the new one");
+    let new_file = local::seal(&local::ident_in(Owner::Home(new.clone()), Doc::Settings, &rel, plain).expect("an ident"), plain).expect("sealed");
+    std::fs::write(&at, &new_file).expect("written");
+    assert_eq!(local::read(&at, Doc::Settings).map(|o| o.is_some()).map_err(|f| f.said().to_string()), Ok(true), "a file of the new number reads");
+    std::fs::write(&at, &old_file).expect("written");
+    assert_eq!(reason(local::read(&at, Doc::Settings).map(|o| o.unwrap_or_default())), Some(Unread::Swapped), "the old number's file is another file");
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn eight_first_writers_of_a_fresh_home_give_it_one_number() {
+    if super::alone_in(module_path!(), "eight_first_writers_of_a_fresh_home_give_it_one_number") {
+        return;
+    }
+    vault_open();
+    let dir = scratch("eight");
+    std::fs::create_dir_all(&dir).expect("a fresh home");
+    let gate = std::sync::Arc::new(std::sync::Barrier::new(8));
+    let seen: Vec<String> = (0..8)
+        .map(|_| {
+            let (gate, root) = (gate.clone(), dir.clone());
+            std::thread::spawn(move || {
+                gate.wait();
+                local::check_label(&root, None, true).expect("a writer opens it");
+                local::read_label(&root).expect("reads").expect("a label").number
+            })
+        })
+        .collect::<Vec<_>>()
+        .into_iter()
+        .map(|h| h.join().expect("the thread"))
+        .collect();
+    let on_disk = local::read_label(&dir).expect("reads").expect("a label").number;
+    assert!(seen.iter().all(|n| *n == on_disk), "one number: {seen:?} on disk {on_disk}");
+    let left: Vec<String> = std::fs::read_dir(local::label_path(&dir).parent().unwrap()).expect("the room").flatten().map(|e| e.file_name().to_string_lossy().to_string()).collect();
+    assert_eq!(left, vec![local::LABEL_FILE.to_string()], "one label file, nothing half-written left");
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[cfg(unix)]
+#[test]
+fn an_existing_lock_file_open_to_others_is_left_as_it_is() {
+    if super::alone_in(module_path!(), "an_existing_lock_file_open_to_others_is_left_as_it_is") {
+        return;
+    }
+    vault_open();
+    let dir = scratch("lockfile");
+    let home = app::home::Home::open_or_create(&dir).expect("a home");
+    let at = app::lock::path_of(&home);
+    std::fs::create_dir_all(at.parent().unwrap()).expect("the room");
+    std::fs::write(&at, b"pid 4242\n").expect("an older lock file");
+    eravon_os::open_to_others(&at, false).expect("open to others");
+    let mode = |p: &Path| eravon_os::is_owner_only(p).expect("there");
+    let other = std::fs::File::open(&at).expect("another handle");
+    assert!(eravon_store::lock::grab(&other), "the other holds it");
+    let reader = app::lock::take(&home).expect("taken");
+    assert_eq!(reader.mode(), app::lock::Mode::Reader);
+    assert_eq!(std::fs::read(&at).expect("reads"), b"pid 4242\n", "not cut");
+    assert!(!mode(&at), "permissions as they were (still open to others)");
+    drop(reader);
+    drop(other);
+    let writer = app::lock::take(&home).expect("taken");
+    assert_eq!(writer.mode(), app::lock::Mode::Writer);
+    assert!(!mode(&at), "permissions as they were (still open to others)");
+    drop(writer);
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn no_source_outside_machine_rs_writes_the_machine_settings_whole() {
+    if super::alone_in(module_path!(), "no_source_outside_machine_rs_writes_the_machine_settings_whole") {
+        return;
+    }
+    fn walk(at: &Path, out: &mut Vec<PathBuf>) {
+        for e in std::fs::read_dir(at).expect("src/ reads").flatten() {
+            let p = e.path();
+            if p.is_dir() {
+                walk(&p, out);
+            } else if p.extension().and_then(|x| x.to_str()) == Some("rs") {
+                out.push(p);
+            }
+        }
+    }
+    let mut files = Vec::new();
+    walk(&src(), &mut files);
+    assert!(files.len() > 50, "the sources read: {}", files.len());
+    let mut found = Vec::new();
+    for f in files.iter().filter(|f| *f != &src().join("machine.rs")) {
+        let code = code_only(&std::fs::read_to_string(f).expect("a source file reads"));
+        for (i, _) in code.match_indices("machine::write") {
+            let next = code[i + "machine::write".len()..].chars().next();
+            if !matches!(next, Some(c) if c.is_alphanumeric() || c == '_') {
+                found.push(format!("{}: {}", f.strip_prefix(src()).unwrap().display(), code[i..].lines().next().unwrap_or_default()));
+            }
+        }
+    }
+    assert!(found.is_empty(), "machine settings written whole outside machine.rs (every change goes through machine::update): {found:?}");
+}
+
+#[test]
+fn heads_sixty_four_apart_are_taken_and_sixty_five_apart_refused() {
+    if super::alone_in(module_path!(), "heads_sixty_four_apart_are_taken_and_sixty_five_apart_refused") {
+        return;
+    }
+    quick();
+    assert_eq!(app::chainx::MAX_HEAD_LAG, 64);
+    let (high, at_lag, past_lag) = (rpc_node(node_at_256), rpc_node(node_at_192), rpc_node(node_at_191));
+    assert_eq!(app::chainx::head_block(&eps(&[&high, &at_lag]), 31337).expect("a head"), (192, 2));
+    let f = app::chainx::head_block(&eps(&[&high, &past_lag]), 31337).expect_err("a node behind");
+    assert_eq!(f.which(), Some(Known::Disagree), "{}", f.said());
+    assert!(f.tail().contains(&past_lag) && f.tail().contains("65") && f.tail().contains("256"), "{}", f.tail());
+}
+
+#[test]
+fn two_nodes_with_different_troubles_say_the_first_nodes_code() {
+    if super::alone_in(module_path!(), "two_nodes_with_different_troubles_say_the_first_nodes_code") {
+        return;
+    }
+    quick();
+    let (limited, gateway) = (status_node("429 Too Many Requests"), status_node("502 Bad Gateway"));
+    let f = app::chainx::head_block(&eps(&[&limited, &gateway]), 31337).expect_err("nobody answered");
+    assert_eq!(f.which(), Some(Known::RateLimited), "the first node's: {} {}", f.said(), f.tail());
+    assert!(f.tail().contains(&limited) && f.tail().contains(&gateway), "both named: {}", f.tail());
+    let f = app::chainx::head_block(&eps(&[&gateway, &limited]), 31337).expect_err("nobody answered");
+    assert_eq!(f.which(), Some(Known::NodeRefused), "the first node's: {} {}", f.said(), f.tail());
+}
+
+struct SaysMaximized;
+
+impl eravon_ui::egui::Plugin for SaysMaximized {
+    fn debug_name(&self) -> &'static str {
+        "says-maximized"
+    }
+    fn input_hook(&mut self, input: &mut eravon_ui::egui::RawInput) {
+        let id = input.viewport_id;
+        input.viewports.entry(id).or_default().maximized = Some(true);
+    }
+}
+
+#[test]
+fn a_double_click_on_the_handle_of_a_maximized_window_puts_it_back() {
+    if super::alone_in(module_path!(), "a_double_click_on_the_handle_of_a_maximized_window_puts_it_back") {
+        return;
+    }
+    use eravon_ui::egui::{pos2, Event, PointerButton};
+    vault_open();
+    let at = pos2(eravon_ui::tokens::RAIL_W + 200.0, 4.0);
+    let press = |p, down| Event::PointerButton { pos: p, button: PointerButton::Primary, pressed: down, modifiers: Default::default() };
+    let ctx = eravon_ui::egui::Context::default();
+    ctx.add_plugin(SaysMaximized);
+    let shell = app::shell::Shell::boot(eravon_ui::skin::dress(&ctx));
+    let two = vec![(0.1, vec![Event::PointerMoved(at)]), (0.05, vec![press(at, true), press(at, false)]), (0.1, vec![press(at, true), press(at, false)]), (0.5, vec![])];
+    let (_, said) = app::window::probe_shell_input(&ctx, shell, app::nav::Place::Home, two, 1180.0, 760.0);
+    let sent: Vec<String> = said.into_iter().flat_map(|(_, c)| c).collect();
+    assert!(sent.iter().any(|s| s.starts_with("Maximized(false)")), "a maximized window is put back: {sent:?}");
+    assert!(!sent.iter().any(|s| s.starts_with("Maximized(true)")), "never maximized again: {sent:?}");
+}

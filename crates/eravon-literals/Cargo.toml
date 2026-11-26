@@ -1,0 +1,16 @@
+[package]
+name = "eravon-literals"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Family literal registry and fixed constants: the registry is the contract the checker reads"
+
+[dependencies]
+eravon = { path = "../eravon" }
+eravon-os = { path = "../eravon-os" }
+eravon-glue = { path = "../eravon-glue" }
+
+[[bin]]
+name = "eravon-literals-check"
+path = "src/bin/eravon-literals-check.rs"

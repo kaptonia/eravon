@@ -1,0 +1,16 @@
+[package]
+name = "eravon-evidence"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Evidence manifest access (thin layer over galeed-evidence): turns a delivery directory into a manifest"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+galeed-evidence = { path = "../../vendor/galeed-crates/crates/galeed-evidence" }
+eravon-literals = { path = "../eravon-literals" }
+
+[[bin]]
+name = "erv"
+path = "src/bin/erv.rs"

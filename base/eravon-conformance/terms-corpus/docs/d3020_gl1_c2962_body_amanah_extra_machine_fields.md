@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"bench":"0x000000000000000000000000000000000000000b","fees":{"premiumBps":150},"guilds":["0x0000000000000000000000000000000000000061"],"text_md":"the covenant","version":3,"windows":{"t3":7}},"entryType":"amanah","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xcbe6755c2f4f1c7000391c731e8d3ec69add1da947cb77293c3aa2e6911dc232273b3f0f68a3a2f729c87609eb4ec2635d3fabc53752e2f049e4caf7648f502b1c","spec":"galeed/1"}
+```

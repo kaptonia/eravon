@@ -1,0 +1,96 @@
+use std::path::{Path, PathBuf};
+use std::process::Command;
+
+const FORM: &str = "ERAVON_OS_BARE_FORM";
+const CHILD: &str = "the_child_writes_its_form_where_it_was_started";
+const BYTES: &[u8] = b"landed";
+
+#[test]
+fn the_child_writes_its_form_where_it_was_started() {
+    let Ok(form) = std::env::var(FORM) else { return };
+    let (shape, pretend) = form.split_once(':').expect("form:mode");
+    let here = std::env::current_dir().expect("the child's directory");
+    let expected = match shape {
+        "relative" => PathBuf::from("sub"),
+        "absolute" => here.join("abs"),
+        _ => PathBuf::from("."),
+    };
+    if pretend == "pretend" {
+        eravon_os::pretend_sync_fails_at(Some(expected.clone()));
+    }
+    let r = match shape {
+        "bare" => {
+            std::fs::write("tmp-bare", BYTES).expect("the temporary file");
+            eravon_os::rename_over(Path::new("tmp-bare"), Path::new("out.txt"))
+        }
+        "empty" => eravon_os::put_at(Path::new(""), "out.txt", "tmp-empty", BYTES),
+        "relative" => eravon_os::put_at(Path::new("sub"), "out.txt", "tmp-rel", BYTES),
+        "absolute" => eravon_os::put_at(&here.join("abs"), "out.txt", "tmp-abs", BYTES),
+        other => panic!("no form {other}"),
+    };
+    match r {
+        Ok(()) => println!("REPORT ok"),
+        Err(e) if e.at == expected => println!("REPORT unput at the expected directory"),
+        Err(e) => println!("REPORT unput at={}", e.at.display()),
+    }
+}
+
+fn child(shape: &str, mode: &str) -> (String, PathBuf) {
+    let dir = std::env::temp_dir().join(format!("eravon-os-bare-{shape}-{mode}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).expect("the child's directory");
+    let out = Command::new(std::env::current_exe().expect("this test binary"))
+        .args([CHILD, "--exact", "--nocapture", "--test-threads=1"])
+        .env(FORM, format!("{shape}:{mode}"))
+        .current_dir(&dir)
+        .stdin(std::process::Stdio::null())
+        .output()
+        .expect("the child runs");
+    let said = String::from_utf8_lossy(&out.stdout);
+    assert!(out.status.success(), "{shape}:{mode}: {said}\n{}", String::from_utf8_lossy(&out.stderr));
+    let report = said.lines().find_map(|l| l.split_once("REPORT ").map(|(_, r)| r)).unwrap_or_else(|| panic!("{shape}:{mode} reported nothing: {said}")).to_string();
+    (report, dir)
+}
+
+fn landed_at(shape: &str) -> &'static str {
+    match shape {
+        "relative" => "sub/out.txt",
+        "absolute" => "abs/out.txt",
+        _ => "out.txt",
+    }
+}
+
+#[test]
+fn each_form_lands_and_says_so() {
+    let before = std::env::current_dir().expect("this process's directory");
+    for shape in ["bare", "empty", "relative", "absolute"] {
+        let (report, dir) = child(shape, "plain");
+        assert_eq!(report, "ok", "{shape}");
+        assert_eq!(std::fs::read(dir.join(landed_at(shape))).expect("landed"), BYTES, "{shape}");
+        let left: Vec<_> = std::fs::read_dir(dir.join(Path::new(landed_at(shape)).parent().unwrap())).unwrap().flatten().map(|e| e.file_name()).filter(|n| n.to_string_lossy().starts_with("tmp-")).collect();
+        assert!(left.is_empty(), "{shape}: no temporary file left: {left:?}");
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+    assert_eq!(std::env::current_dir().expect("still here"), before, "this process's working directory never moves");
+}
+
+#[test]
+fn each_form_syncs_the_directory_it_landed_in() {
+    for shape in ["bare", "empty", "relative", "absolute"] {
+        let (report, dir) = child(shape, "pretend");
+        assert_eq!(report, "unput at the expected directory", "{shape}");
+        assert_eq!(std::fs::read(dir.join(landed_at(shape))).expect("in place"), BYTES, "{shape}");
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+}
+
+#[test]
+fn a_paths_directory_is_its_parent_or_the_working_directory() {
+    use eravon_os::parent_dir;
+    assert_eq!(parent_dir(Path::new("out.txt")), Path::new("."));
+    assert_eq!(parent_dir(Path::new("")), Path::new("."));
+    assert_eq!(parent_dir(Path::new("./out.txt")), Path::new("."));
+    assert_eq!(parent_dir(Path::new("sub/out.txt")), Path::new("sub"));
+    assert_eq!(parent_dir(Path::new("/abs/out.txt")), Path::new("/abs"));
+    assert_eq!(parent_dir(Path::new("/")), Path::new("/"), "a root is its own");
+}

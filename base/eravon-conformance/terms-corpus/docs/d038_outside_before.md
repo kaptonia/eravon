@@ -1,0 +1,5 @@
+# Terms
+
+```eravon.terms/1
+{"amount":"1000000000","buyerMayOpen":true,"chainId":1,"confirmWindow":259200,"deliveryWindow":604800,"delivery_md":"A download link posted within the delivery window; delivered when the link opens.","expiry":1800000000,"goods_md":"One illustration, 2000 × 3000 px, PNG, 草稿先行。","guilds":[],"judges":[{"amanahHash":"0xe69bae29f652d00837b4000bd1c51f86973082d609b4e5d2d9bc1d97e0f3a7ef","judge":"0x9aea86d88b9067cd9e474a3169d3512ce68d4b3f","quoteHash":"0x8be49d3546d52d371a0e73735d0129ece9a002521fe2807b0b412a0376504147"}],"ladder":[{"buyerBps":0,"feeBearer":0,"note_md":"驳回","sellerBps":10000},{"buyerBps":5000,"feeBearer":2,"sellerBps":5000},{"buyerBps":10000,"feeBearer":1,"sellerBps":0}],"logic":"0xdc870685b6451795dfb586fe24c4d543e3320aa2","nonce":7,"openWindow":86400,"sellerFund":"0x2818235edef9d6156efcdb45467e304effdc70da","sellerKey":"0x2818235edef9d6156efcdb45467e304effdc70da","sellerPayout":"0x6151695fba25e8cc29a92726747a5e15b4046017","token":"0x0bd6a91e7c1cd1a2b6540872af19a6a4f3b06792","v":"eravon.terms/1"}
+```

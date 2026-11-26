@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"text_md":"the covenant","venues":[{"chainId":1,"contract":"0x0000000000000000000000000000000000000001"}],"version":3},"entryType":"amanah","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xcbf853c58ab5d4270042488992a64f204d13d6090a40ac7a359eee8067b4e9b969ffb562567884c74260c26b6f23f812397a0c49c27513dc8913f6d0e929c5911b","spec":"galeed/1"}
+```

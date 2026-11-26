@@ -1,0 +1,1 @@
+sec 7.4/8.2/8.4: the old key's entry at the position after its handing off, carried by the old key one second before the record carrying the handing off, rides a record at which it has not retired: a ledger entry, a certain AUTHORITY_MISMATCH and an EQUIVOCATION at seq 2; BROKEN_CHAIN.

@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"note_md":"signed under galeed.amanah/1"},"entryType":"annotation","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0x1ba9df6bd192c2261813e32ed6b5eb247b9858e6d0f3432b5093900e9f3c5b50490fa846e2a84136d306447e2969b3113b58fbfecb22d83aac4b664b1eb9e10c1b","spec":"galeed/1"}
+```

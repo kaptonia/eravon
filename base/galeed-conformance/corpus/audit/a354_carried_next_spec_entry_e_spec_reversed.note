@@ -1,0 +1,1 @@
+input arrays reversed: sec 12.3 with sec 8.4: a lineage key carries an entry whose spec is galeed/2; it fails sec 4.3 at E_SPEC, is CARRIED_MALFORMED with that token at position 0, MALFORMED, and its hash MISSING; BROKEN_CHAIN, which is what a galeed/1 reader must say of bytes a lineage key published under another spec.

@@ -1,0 +1,1 @@
+input arrays reversed: sec 8.6: the third entry is carried only by a VOID record, so the position is a hole: SEQ_GAP at 3, and GAPS, the VOID list moving no label.

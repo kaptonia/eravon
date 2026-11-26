@@ -1,0 +1,1 @@
+sec 7.4/8.1/8.4: the same entries with seq 4 signed by the named successor; the root's succession at 3 is DISCARDED, k3 is outside the lineage, its entry EXCLUDED and its hash MISSING, and the root's counted record that carried it records CARRIED_MALFORMED with token FOREIGN; BROKEN_CHAIN.

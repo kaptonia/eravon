@@ -1,0 +1,26 @@
+[package]
+name = "eravon-recheck"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Dossier chain re-check: eravon.dossier/1 §5 [C] items recomputed from the chain; a three-state report; library plus `erk check`"
+
+[dependencies]
+eravon-dossier = { path = "../eravon-dossier" }
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-roster = { path = "../eravon-roster" }
+eravon-cands = { path = "../eravon-cands" }
+
+[dev-dependencies]
+eravon-os = { path = "../eravon-os" }
+
+[[bin]]
+name = "erk"
+path = "src/bin/erk.rs"

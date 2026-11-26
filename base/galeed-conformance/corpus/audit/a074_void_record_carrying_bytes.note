@@ -1,0 +1,1 @@
+sec 8.6: the fifth entry is carried only by a VOID record; it is no ledger entry, the bytes stand in the VOID row, and the four entries read whole; COMPLETE.

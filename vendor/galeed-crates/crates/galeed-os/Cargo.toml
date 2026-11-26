@@ -1,0 +1,18 @@
+[package]
+name = "galeed-os"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+# What differs by operating system below the app: system entropy, files only their owner may read or write,
+# making a directory's or a file's contents last through a power cut, and a rename that replaces its target.
+# One implementation per system behind one `cfg` (`src/unix.rs` and `src/windows.rs`). It
+# depends on no crate of this workspace and no third-party crate: the core, the store, the glue, the command
+# line and the app all reach these four through here.
+[dependencies]
+
+[features]
+# The Sepolia trial build's own data names (src/places.rs), turned on by galeed-cli's `chain-sepolia`.
+chain-sepolia = []
+ablate-a1-owner-only = []

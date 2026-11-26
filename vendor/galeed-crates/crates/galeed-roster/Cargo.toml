@@ -1,0 +1,31 @@
+[package]
+name = "galeed-roster"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "The galeed.roster/1 core: publication decoding, roster, succession, judge document and guild covenant tables, candidateOf, resolution, quotes, pointers, plus the gro fixture binary."
+
+# The `galeed/1` core supplies the §1 reader and canonical answer bytes, the §3.2 integer spelling, hex
+# forms and keccak; no sorting and no chain reads here (logs are handed in by the caller).
+[dependencies]
+galeed = { path = "../galeed" }
+
+[features]
+ablate-k4-decode = []
+ablate-k4-tables = []
+ablate-k4-quote = []
+ablate-k4-identity = []
+ablate-k4-guild = []
+ablate-k4-bench = []
+ablate-k4-candidates = []
+ablate-k4-gro = []
+ablate-k4-candidate-of = []
+ablate-k4-judge-table = []
+ablate-k4-covenant = []
+ablate-k4-retired = []
+ablate-k4-current-at = []
+ablate-k4-guild-card = []
+# The fault-injection switch of the narrowed quote selection lives here, where watch reads quotes.
+ablate-j5-quote-narrowed = []
+ablate-j5-quote-outside = []

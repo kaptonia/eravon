@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"text_md":"the covenant of this seat","venues":[{"chainId":1,"codeHash":"0x000000000000000000000000000000000000000000000000000000000000c0de","contract":"0x0000000000000000000000000000000000000e5c"}],"version":1},"entryType":"amanah","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5135b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xeaa03fd698e13715fc28dd550be7b4e6dc779fd581a40504c235ffcba15ebcc6556fc749d85fa3222d120f7eeb1b3f32fb7f66fc28b880b46a8ff6c0f7e5e3ac1b","spec":"galeed/1"}
+```

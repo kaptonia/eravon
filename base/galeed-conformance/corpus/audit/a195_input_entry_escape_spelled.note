@@ -1,0 +1,1 @@
+HARNESS: every form is decided on the decoded string, so an entry spelled with escapes is the one-byte string 0x41, a MALFORMED row and a DISCARDED row, and the report is the plain spelling's byte for byte.

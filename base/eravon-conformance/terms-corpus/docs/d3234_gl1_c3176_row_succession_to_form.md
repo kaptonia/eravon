@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"effective":1700000000,"kind":"handover","statement_md":"handed","to":"0x12"},"entryType":"succession","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0x43fc6de861c4a36277e899599cb3cbced325d4186b9bca06a1c50b20084cc6ad41f5541edbd1a9bb5aea547132f9d82d8f2d2cbeb44e2baff8542ecee1cac0c41c","spec":"galeed/1"}
+```

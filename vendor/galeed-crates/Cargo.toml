@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = ["crates/galeed", "crates/galeed-roster", "crates/galeed-evidence", "crates/galeed-os"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "MIT"
+
+[profile.release]
+debug = false

@@ -1,0 +1,12 @@
+[package]
+name = "eravon-galeed-scan"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "A judge ledger's anchors read as GALEED's reader reads them (galeed/1 §9.1, §9.3, §9.4): the transaction re-encoding and signer recovery, the basis, and the codeless verdict, from GALEED's galeed-scan"
+
+[dependencies]
+galeed = { path = "../../vendor/galeed-crates/crates/galeed" }
+
+[features]

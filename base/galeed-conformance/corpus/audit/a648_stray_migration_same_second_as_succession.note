@@ -1,0 +1,1 @@
+sec 7.4: the stray migration's VOID record and the succession share a second, so the retiring seq is the succession's: the stray migration at seq 7 rides a record at which the root has retired, DISCARDED, and the succession admits its key; COMPLETE.

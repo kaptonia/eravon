@@ -1,0 +1,1 @@
+input arrays reversed: sec 8.1/8.7: an UNPROVEN record carries junk; MALFORMED lists the bytes, the UNPROVEN row carries them, sec 8.4 counts no finding on an uncounted record, and the label is UNPROVEN since no counted record carries the hash.

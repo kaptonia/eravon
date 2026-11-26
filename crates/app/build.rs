@@ -1,0 +1,167 @@
+use std::path::{Path, PathBuf};
+
+#[path = "build_steps.rs"]
+mod steps;
+include!("macos_sdk.rs");
+include!("src/app_name.rs");
+
+fn main() {
+    steps::write();
+    let manifest_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR"));
+    let workspace = manifest_dir.join("../..");
+    println!("cargo:rerun-if-changed={}", workspace.join("Cargo.lock").display());
+    println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rerun-if-changed=macos_sdk.rs");
+    println!("cargo:rerun-if-changed=src/app_name.rs");
+    println!("cargo:rerun-if-env-changed=MACOSX_DEPLOYMENT_TARGET");
+    if let Some(arg) = macos_sdk_link_arg() {
+        println!("cargo:rustc-link-arg-bins={arg}");
+    }
+    source_epoch(&workspace);
+    let target = std::env::var("TARGET").expect("TARGET");
+    let cargo = std::env::var("CARGO").unwrap_or_else(|_| "cargo".to_string());
+    let notices = eravon_pack::notices::make(&cargo, &workspace.join("Cargo.toml"), &target, &["app"], &[])
+        .unwrap_or_else(|e| panic!("third-party notices: {e}"));
+    let dest = PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR")).join("third-party-notices.txt");
+    std::fs::write(&dest, notices).unwrap_or_else(|e| panic!("third-party notices: cannot write {}: {e}", dest.display()));
+    if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("windows") {
+        let icons = workspace.join("packaging/icon/hicolor");
+        let res = PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR")).join("eravon-desk.res");
+        let version = std::env::var("CARGO_PKG_VERSION").expect("CARGO_PKG_VERSION");
+        std::fs::write(&res, resources(&icons, &version)).unwrap_or_else(|e| panic!("windows resources: cannot write {}: {e}", res.display()));
+        println!("cargo:rustc-link-arg-bin=eravon-app={}", res.display());
+    }
+}
+
+const ICON_SIZES: [u32; 7] = [16, 24, 32, 48, 64, 128, 256];
+
+const RT_ICON: u16 = 3;
+const RT_GROUP_ICON: u16 = 14;
+const RT_VERSION: u16 = 16;
+const LANGUAGE: u16 = 0x0409;
+const CODE_PAGE: u16 = 1200;
+
+fn resources(icons: &Path, version: &str) -> Vec<u8> {
+    let mut out = entry(0, 0, &[]);
+    let mut group = Vec::new();
+    group.extend_from_slice(&0u16.to_le_bytes());
+    group.extend_from_slice(&1u16.to_le_bytes());
+    group.extend_from_slice(&(ICON_SIZES.len() as u16).to_le_bytes());
+    for (i, size) in ICON_SIZES.iter().enumerate() {
+        let file = icons.join(format!("{size}.png"));
+        println!("cargo:rerun-if-changed={}", file.display());
+        let png = std::fs::read(&file).unwrap_or_else(|e| panic!("windows resources: cannot read {}: {e}", file.display()));
+        let side = |at: usize| png.get(at..at + 4).map(|b| u32::from_be_bytes([b[0], b[1], b[2], b[3]]));
+        assert!(png.starts_with(b"\x89PNG") && side(16) == Some(*size) && side(20) == Some(*size), "windows resources: {} is not a {size}x{size} PNG", file.display());
+        let id = (i + 1) as u16;
+        out.extend(entry(RT_ICON, id, &png));
+        let edge = if *size >= 256 { 0 } else { *size as u8 };
+        group.extend_from_slice(&[edge, edge, 0, 0]);
+        group.extend_from_slice(&1u16.to_le_bytes());
+        group.extend_from_slice(&32u16.to_le_bytes());
+        group.extend_from_slice(&(png.len() as u32).to_le_bytes());
+        group.extend_from_slice(&id.to_le_bytes());
+    }
+    out.extend(entry(RT_GROUP_ICON, 1, &group));
+    out.extend(entry(RT_VERSION, 1, &version_info(version)));
+    out
+}
+
+fn entry(kind: u16, id: u16, data: &[u8]) -> Vec<u8> {
+    let mut h = Vec::new();
+    h.extend_from_slice(&(data.len() as u32).to_le_bytes());
+    h.extend_from_slice(&32u32.to_le_bytes());
+    h.extend_from_slice(&[0xFF, 0xFF]);
+    h.extend_from_slice(&kind.to_le_bytes());
+    h.extend_from_slice(&[0xFF, 0xFF]);
+    h.extend_from_slice(&id.to_le_bytes());
+    h.extend_from_slice(&0u32.to_le_bytes());
+    let (flags, language) = if kind == 0 { (0u16, 0u16) } else { (0x1030u16, LANGUAGE) };
+    h.extend_from_slice(&flags.to_le_bytes());
+    h.extend_from_slice(&language.to_le_bytes());
+    h.extend_from_slice(&0u32.to_le_bytes());
+    h.extend_from_slice(&0u32.to_le_bytes());
+    h.extend_from_slice(data);
+    pad(&mut h);
+    h
+}
+
+fn pad(b: &mut Vec<u8>) {
+    while b.len() % 4 != 0 {
+        b.push(0);
+    }
+}
+
+fn utf16z(s: &str) -> Vec<u8> {
+    s.encode_utf16().chain(std::iter::once(0)).flat_map(|c| c.to_le_bytes()).collect()
+}
+
+fn block(key: &str, value: &[u8], value_len: u16, text: bool, children: &[Vec<u8>]) -> Vec<u8> {
+    let mut b = vec![0, 0];
+    b.extend_from_slice(&value_len.to_le_bytes());
+    b.extend_from_slice(&u16::from(text).to_le_bytes());
+    b.extend(utf16z(key));
+    pad(&mut b);
+    b.extend_from_slice(value);
+    for c in children {
+        pad(&mut b);
+        b.extend_from_slice(c);
+    }
+    let len = b.len() as u16;
+    b[..2].copy_from_slice(&len.to_le_bytes());
+    b
+}
+
+fn version_info(version: &str) -> Vec<u8> {
+    let n: Vec<u16> = version.split('.').map(|x| x.parse().unwrap_or(0)).chain(std::iter::repeat(0)).take(4).collect();
+    let (ms, ls) = ((u32::from(n[0]) << 16) | u32::from(n[1]), (u32::from(n[2]) << 16) | u32::from(n[3]));
+    let mut fixed = Vec::new();
+    for d in [0xFEEF_04BDu32, 0x0001_0000, ms, ls, ms, ls, 0x3F, 0, 0x0004_0004, 1, 0, 0, 0] {
+        fixed.extend_from_slice(&d.to_le_bytes());
+    }
+    let strings: Vec<Vec<u8>> = [
+        ("CompanyName", "Kaptonia"),
+        ("FileDescription", APP_NAME),
+        ("FileVersion", version),
+        ("InternalName", "eravon-desk"),
+        ("LegalCopyright", "Copyright Kaptonia. MIT License."),
+        ("OriginalFilename", "eravon-desk.exe"),
+        ("ProductName", APP_NAME),
+        ("ProductVersion", version),
+    ]
+    .iter()
+    .map(|(k, v)| block(k, &utf16z(v), (v.encode_utf16().count() + 1) as u16, true, &[]))
+    .collect();
+    let table = block(&format!("{LANGUAGE:04X}{CODE_PAGE:04X}"), &[], 0, true, &strings);
+    let string_info = block("StringFileInfo", &[], 0, true, &[table]);
+    let mut translation = LANGUAGE.to_le_bytes().to_vec();
+    translation.extend_from_slice(&CODE_PAGE.to_le_bytes());
+    let var = block("Translation", &translation, 4, false, &[]);
+    let var_info = block("VarFileInfo", &[], 0, true, &[var]);
+    block("VS_VERSION_INFO", &fixed, fixed.len() as u16, false, &[string_info, var_info])
+}
+
+fn source_epoch(workspace: &Path) {
+    println!("cargo:rerun-if-env-changed=SOURCE_DATE_EPOCH");
+    let git = |args: &[&str]| -> Option<String> {
+        let out = std::process::Command::new("git").arg("-C").arg(workspace).args(args).output().ok()?;
+        out.status.success().then(|| String::from_utf8_lossy(&out.stdout).trim().to_string()).filter(|s| !s.is_empty())
+    };
+    for which in ["HEAD", "packed-refs"] {
+        if let Some(p) = git(&["rev-parse", "--path-format=absolute", "--git-path", which]) {
+            if Path::new(&p).exists() {
+                println!("cargo:rerun-if-changed={p}");
+            }
+        }
+    }
+    if let Some(branch) = git(&["symbolic-ref", "-q", "HEAD"]) {
+        if let Some(p) = git(&["rev-parse", "--path-format=absolute", "--git-path", &branch]) {
+            if Path::new(&p).exists() {
+                println!("cargo:rerun-if-changed={p}");
+            }
+        }
+    }
+    let given = std::env::var("SOURCE_DATE_EPOCH").ok().filter(|v| v.trim().parse::<u64>().is_ok());
+    let epoch = given.or_else(|| git(&["log", "-1", "--format=%ct", "HEAD"]).filter(|v| v.parse::<u64>().is_ok())).unwrap_or_default();
+    println!("cargo:rustc-env=ERAVON_SOURCE_EPOCH={}", epoch.trim());
+}

@@ -1,0 +1,23 @@
+[package]
+name = "eravon-pay"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Client payment: the native side runs every check the window runs, picks a candidate, signs the order, archives receipt and order file, transfers and deploys when funded"
+
+[dependencies]
+eravon-literals = { path = "../eravon-literals" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-store = { path = "../eravon-store" }
+eravon-cli = { path = "../eravon-cli" }
+eravon-wallet = { path = "../eravon-wallet" }
+eravon-cands = { path = "../eravon-cands" }
+eravon-watch = { path = "../eravon-watch" }
+eravon-scan = { path = "../eravon-scan" }
+
+[features]

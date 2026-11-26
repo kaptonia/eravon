@@ -1,0 +1,1 @@
+input arrays reversed: sec 7.4: the root hands to K2 at seq 1 and K2 to K3 at seq 2, both carried in one second; each key's retiring seq is its own, so K2's record of that second carrying its entry at seq 3 is DISCARDED while its record carrying its handing off stands; COMPLETE with four entries.

@@ -1,0 +1,7 @@
+{
+ "buyerBps": 5000,
+ "chainId": 1,
+ "instance": "0xaf6a6c2eb3957f5900f22205f9578f9c13a409b6",
+ "sig": "0xc527f0602910ab870eb22c7c9331050030c127f45d894ebc630bc4aa41c4ff1e4d8a14773f70298c283d610efdbd294829db7916e727c14975f793609f908c2c1b",
+ "v": "eravon.settle/1"
+}

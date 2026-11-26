@@ -1,0 +1,45 @@
+[package]
+name = "eravon-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Seller and buyer command-line verbs: one binary with two seats, output schemas frozen in one machine-readable table, no decisions in the verbs"
+
+[dependencies]
+eravon = { path = "../eravon" }
+eravon-os = { path = "../eravon-os" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-dossier = { path = "../eravon-dossier" }
+eravon-roster = { path = "../eravon-roster" }
+eravon-evidence = { path = "../eravon-evidence" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-glue = { path = "../eravon-glue" }
+eravon-send = { path = "../eravon-send" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-zikaron = { path = "../eravon-zikaron" }
+eravon-store = { path = "../eravon-store" }
+eravon-seal = { path = "../eravon-seal" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-cands = { path = "../eravon-cands" }
+eravon-goods = { path = "../eravon-goods" }
+eravon-payways = { path = "../eravon-payways" }
+eravon-home = { path = "../eravon-home" }
+eravon-export = { path = "../eravon-export" }
+eravon-statement = { path = "../eravon-statement" }
+eravon-recheck = { path = "../eravon-recheck" }
+eravon-watch = { path = "../eravon-watch" }
+eravon-deliver = { path = "../eravon-deliver" }
+eravon-dispute = { path = "../eravon-dispute" }
+eravon-orders = { path = "../eravon-orders" }
+eravon-galeed = { path = "../eravon-galeed" }
+
+[dev-dependencies]
+eravon-vault = { path = "../eravon-vault", features = ["testing"] }
+
+[[bin]]
+name = "eravon"
+path = "src/bin/eravon.rs"

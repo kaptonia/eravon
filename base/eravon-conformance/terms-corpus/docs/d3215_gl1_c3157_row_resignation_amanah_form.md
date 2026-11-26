@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"amanah":"0x12","category":"other","statement_md":"declined","subjectRef":{"kind":"hash","note_md":"an object","sha256":"0x00000000000000000000000000000000000000000000000000000000000000a5"}},"entryType":"resignation","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0x6fd23fbb3412a93c97493b64fc0a7d0d3a790a8a645cb3b360e278ecc57c8ee52f86429ead61ceca7100e2b8bab27f4b34dd4e0b1e43c61f9e2506c3d207f2251b","spec":"galeed/1"}
+```

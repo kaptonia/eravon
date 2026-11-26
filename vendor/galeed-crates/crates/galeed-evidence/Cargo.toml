@@ -1,0 +1,23 @@
+[package]
+name = "galeed-evidence"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "The courtevidence/1 core: manifest judgment and digest, recipient form, recipient selection from a judge ledger, age encryption, plus the gev fixture binary."
+
+# The `galeed/1` core supplies the §3.5 canonical check, the subjectRef table, entry reading, the §8
+# audit, hex forms, sha256 and age; this crate uses no cryptography crate.
+[dependencies]
+galeed = { path = "../galeed" }
+
+[features]
+ablate-k3-manifest = []
+ablate-k3-recipient-form = []
+ablate-k3-pick = []
+ablate-k3-gev = []
+ablate-k3-age = []
+ablate-k3-zikaron = []
+ablate-k3-hole = []
+ablate-k3-file-name = []
+ablate-k3-usable = []

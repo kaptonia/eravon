@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"effective":8337498357183136,"kind":"IjNMU3{0","statement_md":"sJ‭1\u0003%\u0012 éBkgm/\u001a\u001a/F","to":"0x0357423a1159a5bf7a7a2c9e8ad95a3805ebfcf8"},"entryType":"succession","jugde":"0x36d8cdef88719213be7a90843b14ffe89444898f","prev":"0x7fc3c01da94003b9dea5bdafec26039276f37b96a0837968cddfaeed8b8bf5aa","seq":168127,"sig":"0x259437d5041acf4f7a1fc6041a54c34e0f559475030bdc5a313517cb5a8846fc60950a28c61c73aa0c95372509cd95c67b37b90a3ba124fbe49f55cc695322eb1c","spec":"galeed/1"}
+```

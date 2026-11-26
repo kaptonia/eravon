@@ -1,0 +1,23 @@
+[package]
+name = "eravon-chain"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Chain base: user-configured endpoint tables, load-bearing reads agreed across endpoints, chain clock, per-block polling, background tasks, error classes, gas facts"
+
+[dependencies]
+eravon = { path = "../eravon" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-net = { path = "../eravon-net" }
+eravon-os = { path = "../eravon-os" }
+rustls = { version = "0.23", default-features = false, features = ["std", "ring", "tls12"] }
+rustls-pki-types = "1.15.1"
+webpki-roots = "1.0.9"
+
+[features]
+unpinned-tags = []
+
+[[bin]]
+name = "erc"
+path = "src/bin/erc.rs"

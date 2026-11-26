@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"\"v@_md":[{},{}],"statement_md":"[K‏j.<Y􏿿'\u000e!(L$\u0011\r‏E","vh":["#Eqc'D'+O",["'",[false,false],{"(=TP\\4n_md":8252030827468231,"*~`RP8":"$p2Z","w,@":true}]]},"entryType":"genesis","judge":"0x36d8cdef88719213be7a90843b14ffe89444898f","prev":null,"seq":0,"sig":"0xe60ac5512394254e1dbfbd0b61de9be1dfb041f1f5c5dd59dc9d44655f809beb398c9ef306916d5440a84ae6fbe57fc20c833a336b6fb1ae6cc6beac889e7d511c","spec":"galeed/1"}
+```

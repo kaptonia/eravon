@@ -1,0 +1,1 @@
+sec 8.7 item 11: DISCARDED rows are ordered by blockNumber before tx: block 59 with the larger tx comes first.

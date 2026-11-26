@@ -1,0 +1,15 @@
+[package]
+name = "eravon-terms"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "eravon.terms/1 checks: §2 to §6 in full, library plus the `ert` command"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-literals = { path = "../eravon-literals" }
+
+[[bin]]
+name = "ert"
+path = "src/bin/ert.rs"

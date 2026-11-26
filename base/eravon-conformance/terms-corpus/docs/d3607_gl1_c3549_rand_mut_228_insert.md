@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"statement_md":"\u0010dBi_1c"},"entryType":"genesis","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":null,"seq":0,"sig":"0xe2157ec88e74594693b�bef451bd5c284ed7466f6df9836a746ad7fc619efd1155a227944deaf412cdd1e04ad8d9ee4d8c9c3d7005f3dc115b5de092c604592161c","spec":"galeed/1"}
+```

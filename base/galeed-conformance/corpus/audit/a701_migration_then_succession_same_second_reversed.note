@@ -1,0 +1,1 @@
+input arrays reversed: sec 7.4/6.6a: a migration at seq 2 and a succession at seq 3, both carried in one second: the retiring seq is 2, the succession rides a record at which the key has retired, DISCARDED, and admits nobody, and the migration closes the ledger; K2's record is DISCARDED and its entry EXCLUDED; COMPLETE with three entries.

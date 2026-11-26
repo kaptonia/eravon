@@ -1,0 +1,1 @@
+sec 8.4: a carried empty byte string is a byte string that fails sec 4.3 (E_JSON); hard.

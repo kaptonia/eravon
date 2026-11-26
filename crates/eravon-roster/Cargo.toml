@@ -1,0 +1,16 @@
+[package]
+name = "eravon-roster"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Roster access and pool reading: a thin layer over galeed-roster plus candidate forms, party exclusion and the four pool checks"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-literals = { path = "../eravon-literals" }
+galeed-roster = { path = "../../vendor/galeed-crates/crates/galeed-roster" }
+
+[[bin]]
+name = "erj"
+path = "src/bin/erj.rs"

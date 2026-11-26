@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"statement_md":"a judge's ledger"},"entryType":"genesis","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x00","seq":0,"sig":"0x70b11bf3906a2afd677e18435a39bd1ee832d280881cedf571d3b9a2239e036015395281aae419cf973abdfbda3eb5de48fd12b5d58e401782db5a62007b22b41b","spec":"galeed/1"}
+```

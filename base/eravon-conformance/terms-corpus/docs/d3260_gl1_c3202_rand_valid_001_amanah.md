@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"<h*BN_md":{},"Ih_md":{"20K.nkP":6849618452991435,"m{^1jf-":[{"5d":true,"`@OKK":false,"wd^d>(|":false},true]},"text_md":")\u0001Sx9T😀\u000fQ\u001f:é\u0004k$s","version":3089775682285016},"entryType":"amanah","judge":"0x36d8cdef88719213be7a90843b14ffe89444898f","prev":"0x91fde85ce69bae29f652d00837b4000bd1c51f86973082d609b4e5d2d9bc1d97","seq":921403,"sig":"0x6c5f503df86053f746da5a5509663b6e0d41ab9d9eed0ae2e39bd0f05b85173b79b2b5a57f93e2429689b6a16d2048dadc656c25f756e6dc86e930d10bbd58a21b","spec":"galeed/1"}
+```

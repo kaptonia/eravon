@@ -1,0 +1,128 @@
+# Local data standard, third version
+
+The family's standard for files an app seals on its own machine (ERAVON first; the others take the same shape with
+their own magic). This text says only what ERAVON's code does today; the code is `crates/app/src/local.rs`, the
+test vectors are `crates/app/tests/local_standard.rs`.
+
+## 1 · A file's identity is its owner and its place
+
+- **Owner.** A file in the machine directory belongs to the machine (`machine`). A file in a home belongs to that
+  home, by the home's number (`home:<32 hex>`).
+- **Home number.** Drawn at random when the home is born and kept in the home's own sealed label
+  (`settings/home-label.json`, kind `home-label`). The label also says whose the home is: an identity's seat
+  (`{"identity": …, "seat": …}`) or nobody's (`"none"`). The label itself is sealed with the owner `home-label`
+  (read before the home's number is known).
+- **Place.** The file's kind and its logical name inside its home or the machine directory (which slot, which
+  name). Never its path or its name on disk: moving the data folder, renaming everything under a new master key, or
+  restoring onto another machine leaves every identity as it was, and nothing is sealed again for it. A kind whose
+  name on disk is keyed takes its logical name from what it holds (an entry by its id, a held grant by its id, a
+  verdict by its grant, a kept grant file by its kit, a terms document by its digest, an issuance record by its
+  grant).
+- **Opening a home** reads its label first and checks its owner against the identity and seat it is opened as; a
+  label of another identity or seat is refused as another file. A home is laid without a label and gets one the
+  first time a writer opens it or writes into it; a reader never makes one.
+
+## 2 · The envelope
+
+| bytes | what |
+|---|---|
+| 15 | magic `eravon-local/2\n` (each product its own, in its family literal register) |
+| 1 | algorithm: `2` = XChaCha20-Poly1305 with the place's half keyed (the third version, the only one written and read); a later algorithm takes a higher number and keeps the magic |
+| 1 + n | kind tag length, kind tag (ASCII) |
+| 2 | the kind's format version, big-endian |
+| 16 | identity digest: `sha256("eravon-local/owner" ‖ 0 ‖ owner)[..8]` ‖ the place's half (the kind is the head's own field): `HMAC-SHA256(K, "eravon-local/place" ‖ 0 ‖ logical)[..8]`, `K` = HKDF-SHA256 (no salt) of the local data key under `eravon-local/place-key`, so a locked disk's heads cannot be checked against public logical names (entry and grant ids) one by one |
+| 24 | nonce, fresh for every seal |
+| rest | ciphertext and 16-byte tag |
+
+- The additional data is the whole head, nonce included: any byte of the head changed, or the file put in another
+  place or another home, does not open.
+- The plaintext carries the owner and the logical name again: `u16 length ‖ owner text ‖ u16 length ‖ logical
+  name ‖ the file's own bytes` (lengths big-endian). Once opened they are checked: the owner must be the one asked
+  for, the digest must be theirs, and a keyed kind's logical name must be the one its content gives and the one
+  its name on disk stands for.
+
+## 3 · Reading
+
+- Only the envelope written is read. Anything an earlier version wrote (the first envelope, `eravon-local/1\n`;
+  the second version's unkeyed algorithm `1`) and any plain file are not sealed by this version's terms, and are
+  refused as `not-sealed`; nothing turns them into the written form.
+- A file that does not read is refused with one member (`LOCAL_SEAL`). Its evidence names one of six reasons, a
+  closed table; the words people see and the way out are the same for all six:
+
+| reason | when |
+|---|---|
+| `not-sealed` | no magic, or an earlier version's envelope or algorithm (a plain file, or anything else) |
+| `truncated` | the magic is there but the head, or the ciphertext's tag, is cut short |
+| `other-kind` | sealed as another kind |
+| `newer-version` | a format version or an algorithm past this version's |
+| `swapped` | another file: the digest is not the one asked for, the home has no label, or the checks inside fail |
+| `unopenable` | another key, or a byte altered (the digest matched) |
+
+- The owner's half is compared before any key is tried. The place's half is keyed: one that differs is told by
+  trying the key (a file that does not open is under another key, or altered; one that opens is another file), so
+  another file and a wrong key are still told apart.
+
+## 4 · Writing
+
+- Only the third version is written, and nothing is sealed again in bulk; a ledger entry once written is never
+  written again.
+- A file that is there but does not read is never written over: the write is refused by name (the reason, the
+  file) with the way out (move it aside; the next write makes it anew). Write-once files (held grants, kept grant
+  files, terms documents and records, ledger entries) are refused when one is there in any case.
+- The write gate also asks the writing task's ticket: a background task that started for a home no longer in use
+  writes nothing and ends with `HOME_UNREACHABLE`.
+
+## 5 · Known limits
+
+- An older copy of the same file put back in its place is not told. Stopping it would need a counter nobody can put
+  back with it; the ledger has its own signature chain.
+- Two whole homes swapped label and all are not told by the envelope; opening a home checks its label's owner
+  against the identity opening it.
+- Labels are alike in every home (owner `home-label`, the same place): a label moved between two homes of nobody
+  is not told.
+- Neither way across versions: an earlier version cannot read the files this version writes, and this version
+  reads none an earlier one wrote. Data an earlier version wrote comes across by its own export (a ledger mirror),
+  taken over in place by this version.
+
+## 6 · Test vectors
+
+Key: bytes `00 01 … 1f`. Nonce: bytes `40 41 … 57`. Each vector gives the owner, kind, logical name, plaintext,
+the identity digest and the whole envelope in hex; `crates/app/tests/local_standard.rs` holds them and checks them
+byte for byte.
+
+### `settings`
+
+- owner: `home:000102030405060708090a0b0c0d0e0f`
+- logical name: `settings/settings.json`
+- plaintext: `{"capBytes":0}`
+- digest: `7a3b0a1848c72523918f6e28b39efaec`
+- envelope:
+
+```
+657261766f6e2d6c6f63616c2f320a020873657474696e677300017a3b0a1848c72523918f6e28b39efaec404142434445464748494a4b4c4d4e4f5051525354555657d41c6d1fbd854326bfc4b68e9dac56a2a68a98f4256964aa5201c475683441a075c9665e30a2e210e9c191387eb3b496e8440e8d1bf1ddf2d18f269e60dd222f7848990256ca31adf6218acfa1e8f3c81b95de6513c45d93c9dc8de45c
+```
+
+### `registry`
+
+- owner: `machine`
+- logical name: `identities-anchor.json`
+- plaintext: `{"rows":[]}`
+- digest: `f79f610ff2e8a2ae1539599fa67cd627`
+- envelope:
+
+```
+657261766f6e2d6c6f63616c2f320a020872656769737472790001f79f610ff2e8a2ae1539599fa67cd627404142434445464748494a4b4c4d4e4f5051525354555657d43e6811b3881078eaf491d7cbf90be6fbcec4a1607432f409599237276e50ff7882201c3ae5f732c5e9a9313098d33dd4147aceb028cf35bc8aeb36
+```
+
+### `home-label`
+
+- owner: `home-label`
+- logical name: `settings/home-label.json`
+- plaintext: `{"home":"000102030405060708090a0b0c0d0e0f","owner":"none"}`
+- digest: `40c53fbde8dd809195abab2ad272aaef`
+- envelope:
+
+```
+657261766f6e2d6c6f63616c2f320a020a686f6d652d6c6162656c000140c53fbde8dd809195abab2ad272aaef404142434445464748494a4b4c4d4e4f5051525354555657d4336d1fbd85547aee96e2d2af8416f7e6cec4aa742a7cf2055c9868656541f57ad7681d3afcff3297dd992928e0f8c1ab5b4cd85db587ac82cc3dc425827b64621bc142758327f8e633d4cfb949facddae5695c465816556a8169fbab0011585af91ef4f0c6dba92717ee09397e9c09
+```
+

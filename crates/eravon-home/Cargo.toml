@@ -1,0 +1,21 @@
+[package]
+name = "eravon-home"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Home and notifications: home card readings, activity, notifications and badges, deduplication, system notifications, error toast details"
+
+[dependencies]
+eravon-orders = { path = "../eravon-orders" }
+eravon-watch = { path = "../eravon-watch" }
+eravon-deliver = { path = "../eravon-deliver" }
+eravon-dispute = { path = "../eravon-dispute" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-terms = { path = "../eravon-terms" }
+
+[features]

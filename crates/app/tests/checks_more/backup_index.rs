@@ -1,0 +1,269 @@
+use super::vault_open;
+use app::action::{apply, apply_settled, Action, Applied};
+use app::local::Doc;
+use std::path::{Path, PathBuf};
+
+const PW: &str = "eravon-backup-probe";
+
+fn bench(name: &str) -> (app::shell::Shell, PathBuf) {
+    vault_open();
+    let base = std::env::temp_dir().join(format!("eravon-bi-{name}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&base);
+    let ctx = eravon_ui::egui::Context::default();
+    let shell = app::shell::Shell::boot(eravon_ui::skin::dress(&ctx));
+    (shell, base)
+}
+
+fn home(shell: &mut app::shell::Shell, base: &Path, name: &str) -> PathBuf {
+    let dir = base.join(name);
+    super::seated_anew(shell, &dir);
+    answers!(apply(shell, Action::OpenHome { root: dir.display().to_string() }), Applied::Homed { .. });
+    record(shell);
+    dir
+}
+
+fn record(shell: &app::shell::Shell) {
+    static N: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
+    let n = N.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+    let id = format!("{:040x}", n + 1);
+    let dir = shell.home.as_ref().expect("a home").dir(app::home::Slot::Store).join("products").join(&id);
+    std::fs::create_dir_all(&dir).expect("the record's place");
+    let envelope = eravon_store::record::Record { id, kind: eravon_store::record::Kind::Product, created: 1, updated: 1, writer: "bi".into(), fields: Vec::new(), parts: Vec::new() };
+    app::local::put(&dir, "record.product", Doc::Product, &envelope.seal()).expect("a record");
+}
+
+fn behind() -> Option<u64> {
+    let m = app::machine::read().expect("the machine settings");
+    app::machine::backup_behind(m.backup.as_ref(), app::backup::measured(m.backup.as_ref()).ok())
+}
+
+fn last() -> app::machine::Backed {
+    app::machine::read().expect("the machine settings").backup.expect("a backup recorded")
+}
+
+fn two_readings_apart(name: &str) -> (app::shell::Shell, PathBuf) {
+    let (mut shell, base) = bench(name);
+    home(&mut shell, &base, "a");
+    let b = home(&mut shell, &base, "b");
+    app::backup::export(&base.join("out"), PW, 1_800_000_000).expect("a backup");
+    std::fs::remove_dir_all(&b).expect("the second folder deleted");
+    home(&mut shell, &base, "c");
+    assert_eq!(behind(), Some(1), "by the index");
+    assert_eq!(app::backup::count_now().ok(), Some(2));
+    (shell, base)
+}
+
+fn entry_ids() -> Vec<String> {
+    let key = app::keybox::local_key().expect("the local key");
+    app::local::all_files()
+        .expect("the machine's files")
+        .into_iter()
+        .filter(|f| app::records::counted(f.doc))
+        .map(|f| {
+            let raw = std::fs::read(&f.at).expect("a record");
+            let plain = app::local::open_with(&key, &app::local::expect_found(&f).expect("expect"), &raw, &f.rel).expect("opens");
+            app::local::logical_rel(f.doc, &f.rel, &plain).expect("logical")
+        })
+        .collect()
+}
+
+#[test]
+fn a_backup_seals_its_index_and_says_no_id_in_the_clear() {
+    if super::alone_in(module_path!(), "a_backup_seals_its_index_and_says_no_id_in_the_clear") {
+        return;
+    }
+    let (mut shell, base) = bench("sealed");
+    home(&mut shell, &base, "a");
+    app::backup::export(&base.join("out"), PW, 1_800_000_000).expect("a backup");
+    let at = app::backup::index_path().expect("the index's place");
+    let raw = std::fs::read(&at).expect("the index is there");
+    assert!(app::local::is_sealed(&raw), "sealed");
+    let ids = entry_ids();
+    assert_eq!(ids.len(), 1);
+    for id in &ids {
+        assert!(!id.is_empty(), "{id}");
+        assert!(!raw.windows(id.len()).any(|w| w == id.as_bytes()), "a record's name in the clear");
+    }
+    let plain = String::from_utf8(app::local::read(&at, Doc::BackupIndex).expect("opens").expect("there")).expect("text");
+    assert!(ids.iter().all(|id| plain.contains(id.as_str())), "the index names what the backup holds: {plain}");
+    let found: Vec<_> = app::local::all_files().expect("files").into_iter().filter(|f| f.doc == Doc::BackupIndex).collect();
+    assert_eq!(found.len(), 1);
+    assert!(matches!(found[0].whose, app::local::Whose::Machine) && found[0].rel == app::backup::index_rel());
+    assert_eq!(behind(), Some(0), "right after the backup");
+    home(&mut shell, &base, "b");
+    assert_eq!(behind(), Some(1), "one made after it");
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn no_index_is_the_older_reading() {
+    if super::alone_in(module_path!(), "no_index_is_the_older_reading") {
+        return;
+    }
+    let (shell, base) = two_readings_apart("none");
+    std::fs::remove_file(app::backup::index_path().expect("place")).expect("the index removed");
+    assert_eq!(behind(), Some(0), "the older reading");
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn an_index_that_does_not_read_is_the_older_reading_and_never_written_over() {
+    if super::alone_in(module_path!(), "an_index_that_does_not_read_is_the_older_reading_and_never_written_over") {
+        return;
+    }
+    let (shell, base) = two_readings_apart("unread");
+    let at = app::backup::index_path().expect("place");
+    let good = std::fs::read(&at).expect("the index");
+    let mut altered = good.clone();
+    if let Some(b) = altered.last_mut() {
+        *b ^= 1;
+    }
+    for (form, bytes, why) in [
+        ("not sealed", b"{\"at\":1800000000}".to_vec(), app::local::Unread::NotSealed),
+        ("cut short", good[..good.len().min(20)].to_vec(), app::local::Unread::Truncated),
+        ("altered", altered, app::local::Unread::Unopenable),
+    ] {
+        std::fs::write(&at, &bytes).expect("laid");
+        let read = app::local::read(&at, Doc::BackupIndex).expect_err(form);
+        assert_eq!(app::local::Unread::of(&read), Some(why), "{form}: {read:?}");
+        assert_eq!(behind(), Some(0), "{form}: the older reading");
+        let refused = app::backup::export(&base.join("out2"), PW, 1_800_000_100).expect_err(form);
+        assert_eq!(app::local::Unread::of(&refused), Some(why), "{form}: {refused:?}");
+        assert_eq!(std::fs::read(&at).expect("still there"), bytes, "{form}: never written over");
+        assert_eq!(last().at, 1_800_000_000, "{form}: the record is the first backup's still");
+    }
+    std::fs::remove_file(&at).expect("moved aside");
+    app::backup::export(&base.join("out3"), PW, 1_800_000_200).expect("the next backup");
+    assert!(app::local::read(&at, Doc::BackupIndex).expect("reads").is_some());
+    assert_eq!(behind(), Some(0));
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn another_backups_index_is_the_older_reading() {
+    if super::alone_in(module_path!(), "another_backups_index_is_the_older_reading") {
+        return;
+    }
+    let (shell, base) = two_readings_apart("other");
+    let at = app::backup::index_path().expect("place");
+    let text = String::from_utf8(app::local::read(&at, Doc::BackupIndex).expect("opens").expect("there")).expect("text");
+    let other = text.replacen("\"at\":1800000000", "\"at\":1800000100", 1);
+    assert_ne!(other, text);
+    app::local::put(at.parent().expect("room"), app::backup::INDEX_FILE, Doc::BackupIndex, other.as_bytes()).expect("sealed");
+    assert_eq!(behind(), Some(0), "another backup's index: the older reading");
+    app::local::put(at.parent().expect("room"), app::backup::INDEX_FILE, Doc::BackupIndex, text.as_bytes()).expect("put back");
+    assert_eq!(behind(), Some(1), "this backup's again");
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn locked_an_index_is_not_guessed() {
+    if super::alone_in(module_path!(), "locked_an_index_is_not_guessed") {
+        return;
+    }
+    let (shell, base) = two_readings_apart("locked");
+    let record = last();
+    app::keybox::lock();
+    let said = app::backup::measured(Some(&record)).expect_err("locked");
+    assert_eq!(said.which(), Some(app::fault::Known::Locked), "{said:?}");
+    app::keybox::unlock("27618394").expect("opened again");
+    assert_eq!(behind(), Some(1));
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn a_new_master_key_seals_the_index_again() {
+    if super::alone_in(module_path!(), "a_new_master_key_seals_the_index_again") {
+        return;
+    }
+    let (mut shell, base) = bench("rekey");
+    let mut ids = Vec::new();
+    for label in ["bi-a", "bi-b"] {
+        answers!(apply(&mut shell, Action::NewIdentity), Applied::FreshWords);
+        let (list, picks) = shell.new_words.as_ref().map(|f| (f.words(), f.picks)).expect("fresh words");
+        let answers: Vec<(usize, app::secret::Secret)> = picks.iter().map(|i| (*i, list[*i].clone().into())).collect();
+        let before: Vec<String> = app::register::read().ok().flatten().map(|r| r.rows.iter().map(|x| x.id.clone()).collect()).unwrap_or_default();
+        let _ = apply_settled(&mut shell, Action::ConfirmIdentity { answers, label: label.into() });
+        let after: Vec<String> = app::register::read().ok().flatten().map(|r| r.rows.iter().map(|x| x.id.clone()).collect()).unwrap_or_default();
+        ids.push(after.into_iter().find(|x| !before.contains(x)).expect("an identity made"));
+    }
+    record(&shell);
+    app::backup::export(&base.join("out"), PW, 1_800_000_000).expect("a backup");
+    home(&mut shell, &base, "after");
+    assert_eq!(behind(), Some(1));
+    let at = app::backup::index_path().expect("place");
+    let before = std::fs::read(&at).expect("the index");
+    let old_key = app::keybox::local_key().expect("the key");
+    app::rekey::set_primary(&ids[1], "27618394").expect("the second identity made primary");
+    let new_key = app::keybox::local_key().expect("the key");
+    assert_ne!(old_key.bytes(), new_key.bytes(), "a new master key");
+    let after = std::fs::read(&at).expect("the index at its place");
+    assert_ne!(before, after, "sealed again");
+    assert!(app::local::read(&at, Doc::BackupIndex).expect("opens under the new key").is_some());
+    assert_eq!(behind(), Some(1), "the same count");
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn the_app_cell_and_the_command_line_read_an_item_alike() {
+    if super::alone_in(module_path!(), "the_app_cell_and_the_command_line_read_an_item_alike") {
+        return;
+    }
+    let (mut shell, base) = bench("cell");
+    home(&mut shell, &base, "a");
+    let url = "https://node.example/v3";
+    let cell = |shell: &mut app::shell::Shell, spec: &str| -> Option<Vec<app::chainx::Endpoint>> {
+        match apply(shell, Action::SetEndpoints { specs: spec.to_string() }) {
+            Applied::Trouble(f) => {
+                assert_eq!(f.which(), Some(app::fault::Known::SettingsShape), "{spec:?}: {f:?}");
+                None
+            }
+            _ => Some(shell.settings.endpoints.iter().filter_map(|e| app::chainx::Endpoint::parse(e)).collect()),
+        }
+    };
+    let one = |spec: &str| eravon_chain::rpc::endpoint_spec(spec).ok().map(|(c, u)| vec![format!("{c}={u}")]);
+    for spec in [format!("1={url}"), format!("  1={url}\t"), format!("\n1={url} ")] {
+        assert_eq!(cell(&mut shell, &spec), Some(vec![app::chainx::Endpoint::at(1, url)]), "{spec:?}");
+        assert_eq!(one(&spec), Some(vec![format!("1={url}")]), "{spec:?}");
+    }
+    for spec in [format!("1= {url}"), format!("1 ={url}"), format!("1 = {url}"), format!("1={url} x"), format!("1=\t{url}"), format!("1=\n{url}")] {
+        assert_eq!(eravon_chain::rpc::endpoint_spec(&spec), Err(eravon_chain::rpc::NotAnEndpoint::InnerSpace), "{spec:?}");
+        assert_eq!(cell(&mut shell, &spec), None, "{spec:?}");
+    }
+    drop(shell);
+    let _ = std::fs::remove_dir_all(&base);
+}
+
+#[test]
+fn a_restore_cut_in_its_set_aside_lands_the_index_with_the_rest() {
+    if super::alone_in(module_path!(), "a_restore_cut_in_its_set_aside_lands_the_index_with_the_rest") {
+        return;
+    }
+    let (mut shell, base) = bench("restore-cut");
+    home(&mut shell, &base, "a");
+    home(&mut shell, &base, "b");
+    let made = app::backup::export(&base.join("out"), PW, 1_800_000_000).expect("a backup");
+    drop(shell);
+    assert!(app::local::set_move_fault(app::local::MoveFault::FailOnce(app::local::moves_so_far() + 1)));
+    let _ = app::local::take_opened();
+    app::backup::restore(&made.path, PW, app::backup::From::Settings("27618394")).expect("restored");
+    let said: Vec<String> = app::local::take_opened().map(|o| o.troubles.iter().map(|f| f.said().to_string()).collect()).unwrap_or_default();
+    assert!(!said.iter().any(|s| s.starts_with("LOCAL_SEAL")), "{said:?}");
+    let ctx = eravon_ui::egui::Context::default();
+    let mut again = app::shell::Shell::boot(eravon_ui::skin::dress(&ctx));
+    let _ = apply(&mut again, Action::Lock);
+    let unlocked = apply_settled(&mut again, Action::Unlock { pin: "27618394".into() });
+    assert!(matches!(unlocked, Applied::Unlocked), "{unlocked:?}");
+    let at = app::backup::index_path().expect("place");
+    let text = String::from_utf8(app::local::read(&at, Doc::BackupIndex).expect("opens").expect("there")).expect("text");
+    assert!(text.contains("\"at\":1800000000"), "{text}");
+    assert_eq!(behind(), Some(0));
+    drop(again);
+    let _ = std::fs::remove_dir_all(&base);
+}

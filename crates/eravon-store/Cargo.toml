@@ -1,0 +1,16 @@
+[package]
+name = "eravon-store"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Storage: key store file, global settings, identity directories; atomic writes and strict reads; archive bundles both ways; writer marks and process locks"
+
+[dependencies]
+eravon-literals = { path = "../eravon-literals" }
+eravon-os = { path = "../eravon-os" }
+eravon-glue = { path = "../eravon-glue" }
+eravon-seal = { path = "../eravon-seal" }
+
+[features]
+

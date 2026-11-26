@@ -1,0 +1,1 @@
+sec 8.4: the root's counted record carries bytes that fail sec 4.3; CARRIED_MALFORMED (seq 0, the sec 10 token) is hard, the bytes are listed MALFORMED and the hash MISSING; BROKEN_CHAIN.

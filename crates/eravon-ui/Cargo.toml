@@ -1,0 +1,13 @@
+[package]
+name = "eravon-ui"
+version.workspace = true
+edition = "2024"
+license = "MIT"
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+egui = { version = "0.34", default-features = false }
+eravon-os = { path = "../eravon-os" }
+
+[features]

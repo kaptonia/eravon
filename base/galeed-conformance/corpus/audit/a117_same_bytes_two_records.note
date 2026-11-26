@@ -1,0 +1,1 @@
+sec 8.1: the same bytes carried by two counted records collapse to one entry; its ANCHORED row carries both records, and the report does not depend on the order in which any input was supplied.

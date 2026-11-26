@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"amanah":"0x2f41f7cd1cddee9ce82474872226ff4390120ea1389c1ccfafef1ac1400839a9","category":"other","statement_md":",9́d;Tb1‏","subjectRef":{"chainId":514567,"codeHash":"0x76ee29aa4eb0ff74670f21345ec127b3a4bc7977cc025364f13b7619fd983df5","contract":"0x5c905c2256b1b132bf24642492e38012b3f2513d","id":"0x25fa97dd077148a52af4c78281ee476c883991105727d740fad138059927a8fd","kind":"evm"}},"entryType":"resignation","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0xfe145171da64b870935ac8d97dff04ae8611f8b90c7950fa2273ea380e5c9beb","seq":840295,"sig":"0x773e5b902221bc9c0de144777f6c73bdf0edae002352d96b5ec8c2544bc95fd37144a66b1508dc82c67a2c9a18e1ef72f711362888d4318a438c2fe3ad83a5a81c","spec":"galeed/1"}
+```

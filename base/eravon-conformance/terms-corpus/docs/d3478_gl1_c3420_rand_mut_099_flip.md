@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"*eYJ`e":true,"effective":6502862990520675,"kind":"4mlhD)&,"q":[],"statement_md":"\u0005&=)#9uv","to":"0xbfbaf77d96b3e2414dfaa7976d44209d047601e4"},"entryType":"succession","judge":"0x36d8cdef88719213be7a90843b14ffe89444898f","prev":"0x7a26ec1fdf2c10d0e8ec6b3cf299414d8d5c64d70c90c7bcef44b596f605a1c1","seq":493491,"sig":"0xfe550667de55f7966ab3edc4d34a2c659def04190d9e5e2047ab6d82c5c8ac5b5f25d0f752603aa05a5ee874bc5189fd0a2be9db27eab39c2ca755d18ef8d2141c","spec":"galeed/1"}
+```

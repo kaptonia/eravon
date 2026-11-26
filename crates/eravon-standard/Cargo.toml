@@ -1,0 +1,18 @@
+[package]
+name = "eravon-standard"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Standard adapter: the only adapter programmed against the Eravon contract ABI: addresses and caseId, two-step deployment and merging, expiry branch, ten actions and four BySig forms, read face, codeHash matching, local pre-checks"
+
+[dependencies]
+eravon-terms = { path = "../eravon-terms" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+
+[[bin]]
+name = "era"
+path = "src/bin/era.rs"

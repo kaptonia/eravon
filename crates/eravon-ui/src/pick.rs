@@ -1,0 +1,140 @@
+use crate::datepick;
+use crate::menu::{self, Item};
+
+use crate::palette::{c, C};
+use crate::tokens::{self, Radius, Type};
+use egui::{pos2, vec2, Rect};
+
+pub struct Dates<'a> {
+    pub words: &'a datepick::Words<'a>,
+    pub today: datepick::Day,
+    pub from_hint: &'a str,
+    pub to_hint: &'a str,
+}
+
+pub struct Spec<'a> {
+    pub hint: &'a str,
+    pub empty: &'a str,
+    pub w: f32,
+    pub dates: Option<Dates<'a>>,
+}
+
+pub type Keep<'k> = &'k dyn Fn(usize, &str, &str, &str) -> bool;
+
+const PAD: f32 = crate::band::GAP;
+const INSET: f32 = 10.0;
+const LIST_MAX_H: f32 = 336.0;
+const DATE_W: f32 = 136.0;
+
+#[derive(Clone, Default)]
+struct Typed {
+    query: String,
+    from: String,
+    to: String,
+    opened: u64,
+}
+
+pub fn key(ui: &mut egui::Ui, id_salt: &str, label: &str, enabled: bool, caret: bool, spec: &Spec, items: &[Item], keep: Keep) -> Option<usize> {
+    let id = ui.id().with(("eravon-pick", id_salt));
+    let mut k = crate::button::Key::new(label, crate::button::Role::Secondary).enabled(enabled);
+    if caret {
+        k = k.trail(crate::icons::Glyph::Down);
+    }
+    let resp = crate::button::show(ui, k);
+    if resp.clicked() {
+        menu::toggle(ui.ctx(), id);
+    }
+    let picked = show_from(ui.ctx(), Some(ui.layer_id()), id, resp.rect, ui.clip_rect(), false, spec, items, keep);
+    menu::stay(ui, id, resp.rect);
+    picked
+}
+
+pub fn show(ctx: &egui::Context, id: egui::Id, anchor: Rect, left: bool, spec: &Spec, items: &[Item], keep: Keep) -> Option<usize> {
+    show_from(ctx, None, id, anchor, ctx.content_rect(), left, spec, items, keep)
+}
+
+#[allow(clippy::too_many_arguments)]
+pub fn show_from(ctx: &egui::Context, parent: Option<egui::LayerId>, id: egui::Id, anchor: Rect, bounds: Rect, left: bool, spec: &Spec, items: &[Item], keep: Keep) -> Option<usize> {
+    if !menu::is_open(ctx, id) {
+        return None;
+    }
+    let e = crate::layer::entrance(ctx, &[id.with("keep")], id.with("age"), tokens::FAST);
+    let opened = ctx.data(|d| d.get_temp::<u64>(id.with("opened"))).unwrap_or(0);
+    let mut typed = ctx.data(|d| d.get_temp::<Typed>(id.with("typed"))).filter(|t| t.opened == opened).unwrap_or(Typed { opened, ..Default::default() });
+    let fresh = ctx.data(|d| d.get_temp::<u64>(id.with("focused"))) != Some(opened);
+    let kept: Vec<usize> = (0..items.len()).filter(|i| matches!(items[*i], Item::Row(_) | Item::Who(_)) && keep(*i, &typed.query, &typed.from, &typed.to)).collect();
+    let row_h = |it: &Item| match it {
+        Item::Row(r) => menu::row_h(r),
+        Item::Who(_) => menu::WHO_H,
+        _ => 0.0,
+    };
+    let list_h: f32 = kept.iter().map(|i| row_h(&items[*i])).sum::<f32>().max(34.0).min(LIST_MAX_H);
+    let head_h = tokens::INPUT_H + if spec.dates.is_some() { tokens::S2 + tokens::INPUT_H } else { 0.0 };
+    let w = spec.w.min(ctx.content_rect().width() - 16.0);
+    let h = PAD + INSET + head_h + INSET + list_h + PAD;
+    let drop = crate::layer::drop_card(ctx, anchor, bounds, vec2(w, h), left);
+    let (rect, origin) = (drop.rect, drop.origin);
+    crate::layer::card_at(ctx, id, rect);
+    let layer = egui::LayerId::new(egui::Order::Foreground, id.with("menu"));
+    drop.enter(ctx, layer, e);
+    crate::layer::place(ctx, layer, parent);
+    let mut guarded = false;
+    let mut picked = None;
+    crate::layer::over(ctx, layer).show(ctx, |ui| {
+        guarded = crate::layer::under(ui, crate::layer::Under::Guard);
+        crate::layer::body(ui, rect);
+        ui.multiply_opacity(e);
+        crate::material::paint(ui.painter(), rect, Radius::Menu, crate::material::Level::Float, 0.0);
+        menu::card_is(ctx, rect);
+        let inner = Rect::from_min_max(pos2(rect.left() + INSET, rect.top() + PAD + INSET), pos2(rect.right() - INSET, rect.bottom() - PAD));
+        let mut child = ui.new_child(egui::UiBuilder::new().max_rect(inner).layout(egui::Layout::top_down(egui::Align::Min)));
+        child.spacing_mut().item_spacing.y = tokens::S2;
+        let resp = crate::input::search(&mut child, &mut typed.query, spec.hint, inner.width());
+        if fresh {
+            resp.request_focus();
+            ctx.data_mut(|d| d.insert_temp(id.with("focused"), opened));
+        }
+        if let Some(dates) = spec.dates.as_ref() {
+            child.horizontal(|ui| {
+                ui.spacing_mut().item_spacing.x = tokens::S2;
+                datepick::field(ui, "pick-from", &mut typed.from, dates.from_hint, DATE_W, dates.today, dates.words);
+                datepick::field(ui, "pick-to", &mut typed.to, dates.to_hint, DATE_W, dates.today, dates.words);
+            });
+        }
+        let top = inner.top() + head_h + INSET;
+        let line = egui::Shape::hline((rect.left() + 11.0)..=(rect.right() - 11.0), top - PAD - crate::band::LINE_HALF, egui::Stroke::new(1.0_f32, c(C::Line2)));
+        let list = Rect::from_min_max(pos2(rect.left() + PAD, top), pos2(rect.right() - PAD, top + list_h));
+        let mut lu = ui.new_child(egui::UiBuilder::new().max_rect(list).layout(egui::Layout::top_down(egui::Align::Min)));
+        if kept.is_empty() {
+            ui.painter().add(line);
+            lu.painter().text(list.center(), egui::Align2::CENTER_CENTER, spec.empty, Type::Note.font(), c(C::Ink3));
+            return;
+        }
+        crate::scroll::nested(&mut lu, egui::ScrollArea::vertical().id_salt(id.with("rows")).max_height(list_h).auto_shrink([false, true]), |ui| {
+            ui.spacing_mut().item_spacing.y = 0.0;
+            for (n, i) in kept.iter().enumerate() {
+                let it = &items[*i];
+                let (rr, _) = ui.allocate_exact_size(vec2(list.width(), row_h(it)), egui::Sense::hover());
+                let below = if n + 1 == kept.len() { crate::band::Bound::Edge } else { crate::band::Bound::Row };
+                let above = if n == 0 { crate::band::Bound::Rule } else { crate::band::Bound::Row };
+                let resp = match it {
+                    Item::Row(r) => menu::draw_row(ui, id.with(("row", *i)), rr, r, (above, below)),
+                    Item::Who(wr) => menu::draw_who(ui, id.with(("who", *i)), rr, wr),
+                    _ => continue,
+                };
+                if resp.clicked() {
+                    picked = Some(*i);
+                }
+            }
+        });
+        ui.painter().add(line);
+        ui.allocate_rect(rect, egui::Sense::hover());
+    });
+    ctx.data_mut(|d| d.insert_temp(id.with("typed"), typed));
+    crate::layer::keep(ctx, id.with("keep"), layer, tokens::FAST, 0.97, origin, drop.moved);
+    let esc = crate::layer::esc(ctx, id);
+    if picked.is_some() || guarded || esc {
+        menu::set(ctx, id, false);
+    }
+    picked
+}

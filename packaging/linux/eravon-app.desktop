@@ -1,0 +1,10 @@
+# packaging-release · family version 4
+[Desktop Entry]
+Type=Application
+Name=ERAVON
+Comment=Payment links with funds held on chain until the order completes
+Exec=eravon-app window
+Icon=eravon-app
+Terminal=false
+Categories=Office;Utility;
+StartupWMClass=eravon-app

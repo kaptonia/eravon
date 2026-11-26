@@ -1,0 +1,18 @@
+[package]
+name = "eravon-zikaron"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "ZIKARON reader: local discovery with four absence states, disclosure kit listing from kits/index.json, a chosen kit as manifest items; read-only"
+
+[dependencies]
+eravon-evidence = { path = "../eravon-evidence" }
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-glue = { path = "../eravon-glue" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-store = { path = "../eravon-store" }
+
+[[bin]]
+name = "erz"
+path = "src/bin/erz.rs"

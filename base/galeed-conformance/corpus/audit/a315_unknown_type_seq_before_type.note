@@ -1,0 +1,1 @@
+sec 8.7 item 7: the list sorts by seq before entryType, so zulu at 1 precedes aardvark at 2 though the types sort the other way.

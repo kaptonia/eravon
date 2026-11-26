@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"1Xy6Y22_md":"7?2\u0003\u001c}U)\tX","5>":"ryF]ni`>;D","amanah":"0x0d0d89a9816128052b2ae2cb1af21c80a5c252593e765bd06b734c0953598389","category":"other","statement_md":"\u0002I$\u001f\u001d~\u000e'‭é\u0010\u0004\\\"‎+⁦S","subjectRef":{"kind":"hash","sha256":"0xffc6a9ad03325b056dbce80835f42f609f10ac594ca547eabf37ff754f19958d942b2c51df0da731","prev":"0x59262df9f8e23c35c322d73b6890868b987c769b8e9a2140c66ab30def2eafb4","seq":959356,"sig":"0x7e3975c505fa0e26e86de04f71092008274dcd8c04600522548b67611e56860501d5c541c4d18e3adb534fe5a0cc22c86825cb56e6c54ef6c53ea7607d7e089e1b","spec":"galeed/1"}
+```

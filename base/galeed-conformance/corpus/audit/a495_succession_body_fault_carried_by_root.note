@@ -1,0 +1,1 @@
+sec 4.3/8.4: a root-signed succession whose body lacks `to` fails sec 4.3: CARRIED_MALFORMED with its token, the bytes MALFORMED and the hash MISSING; BROKEN_CHAIN.

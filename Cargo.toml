@@ -1,0 +1,58 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/eravon",
+    "crates/eravon-os",
+    "crates/eravon-pack",
+    "crates/eravon-net",
+    "crates/eravon-qr",
+    "crates/eravon-galeed",
+    "crates/eravon-galeed-scan",
+    "crates/eravon-terms",
+    "crates/eravon-link",
+    "crates/eravon-dossier",
+    "crates/eravon-roster",
+    "crates/eravon-evidence",
+    "crates/eravon-literals",
+    "crates/eravon-standard",
+    "crates/eravon-chain",
+    "crates/eravon-scan",
+    "crates/eravon-zikaron",
+    "crates/eravon-face",
+    "crates/eravon-store",
+    "crates/eravon-vault",
+    "crates/eravon-cli",
+    "crates/eravon-glue",
+    "crates/eravon-seal",
+    "crates/eravon-send",
+    "crates/eravon-ui",
+    "crates/eravon-payways",
+    "crates/eravon-cands",
+    "crates/eravon-goods",
+    "crates/eravon-watch",
+    "crates/eravon-deliver",
+    "crates/eravon-dispute",
+    "crates/eravon-orders",
+    "crates/eravon-home",
+    "crates/eravon-pay",
+    "crates/eravon-import",
+    "crates/eravon-after",
+    "crates/eravon-recheck",
+    "crates/eravon-export",
+    "crates/eravon-statement",
+    "crates/eravon-wallet",
+    "crates/app",
+]
+exclude = ["vendor"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.97.1"
+license = "MIT"
+publish = false
+
+[profile.release]
+strip = "symbols"
+lto = "thin"
+overflow-checks = true

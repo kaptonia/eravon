@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"#Al'":false,"1":[null],"Tb2*c__md":{},"effective":5499727718179444,"kind":"j8[W#","statement_md":"CD\n)\u0018\u001f+\u0004;k\n\u0017;⁦","to":"0x3d5eeba3420c4a9f17c1b9e1210efd99b9a742b6"},"entryType":"succession","judge":"0xc0b9e681e0a547384475d63dd09a0c5691f772d0e0fc1590ac1c","spec":"galeed/1"}
+```

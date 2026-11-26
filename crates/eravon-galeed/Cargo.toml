@@ -1,0 +1,16 @@
+[package]
+name = "eravon-galeed"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "galeed/1 access (thin layer): only the exports ERAVON uses, all forwarded, no predicates of its own"
+
+[dependencies]
+galeed = { path = "../../vendor/galeed-crates/crates/galeed" }
+galeed-roster = { path = "../../vendor/galeed-crates/crates/galeed-roster" }
+eravon-literals = { path = "../eravon-literals" }
+
+[[bin]]
+name = "eravon-galeed-leg"
+path = "src/bin/eravon-galeed-leg.rs"

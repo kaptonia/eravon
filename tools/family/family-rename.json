@@ -1,0 +1,2443 @@
+{
+ "schema": 1,
+ "foreign": "ZIKARON",
+ "foreignCommit": "65c6339f0d2a090408540dace25e1655ee6d8806",
+ "words": [
+  [
+   "zikaron",
+   "eravon"
+  ],
+  [
+   "Zikaron",
+   "Eravon"
+  ],
+  [
+   "ZIKARON",
+   "ERAVON"
+  ],
+  [
+   "zikaron_ui",
+   "eravon_ui"
+  ],
+  [
+   "zikaron_os",
+   "eravon_os"
+  ],
+  [
+   "zkd",
+   "evd"
+  ],
+  [
+   "ZIKARON_CLI_LINK_DIR",
+   "ERAVON_CLI_LINK_DIR"
+  ],
+  [
+   "ZIKARON_TRACE",
+   "ERAVON_TRACE"
+  ],
+  [
+   "ZIKARON_TRACE_CAP_BYTES",
+   "ERAVON_TRACE_CAP_BYTES"
+  ],
+  [
+   "zikaron_pack",
+   "eravon_pack"
+  ],
+  [
+   "zikaron_glue",
+   "eravon_glue"
+  ],
+  [
+   "zikaron_net",
+   "eravon_net"
+  ],
+  [
+   "zikaron_store",
+   "eravon_glue"
+  ],
+  [
+   "zikaron_cli",
+   "eravon_cli"
+  ],
+  [
+   "zikaron_anchor",
+   "eravon_chain"
+  ],
+  [
+   "ZKA_TIMEOUT_MS",
+   "ERAVON_TIMEOUT_MS"
+  ],
+  [
+   "zikaron_kit",
+   "eravon_kit"
+  ],
+  [
+   "CARGO_BIN_EXE_zikaron",
+   "CARGO_BIN_EXE_eravon"
+  ],
+  [
+   "ZKA_TIMEOUT_SECS",
+   "ERAVON_TIMEOUT_SECS"
+  ],
+  [
+   "ZKA_MAX_ANSWER_BYTES",
+   "ERAVON_MAX_ANSWER_BYTES"
+  ],
+  [
+   "ZIKARON_DESK_HOME",
+   "ERAVON_DESK_HOME"
+  ],
+  [
+   "zikaron_seal",
+   "eravon_seal"
+  ],
+  [
+   "zikaron_send",
+   "eravon_send"
+  ],
+  [
+   "ZK_NET_ALONE",
+   "ERAVON_NET_ALONE"
+  ],
+  [
+   "zk",
+   "eravon"
+  ],
+  [
+   "zks",
+   "evs"
+  ],
+  [
+   "zka",
+   "erc"
+  ],
+  [
+   "ZKA",
+   "ERC"
+  ],
+  [
+   "CARGO_BIN_EXE_zka",
+   "CARGO_BIN_EXE_erc"
+  ],
+  [
+   "ZKN_DEFAULT_WAY_CHILD",
+   "ERAVON_NET_DEFAULT_WAY_CHILD"
+  ],
+  [
+   "ZIKARON_OS_BARE_FORM",
+   "ERAVON_OS_BARE_FORM"
+  ],
+  [
+   "ZIKARON_GLUE_BARE_FORM",
+   "ERAVON_GLUE_BARE_FORM"
+  ],
+  [
+   "ZK_CHECKS_ALONE",
+   "ERAVON_CHECKS_ALONE"
+  ],
+  [
+   "family_reg",
+   "family_registries"
+  ],
+  [
+   "ZIKARON_REST_KEYS",
+   "ERAVON_REST_KEYS"
+  ],
+  [
+   "ZK_CHECKS_KEYS_FILE_FORM",
+   "ERAVON_CHECKS_KEYS_FILE_FORM"
+  ],
+  [
+   "ZK_SETTLED_ROLE",
+   "ERAVON_SETTLED_ROLE"
+  ],
+  [
+   "ZK_SETTLED_FILE",
+   "ERAVON_SETTLED_FILE"
+  ],
+  [
+   "ZK_SETTLED_NODES",
+   "ERAVON_SETTLED_NODES"
+  ],
+  [
+   "zikaron_face",
+   "eravon_face"
+  ],
+  [
+   "zkf",
+   "evf"
+  ],
+  [
+   "ZKF",
+   "EVF"
+  ],
+  [
+   "CARGO_BIN_EXE_zkf",
+   "CARGO_BIN_EXE_evf"
+  ],
+  [
+   "ZIKARON_CLI_PASS",
+   "ERAVON_CLI_PASS"
+  ],
+  [
+   "zkp_",
+   "evp_"
+  ],
+  [
+   "ZK_SETTLED_TOP",
+   "ERAVON_SETTLED_TOP"
+  ],
+  [
+   "ZIKARON_SOURCE_EPOCH",
+   "ERAVON_SOURCE_EPOCH"
+  ],
+  [
+   "ZIKARON_KEY_OFFICE_CHILD",
+   "ERAVON_KEY_OFFICE_CHILD"
+  ],
+  [
+   "ZikaronMenuTarget",
+   "EravonMenuTarget"
+  ],
+  [
+   "ZikaronFullScreenWatch",
+   "EravonFullScreenWatch"
+  ],
+  [
+   "zikaron_echo",
+   "eravon_echo"
+  ]
+ ],
+ "files": [
+  {
+   "component": "bilingual-table",
+   "home": null,
+   "from": "docs/manual/MANUAL-en.md"
+  },
+  {
+   "component": "bilingual-table",
+   "home": null,
+   "from": "docs/manual/MANUAL-zh.md"
+  },
+  {
+   "component": "app-skeleton",
+   "home": ".cargo/config.toml",
+   "from": ".cargo/config.toml"
+  },
+  {
+   "component": "packaging-release",
+   "home": "LICENSE",
+   "from": "LICENSE"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/app/licences/third-party.txt",
+   "from": "THIRD-PARTY-LICENSES.txt"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/linux/build.sh",
+   "from": "packaging/linux/build.sh"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/linux/cross-build.sh",
+   "from": "packaging/linux/cross-build.sh"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/linux/make_deb.py",
+   "from": "packaging/linux/make_deb.py"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/linux/control",
+   "from": "packaging/linux/control"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/linux/eravon-app.desktop",
+   "from": "packaging/linux/zikaron-desk.desktop"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/macos/build.sh",
+   "from": "packaging/macos/build.sh"
+  },
+  {
+   "component": "packaging-release",
+   "home": "packaging/macos/Info.plist",
+   "from": "packaging/macos/Info.plist"
+  },
+  {
+   "component": "ci-toolchain",
+   "home": ".github/workflows/test.yml",
+   "from": ".github/workflows/test.yml"
+  },
+  {
+   "component": "ci-toolchain",
+   "home": ".github/workflows/package-windows.yml",
+   "from": ".github/workflows/package-windows.yml"
+  },
+  {
+   "component": "ci-toolchain",
+   "home": "Cargo.toml",
+   "from": "Cargo.toml"
+  },
+  {
+   "component": "ci-toolchain",
+   "home": "rust-toolchain.toml",
+   "from": "rust-toolchain.toml"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/rpc.rs",
+   "from": "crates/zikaron-anchor/src/rpc.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/said.rs",
+   "from": "crates/zikaron-anchor/src/said.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/wire.rs",
+   "from": "crates/zikaron-anchor/src/wire.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-chain/src/scan.rs",
+   "from": "crates/zikaron-anchor/src/scan.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-chain/src/send.rs",
+   "from": "crates/zikaron-anchor/src/send.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/src/endpoints.rs",
+   "from": "crates/zikaron-anchor/src/endpoints.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/src/judge.rs",
+   "from": "crates/zikaron-anchor/src/judge.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/oneread.rs",
+   "from": "crates/zikaron-anchor/src/oneread.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/src/patience.rs",
+   "from": "crates/zikaron-anchor/src/patience.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/eravon-os/src/lib.rs",
+   "from": "crates/zikaron-os/src/lib.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/eravon-os/src/proxy.rs",
+   "from": "crates/zikaron-os/src/proxy.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/eravon-os/src/unix.rs",
+   "from": "crates/zikaron-os/src/unix.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/eravon-os/src/windows.rs",
+   "from": "crates/zikaron-os/src/windows.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/src/landing.rs",
+   "from": "crates/zikaron-glue/src/landing.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/src/codes.rs",
+   "from": "crates/zikaron-store/src/codes.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/src/layout.rs",
+   "from": "crates/zikaron-store/src/layout.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/src/ledger.rs",
+   "from": "crates/zikaron-store/src/ledger.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/src/trace.rs",
+   "from": "crates/zikaron-store/src/trace.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/Cargo.toml",
+   "from": "crates/zikaron-ui/Cargo.toml"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/Inter-Regular.ttf",
+   "from": "crates/zikaron-ui/fonts/Inter-Regular.ttf"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/JetBrainsMono-Regular.ttf",
+   "from": "crates/zikaron-ui/fonts/JetBrainsMono-Regular.ttf"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/NotoSansSC-Regular.otf",
+   "from": "crates/zikaron-ui/fonts/NotoSansSC-Regular.otf"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/OFL-Inter.txt",
+   "from": "crates/zikaron-ui/fonts/OFL-Inter.txt"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/OFL-JetBrainsMono.txt",
+   "from": "crates/zikaron-ui/fonts/OFL-JetBrainsMono.txt"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/OFL-NotoSansSC.txt",
+   "from": "crates/zikaron-ui/fonts/OFL-NotoSansSC.txt"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/button.rs",
+   "from": "crates/zikaron-ui/src/button.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/card.rs",
+   "from": "crates/zikaron-ui/src/card.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/datepick.rs",
+   "from": "crates/zikaron-ui/src/datepick.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/drop.rs",
+   "from": "crates/zikaron-ui/src/drop.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/fold.rs",
+   "from": "crates/zikaron-ui/src/fold.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/fonts.rs",
+   "from": "crates/zikaron-ui/src/fonts.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/full.rs",
+   "from": "crates/zikaron-ui/src/full.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/grid.rs",
+   "from": "crates/zikaron-ui/src/grid.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/icons.rs",
+   "from": "crates/zikaron-ui/src/icons.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/input.rs",
+   "from": "crates/zikaron-ui/src/input.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/kv.rs",
+   "from": "crates/zikaron-ui/src/kv.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/layer.rs",
+   "from": "crates/zikaron-ui/src/layer.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/lib.rs",
+   "from": "crates/zikaron-ui/src/lib.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/mark.rs",
+   "from": "crates/zikaron-ui/src/mark.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/menu.rs",
+   "from": "crates/zikaron-ui/src/menu.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/motion.rs",
+   "from": "crates/zikaron-ui/src/motion.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/page.rs",
+   "from": "crates/zikaron-ui/src/page.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/paint.rs",
+   "from": "crates/zikaron-ui/src/paint.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/palette.rs",
+   "from": "crates/zikaron-ui/src/palette.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/pick.rs",
+   "from": "crates/zikaron-ui/src/pick.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/pin.rs",
+   "from": "crates/zikaron-ui/src/pin.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/probe.rs",
+   "from": "crates/zikaron-ui/src/probe.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/rail.rs",
+   "from": "crates/zikaron-ui/src/rail.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/secret.rs",
+   "from": "crates/zikaron-ui/src/secret.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/seg.rs",
+   "from": "crates/zikaron-ui/src/seg.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/sheet.rs",
+   "from": "crates/zikaron-ui/src/sheet.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/skin.rs",
+   "from": "crates/zikaron-ui/src/skin.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/states.rs",
+   "from": "crates/zikaron-ui/src/states.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/table.rs",
+   "from": "crates/zikaron-ui/src/table.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/toast.rs",
+   "from": "crates/zikaron-ui/src/toast.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/toggle.rs",
+   "from": "crates/zikaron-ui/src/toggle.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/tokens.rs",
+   "from": "crates/zikaron-ui/src/tokens.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/toolbar.rs",
+   "from": "crates/zikaron-ui/src/toolbar.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/width.rs",
+   "from": "crates/zikaron-ui/src/width.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/eravon/src/trace.rs",
+   "from": "crates/zikaron/src/trace.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/elf.rs",
+   "from": "crates/zikaron-pack/src/elf.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/hfs.rs",
+   "from": "crates/zikaron-pack/src/hfs.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/main.rs",
+   "from": "crates/zikaron-pack/src/main.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/notices.rs",
+   "from": "crates/zikaron-pack/src/notices.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/runtime.rs",
+   "from": "crates/zikaron-pack/src/runtime.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/sha256.rs",
+   "from": "crates/zikaron-pack/src/sha256.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/udif.rs",
+   "from": "crates/zikaron-pack/src/udif.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/windows.rs",
+   "from": "crates/zikaron-pack/src/windows.rs"
+  },
+  {
+   "component": "ci-toolchain",
+   "home": "crates/eravon-pack/src/paths.rs",
+   "from": "crates/zikaron-pack/src/paths.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-cli/src/desk.rs",
+   "from": "crates/zikaron-cli/src/desk.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-cli/src/door.rs",
+   "from": "crates/zikaron-glue/src/door.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-os/src/cli_path.rs",
+   "from": "crates/zikaron-os/src/cli_path.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-os/src/door.rs",
+   "from": "crates/zikaron-os/src/door.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-os/src/machine.rs",
+   "from": "crates/zikaron-os/src/machine.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "CLI-SCHEMA.md",
+   "from": "CLI-SCHEMA.md"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/Cargo.toml",
+   "from": "crates/zikaron-cli/Cargo.toml"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/args.rs",
+   "from": "crates/zikaron-cli/src/args.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/codes.rs",
+   "from": "crates/zikaron-cli/src/codes.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/lib.rs",
+   "from": "crates/zikaron-cli/src/lib.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/out.rs",
+   "from": "crates/zikaron-cli/src/out.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/verbs.rs",
+   "from": "crates/zikaron-cli/src/verbs.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/bin/eravon.rs",
+   "from": "crates/zikaron-cli/src/bin/zikaron.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/src/answer.rs",
+   "from": "crates/zikaron-net/src/answer.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/src/dial.rs",
+   "from": "crates/zikaron-net/src/dial.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/src/keep.rs",
+   "from": "crates/zikaron-net/src/keep.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/src/lib.rs",
+   "from": "crates/zikaron-net/src/lib.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/src/route.rs",
+   "from": "crates/zikaron-net/src/route.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/eravon-glue/src/sealed.rs",
+   "from": "crates/zikaron-glue/src/sealed.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/app/src/task.rs",
+   "from": "crates/app/src/task.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/app/src/proxycells.rs",
+   "from": "crates/app/src/proxycells.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/src/exitgate.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/src/sendx.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/tests/checks_more/send_r23.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/Cargo.toml",
+   "from": "crates/app/Cargo.toml"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-vault/src/chainx.rs",
+   "from": "crates/app/src/chainx.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-vault/src/key.rs",
+   "from": "crates/app/src/key.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/places.rs",
+   "from": "crates/app/src/places.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/register.rs",
+   "from": "crates/app/src/register.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/eravon-vault/src/names.rs",
+   "from": "crates/app/src/names.rs"
+  },
+  {
+   "component": "key-file",
+   "home": "crates/eravon-vault/src/family.rs",
+   "from": "crates/app/src/family.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-vault/src/when.rs",
+   "from": "crates/app/src/when.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/src/action/mod.rs",
+   "from": "crates/app/src/action/mod.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/src/action/queue.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/src/queue.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/src/shell.rs",
+   "from": "crates/app/src/shell.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/src/sign.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/src/window/ledger.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/src/window/modals.rs",
+   "from": "crates/app/src/window/modals.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": null,
+   "from": "crates/app/src/auditx.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/home.rs",
+   "from": "crates/app/src/home.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/identity.rs",
+   "from": "crates/app/src/identity.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/lang.rs",
+   "from": "crates/app/src/lang.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/local.rs",
+   "from": "crates/app/src/local.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/machine.rs",
+   "from": "crates/app/src/machine.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-vault/src/settings.rs",
+   "from": "crates/app/src/settings.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/src/action/home.rs",
+   "from": "crates/app/src/action/home.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/eravon-store/src/lock.rs",
+   "from": "crates/app/src/lock.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/src/platform/mod.rs",
+   "from": "crates/app/src/platform/mod.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/src/platform/unix.rs",
+   "from": "crates/app/src/platform/unix.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/src/platform/windows.rs",
+   "from": "crates/app/src/platform/windows.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/src/window/watch.rs",
+   "from": "crates/app/src/window/watch.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/app/local-data-standard.md",
+   "from": "crates/app/local-data-standard.md"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/eravon-vault/src/cryptx.rs",
+   "from": "crates/app/src/cryptx.rs"
+  },
+  {
+   "component": "passcode-gate",
+   "home": "crates/eravon-vault/src/keybox.rs",
+   "from": "crates/app/src/keybox.rs"
+  },
+  {
+   "component": "key-file",
+   "home": "crates/app/src/action/identity.rs",
+   "from": "crates/app/src/action/identity.rs"
+  },
+  {
+   "component": "key-file",
+   "home": "crates/eravon-vault/src/keystore.rs",
+   "from": "crates/app/src/keystore.rs"
+  },
+  {
+   "component": "machine-backup",
+   "home": "crates/eravon-vault/src/backup.rs",
+   "from": "crates/app/src/backup.rs"
+  },
+  {
+   "component": "machine-backup",
+   "home": null,
+   "from": "crates/app/src/restorex.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": null,
+   "from": "crates/app/assets/icon-256.rgba"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/landing.rs",
+   "from": "crates/app/src/landing.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/lib.rs",
+   "from": "crates/app/src/lib.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/platform/linux.rs",
+   "from": "crates/app/src/platform/linux.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/platform/macos.rs",
+   "from": "crates/app/src/platform/macos.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/window/chrome.rs",
+   "from": "crates/app/src/window/chrome.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/window/common.rs",
+   "from": "crates/app/src/window/common.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/window/faces.rs",
+   "from": "crates/app/src/window/faces.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/window/mod.rs",
+   "from": "crates/app/src/window/mod.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/eravon-vault/src/fault.rs",
+   "from": "crates/app/src/fault.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/eravon-vault/src/feature.rs",
+   "from": "crates/app/src/feature.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/eravon-vault/src/trace.rs",
+   "from": "crates/app/src/trace.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": null,
+   "from": "crates/app/src/watchx.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/app/src/window/landing.rs",
+   "from": "crates/app/src/window/landing.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/app/build.rs",
+   "from": "crates/app/build.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/app/src/about.rs",
+   "from": "crates/app/src/about.rs"
+  },
+  {
+   "component": "family-literals",
+   "home": "crates/app/family-literals.json",
+   "from": "crates/app/family-literals.json"
+  },
+  {
+   "component": "family-literals",
+   "home": "crates/app/tests/family_literals.rs",
+   "from": "crates/app/tests/family_literals.rs"
+  },
+  {
+   "component": "structure-pins",
+   "home": "crates/app/tests/checks.rs",
+   "from": "crates/app/tests/checks.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/src/door.rs",
+   "from": "crates/app/src/door.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/src/window/settings.rs",
+   "from": "crates/app/src/window/settings.rs"
+  },
+  {
+   "component": "qr-code",
+   "home": "crates/eravon-qr/src/lib.rs",
+   "from": "crates/app/src/qr.rs"
+  },
+  {
+   "component": "passcode-gate",
+   "home": "crates/app/src/window/gate.rs",
+   "from": "crates/app/src/window/gate.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/src/nav.rs",
+   "from": "crates/app/src/nav.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/Cargo.toml",
+   "from": "crates/zikaron-net/Cargo.toml"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/src/pac.rs",
+   "from": "crates/zikaron-net/src/pac.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-chain/src/tx.rs",
+   "from": "crates/zikaron-anchor/src/tx.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-chain/Cargo.toml",
+   "from": "crates/zikaron-anchor/Cargo.toml"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-chain/src/lib.rs",
+   "from": "crates/zikaron-anchor/src/lib.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-chain/src/rlp.rs",
+   "from": "crates/zikaron-anchor/src/rlp.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-send/Cargo.toml",
+   "from": "crates/zikaron-send/Cargo.toml"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-send/src/lib.rs",
+   "from": "crates/zikaron-send/src/lib.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-send/src/sent.rs",
+   "from": "crates/zikaron-send/src/sent.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-send/src/node.rs",
+   "from": "crates/zikaron-send/src/node.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-send/src/batch.rs",
+   "from": "crates/zikaron-send/src/batch.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-send/src/gate.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-send/src/keep.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-send/src/shut.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": null,
+   "from": "crates/zikaron-send/src/agree.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/eravon-os/Cargo.toml",
+   "from": "crates/zikaron-os/Cargo.toml"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-seal/src/land.rs",
+   "from": "crates/zikaron-seal/src/land.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/Cargo.toml",
+   "from": "crates/zikaron-store/Cargo.toml"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/src/lib.rs",
+   "from": "crates/zikaron-store/src/lib.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/eravon-seal/src/writer.rs",
+   "from": "crates/zikaron-seal/src/writer.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/handover.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/eravon-seal/src/crypto.rs",
+   "from": "crates/zikaron-seal/src/crypto.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/eravon-seal/src/envelope.rs",
+   "from": "crates/zikaron-seal/src/envelope.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/eravon-seal/src/names.rs",
+   "from": "crates/zikaron-seal/src/names.rs"
+  },
+  {
+   "component": "passcode-gate",
+   "home": "crates/eravon-seal/src/keybox.rs",
+   "from": "crates/zikaron-seal/src/keybox.rs"
+  },
+  {
+   "component": "key-file",
+   "home": "crates/eravon-seal/src/kdf.rs",
+   "from": "crates/zikaron-seal/src/kdf.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/nav.rs",
+   "from": "crates/zikaron-ui/src/nav.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/scroll.rs",
+   "from": "crates/zikaron-ui/src/scroll.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/Cargo.toml",
+   "from": "crates/zikaron-pack/Cargo.toml"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/src/lib.rs",
+   "from": "crates/zikaron-pack/src/lib.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-seal/src/machine.rs",
+   "from": "crates/zikaron-seal/src/machine.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/Cargo.toml",
+   "from": "crates/zikaron-seal/Cargo.toml"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/src/ground.rs",
+   "from": "crates/zikaron-seal/src/ground.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/src/identities.rs",
+   "from": "crates/zikaron-seal/src/identities.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/src/lib.rs",
+   "from": "crates/zikaron-seal/src/lib.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/src/places.rs",
+   "from": "crates/zikaron-seal/src/places.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/src/trouble.rs",
+   "from": "crates/zikaron-seal/src/trouble.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/adopted.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/src/credential.rs",
+   "from": "crates/zikaron-seal/src/credential.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/ledger.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/pens.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/queue.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/records.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/terms.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": null,
+   "from": "crates/zikaron-seal/src/unfetched.rs"
+  },
+  {
+   "component": "one-file",
+   "home": null,
+   "from": "crates/zikaron-glue/Cargo.toml"
+  },
+  {
+   "component": "one-file",
+   "home": "crates/eravon-glue/src/container.rs",
+   "from": "crates/zikaron-glue/src/container.rs"
+  },
+  {
+   "component": "one-file",
+   "home": null,
+   "from": "crates/zikaron-glue/src/lib.rs"
+  },
+  {
+   "component": "one-file",
+   "home": "crates/eravon-glue/src/names.rs",
+   "from": "crates/zikaron-glue/src/names.rs"
+  },
+  {
+   "component": "one-file",
+   "home": "crates/eravon-glue/src/onefile.rs",
+   "from": "crates/zikaron-glue/src/onefile.rs"
+  },
+  {
+   "component": "one-file",
+   "home": "crates/eravon-glue/src/read.rs",
+   "from": "crates/zikaron-glue/src/read.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": null,
+   "from": "crates/zikaron-cli/src/handoff.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-cli/src/sealed.rs",
+   "from": "crates/zikaron-cli/src/sealed.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-cli/src/sealedsend.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/unread_members.rs",
+   "from": "crates/zikaron-anchor/tests/a8_unread_members.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/eravon-chain/tests/anchoring.rs",
+   "from": "crates/zikaron-anchor/tests/anchoring.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/answers.rs",
+   "from": "crates/zikaron-anchor/tests/answers.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/tests/asking.rs",
+   "from": "crates/zikaron-anchor/tests/asking.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/endpoint_spelling.rs",
+   "from": "crates/zikaron-anchor/tests/endpoint_spelling.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-chain/tests/estimate.rs",
+   "from": "crates/zikaron-anchor/tests/estimate.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/tests/gaps.rs",
+   "from": "crates/zikaron-anchor/tests/gaps.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-anchor/tests/nonce_unread.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-anchor/tests/on_chain.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/tests/places.rs",
+   "from": "crates/zikaron-anchor/tests/places.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/refusal_shapes.rs",
+   "from": "crates/zikaron-anchor/tests/refusal_shapes.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-chain/tests/rerun.rs",
+   "from": "crates/zikaron-anchor/tests/rerun.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/revert.rs",
+   "from": "crates/zikaron-anchor/tests/revert.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/wire_numbers.rs",
+   "from": "crates/zikaron-anchor/tests/wire_numbers.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/eravon-cli/tests/cli.rs",
+   "from": "crates/zikaron-cli/tests/cli.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-cli/tests/contract.rs",
+   "from": "crates/zikaron-cli/tests/contract.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-cli/tests/desk.rs",
+   "from": "crates/zikaron-cli/tests/desk.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/tests/endpoint_unechoed.rs",
+   "from": "crates/zikaron-cli/tests/endpoint_unechoed.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/tests/gaps.rs",
+   "from": "crates/zikaron-cli/tests/gaps.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-cli/tests/gas_shapes.rs",
+   "from": "crates/zikaron-cli/tests/gas_shapes.rs"
+  },
+  {
+   "component": "one-file",
+   "home": null,
+   "from": "crates/zikaron-cli/tests/handoff.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/tests/key_file.rs",
+   "from": "crates/zikaron-cli/tests/key_file.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/tests/misuse_words.rs",
+   "from": "crates/zikaron-cli/tests/misuse_words.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/tests/proxy_flag.rs",
+   "from": "crates/zikaron-cli/tests/proxy_flag.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-cli/tests/rerun.rs",
+   "from": "crates/zikaron-cli/tests/rerun.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": null,
+   "from": "crates/zikaron-cli/tests/sealedsend.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": null,
+   "from": "crates/zikaron-glue/tests/kit_output.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/landing_bare.rs",
+   "from": "crates/zikaron-glue/tests/landing_bare.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/landing_file_levels.rs",
+   "from": "crates/zikaron-glue/tests/landing_levels.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/non_tls_peer.rs",
+   "from": "crates/zikaron-net/tests/a8_handshake.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/auto_proxy.rs",
+   "from": "crates/zikaron-net/tests/auto_proxy.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/closing.rs",
+   "from": "crates/zikaron-net/tests/closing.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/default_way.rs",
+   "from": "crates/zikaron-net/tests/default_way.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/edges.rs",
+   "from": "crates/zikaron-net/tests/edges.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/engine_sources.rs",
+   "from": "crates/zikaron-net/tests/engine_sources.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/self-signed-cert.der",
+   "from": "crates/zikaron-net/tests/fixtures/self-signed-cert.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/self-signed-key.pk8.der",
+   "from": "crates/zikaron-net/tests/fixtures/self-signed-key.pk8.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls-proxy/ca.crt.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls-proxy/ca.crt.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls-proxy/node.crt.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls-proxy/node.crt.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls-proxy/node.key.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls-proxy/node.key.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls-proxy/proxy.crt.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls-proxy/proxy.crt.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls-proxy/proxy.key.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls-proxy/proxy.key.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls/ca.crt.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls/ca.crt.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls/localhost.crt.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls/localhost.crt.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/fixtures/tls/localhost.key.der",
+   "from": "crates/zikaron-net/tests/fixtures/tls/localhost.key.der"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/proxy.rs",
+   "from": "crates/zikaron-net/tests/proxy.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/slow_answer.rs",
+   "from": "crates/zikaron-net/tests/slow_answer.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/system.rs",
+   "from": "crates/zikaron-net/tests/system.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/system_cap.rs",
+   "from": "crates/zikaron-net/tests/system_cap.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/user_agent.rs",
+   "from": "crates/zikaron-net/tests/user_agent.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-os/tests/bare_names.rs",
+   "from": "crates/zikaron-os/tests/bare_names.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/eravon-os/tests/entropy_said.rs",
+   "from": "crates/zikaron-os/tests/entropy_said.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/eravon-pack/tests/notices_generator.rs",
+   "from": "crates/zikaron-pack/tests/a8_notices.rs"
+  },
+  {
+   "component": "ci-toolchain",
+   "home": "crates/eravon-pack/tests/packaging.rs",
+   "from": "crates/zikaron-pack/tests/packaging.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/eravon-seal/tests/closure.rs",
+   "from": "crates/zikaron-seal/tests/closure.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-send/tests/closure.rs",
+   "from": "crates/zikaron-send/tests/closure.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/zikaron-send/tests/on_chain_said.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/io_said.rs",
+   "from": "crates/zikaron-store/tests/io_said.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/io_said_landing.rs",
+   "from": "crates/zikaron-store/tests/io_said_landing.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/landing_levels.rs",
+   "from": "crates/zikaron-store/tests/landing_levels.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/storage.rs",
+   "from": "crates/zikaron-store/tests/storage.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/eravon-glue/tests/system_side.rs",
+   "from": "crates/zikaron-store/tests/system_side.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/app/tests/asking.rs",
+   "from": "crates/app/tests/asking.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/app/tests/checks_more/backup_index.rs",
+   "from": "crates/app/tests/checks_more/gaps_b12.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/app/tests/checks_more/node_cell_locks.rs",
+   "from": "crates/app/tests/checks_more/gaps_b13.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/app/tests/checks_more/identity_secrets.rs",
+   "from": "crates/app/tests/checks_more/gaps_r20b2.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/app/tests/checks_more/homes_landing.rs",
+   "from": "crates/app/tests/checks_more/gaps_r21b2.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/app/tests/checks_more/foreign_home.rs",
+   "from": "crates/app/tests/checks_more/gaps_r20b1.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/tests/checks_more/send_gates.rs",
+   "from": "crates/app/tests/checks_more/a8_send.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/tests/checks_more/estimate_refusals.rs",
+   "from": "crates/app/tests/checks_more/gaps_b11.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/tests/checks_more/window_capture.rs",
+   "from": "crates/app/tests/checks_more/window_b10.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/tests/checks_more/wizard_way_out.rs",
+   "from": "crates/app/tests/checks_more/wizard_way_out.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/tests/estimate_family.rs",
+   "from": "crates/app/tests/estimate_family.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/app/tests/checks_more/gaps.rs",
+   "from": "crates/app/tests/checks_more/gaps.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/app/tests/heads_unread.rs",
+   "from": "crates/app/tests/heads_unread.rs"
+  },
+  {
+   "component": "os-platform",
+   "home": "crates/app/tests/checks_more/unsafe_confined.rs",
+   "from": "crates/app/tests/checks_more/unsafe_confined.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/app/tests/checks_more/keystore_sync.rs",
+   "from": "crates/app/tests/checks_more/gaps_b10m.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/app/tests/checks_more/local_writes.rs",
+   "from": "crates/app/tests/checks_more/local_writes.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/app/tests/checks_more/proxy_locked.rs",
+   "from": "crates/app/tests/checks_more/proxy_locked.rs"
+  },
+  {
+   "component": "durable-write",
+   "home": "crates/app/tests/checks_more/walks_live.rs",
+   "from": "crates/app/tests/checks_more/walks_live.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/tests/checks_more/vault_gates.rs",
+   "from": "crates/app/tests/checks_more/a8_gates.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": null,
+   "from": "crates/app/tests/checks_more/handed_off.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": null,
+   "from": "crates/app/tests/checks_more/mirror_adopt.rs"
+  },
+  {
+   "component": "local-seal",
+   "home": "crates/app/tests/local_standard.rs",
+   "from": "crates/app/tests/local_standard.rs"
+  },
+  {
+   "component": "passcode-gate",
+   "home": "crates/app/tests/checks_more/gate_landing.rs",
+   "from": "crates/app/tests/checks_more/gate_landing.rs"
+  },
+  {
+   "component": "passcode-gate",
+   "home": "crates/app/tests/checks_more/recovery_seals.rs",
+   "from": "crates/app/tests/checks_more/recovery_seals.rs"
+  },
+  {
+   "component": "key-file",
+   "home": "crates/app/tests/checks_more/seat_landing.rs",
+   "from": "crates/app/tests/checks_more/seat_landing.rs"
+  },
+  {
+   "component": "key-file",
+   "home": "crates/app/tests/crypto.rs",
+   "from": "crates/app/tests/crypto.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": null,
+   "from": "crates/app/src/bin/app.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/checks_more/shell_skeleton.rs",
+   "from": "crates/app/tests/checks_more/a8_skeleton.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/checks_more/motion_in_place.rs",
+   "from": "crates/app/tests/checks_more/motion_in_place.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/checks_more/wizard_layout.rs",
+   "from": "crates/app/tests/checks_more/window_b10_layout.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/checks_more/window_habits.rs",
+   "from": "crates/app/tests/checks_more/window_habits.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/sync_clock.rs",
+   "from": "crates/app/tests/sync_clock.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/zone_years.rs",
+   "from": "crates/app/tests/zone_years.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/Inter-Medium.ttf",
+   "from": "crates/zikaron-ui/fonts/Inter-Medium.ttf"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/Inter-SemiBold.ttf",
+   "from": "crates/zikaron-ui/fonts/Inter-SemiBold.ttf"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/band.rs",
+   "from": "crates/zikaron-ui/src/band.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/callout.rs",
+   "from": "crates/zikaron-ui/src/callout.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/cells.rs",
+   "from": "crates/zikaron-ui/src/cells.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/covers.rs",
+   "from": "crates/zikaron-ui/src/covers.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/dropline.rs",
+   "from": "crates/zikaron-ui/src/dropline.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/fields.rs",
+   "from": "crates/zikaron-ui/src/fields.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/figcard.rs",
+   "from": "crates/zikaron-ui/src/figcard.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/flow.rs",
+   "from": "crates/zikaron-ui/src/flow.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/formparts.rs",
+   "from": "crates/zikaron-ui/src/formparts.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/hand.rs",
+   "from": "crates/zikaron-ui/src/hand.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/headtabs.rs",
+   "from": "crates/zikaron-ui/src/headtabs.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/inform.rs",
+   "from": "crates/zikaron-ui/src/inform.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/lasts.rs",
+   "from": "crates/zikaron-ui/src/lasts.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/material.rs",
+   "from": "crates/zikaron-ui/src/material.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/sheetparts.rs",
+   "from": "crates/zikaron-ui/src/sheetparts.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/font_focus.rs",
+   "from": "crates/zikaron-ui/tests/a8_ui.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/controls.rs",
+   "from": "crates/zikaron-ui/tests/controls.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/covers_motion.rs",
+   "from": "crates/zikaron-ui/tests/covers_motion.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/menus_hover.rs",
+   "from": "crates/zikaron-ui/tests/gaps_b10.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/hand.rs",
+   "from": "crates/zikaron-ui/tests/hand.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/icon_pairs.rs",
+   "from": "crates/zikaron-ui/tests/icon_pairs.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/layers.rs",
+   "from": "crates/zikaron-ui/tests/layers.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/layout_rules.rs",
+   "from": "crates/zikaron-ui/tests/layout_rules.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/motion_clock.rs",
+   "from": "crates/zikaron-ui/tests/motion_clock.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/motion_edges.rs",
+   "from": "crates/zikaron-ui/tests/motion_edges.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/motion_frames.rs",
+   "from": "crates/zikaron-ui/tests/motion_frames.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/outside_pages.rs",
+   "from": "crates/zikaron-ui/tests/outside_pages.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/reveal.rs",
+   "from": "crates/zikaron-ui/tests/reveal.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/row_geometry.rs",
+   "from": "crates/zikaron-ui/tests/row_geometry.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/rows_structure.rs",
+   "from": "crates/zikaron-ui/tests/rows_structure.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/size_with_content.rs",
+   "from": "crates/zikaron-ui/tests/size_with_content.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/toast_wrap.rs",
+   "from": "crates/zikaron-ui/tests/toast_wrap.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": null,
+   "from": "crates/app/tests/checks_more/alerts_attention.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": null,
+   "from": "crates/app/tests/checks_more/refresh_steady.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/app/tests/checks_more/seat_switch.rs",
+   "from": "crates/app/tests/checks_more/seat_switch.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/app/tests/tasks.rs",
+   "from": "crates/app/tests/tasks.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/app/tests/thread_start.rs",
+   "from": "crates/app/tests/thread_start.rs"
+  },
+  {
+   "component": "packaging-release",
+   "home": "crates/app/macos_sdk.rs",
+   "from": "crates/app/macos_sdk.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/tests/checks_more/door_lock.rs",
+   "from": "crates/app/tests/checks_more/door_b15.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/tests/checks_more/door_serial.rs",
+   "from": "crates/app/tests/checks_more/door_serial.rs"
+  },
+  {
+   "component": "sealed-layer",
+   "home": "crates/app/tests/checks_more/cli_writes.rs",
+   "from": "crates/app/tests/checks_more/cli_writes.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/sheet_details.rs",
+   "from": "crates/zikaron-ui/tests/sheet_details.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/src/mcp.rs",
+   "from": "crates/zikaron-cli/src/mcp.rs"
+  },
+  {
+   "component": "cli-skeleton",
+   "home": "crates/eravon-cli/tests/mcp_engine.rs",
+   "from": "crates/zikaron-cli/tests/mcp_engine.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/src/compose.rs",
+   "from": "crates/zikaron-ui/src/compose.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/compose.rs",
+   "from": "crates/zikaron-ui/tests/compose.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/pane_on_top.rs",
+   "from": "crates/zikaron-ui/tests/pane_on_top.rs"
+  },
+  {
+   "component": "structure-pins",
+   "home": null,
+   "from": "crates/app/tests/checks_more/segments_in_place.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/rest.rs",
+   "from": "crates/zikaron-anchor/src/rest.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-send/tests/rest_rows.rs",
+   "from": "crates/zikaron-send/tests/rest_rows.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/app/tests/checks_more/rest_rows.rs",
+   "from": "crates/app/tests/checks_more/rest_rows.rs"
+  },
+  {
+   "component": "structure-pins",
+   "home": "tools/family-registries/Cargo.toml",
+   "from": "tools/family-reg/Cargo.toml"
+  },
+  {
+   "component": "structure-pins",
+   "home": "tools/family-registries/src/json.rs",
+   "from": "tools/family-reg/src/json.rs"
+  },
+  {
+   "component": "structure-pins",
+   "home": "tools/family-registries/src/lib.rs",
+   "from": "tools/family-reg/src/lib.rs"
+  },
+  {
+   "component": "structure-pins",
+   "home": "tools/family-registries/src/main.rs",
+   "from": "tools/family-reg/src/main.rs"
+  },
+  {
+   "component": "structure-pins",
+   "home": "tools/family-registries/tests/registry.rs",
+   "from": "tools/family-reg/tests/registry.rs"
+  },
+  {
+   "component": "transport",
+   "home": "crates/eravon-net/tests/dial_again.rs",
+   "from": "crates/zikaron-net/tests/dial_again.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/ahead.rs",
+   "from": "crates/zikaron-anchor/src/ahead.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/ahead/sepolia.json",
+   "from": "crates/zikaron-anchor/src/ahead/sepolia.json"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/ahead/tests.rs",
+   "from": "crates/zikaron-anchor/src/ahead/tests.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/app/tests/checks_more/settled_kept.rs",
+   "from": "crates/app/tests/checks_more/settled_kept.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": null,
+   "from": "crates/zikaron-anchor/src/scan/notice_tests.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-chain/src/settled.rs",
+   "from": "crates/zikaron-anchor/src/settled.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-send/src/checked.rs",
+   "from": "crates/zikaron-send/src/checked.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-send/tests/settled_logs.rs",
+   "from": "crates/zikaron-send/tests/settled_logs.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": null,
+   "from": "crates/app/tests/checks_more/r30b1.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-send/tests/r30b1_send_nodes.rs",
+   "from": "crates/zikaron-send/tests/r30b1_send_nodes.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/src/action.rs",
+   "from": "crates/zikaron-anchor/src/action.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/tests/fee_lower_median.rs",
+   "from": "crates/zikaron-anchor/tests/fee_lower_median.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": null,
+   "from": "crates/zikaron-cli/tests/questions.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": "crates/app/tests/checks_more/seat_homes.rs",
+   "from": "crates/app/tests/checks_more/r32b5.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/platform/drops.rs",
+   "from": "crates/app/src/platform/drops.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/tests/checks_more/bilingual_evidence.rs",
+   "from": "crates/app/tests/checks_more/r30b2.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/proofs.rs",
+   "from": "crates/zikaron-anchor/src/proofs.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/src/trie.rs",
+   "from": "crates/zikaron-anchor/src/trie.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": null,
+   "from": "crates/zikaron-anchor/src/proofs/tests.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": null,
+   "from": "crates/zikaron-glue/src/anchorproofs.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": null,
+   "from": "crates/zikaron-send/src/proofs.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-chain/src/scan/ahead_logs_tests.rs",
+   "from": "crates/zikaron-anchor/src/scan/ahead_logs_tests.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/app/src/task.rs",
+   "from": "crates/app/src/task.rs"
+  },
+  {
+   "component": "node-answer",
+   "home": "crates/eravon-chain/tests/anchoring.rs",
+   "from": "crates/zikaron-anchor/tests/anchoring.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": "crates/eravon-chain/src/scan/width_tests.rs",
+   "from": "crates/zikaron-anchor/src/scan/width_tests.rs"
+  },
+  {
+   "component": "node-agreement",
+   "home": "crates/eravon-chain/src/endpoints/limit_tests.rs",
+   "from": "crates/zikaron-anchor/src/endpoints/limit_tests.rs"
+  },
+  {
+   "component": "tx-send",
+   "home": "crates/eravon-chain/tests/one_ask.rs",
+   "from": "crates/zikaron-anchor/tests/one_ask.rs"
+  },
+  {
+   "component": "background-audit",
+   "home": "crates/eravon-send/src/behind.rs",
+   "from": "crates/zikaron-send/src/behind.rs"
+  },
+  {
+   "component": "background-audit",
+   "home": "crates/eravon-send/tests/behind.rs",
+   "from": "crates/zikaron-send/tests/behind.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/Cargo.toml",
+   "from": "crates/zikaron-face/Cargo.toml"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/bin/evf.rs",
+   "from": "crates/zikaron-face/src/bin/zkf.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/carried.rs",
+   "from": "crates/zikaron-face/src/carried.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/consent.rs",
+   "from": "crates/zikaron-face/src/consent.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/input.rs",
+   "from": "crates/zikaron-face/src/input.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/lib.rs",
+   "from": "crates/zikaron-face/src/lib.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/names.rs",
+   "from": "crates/zikaron-face/src/names.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/reading.rs",
+   "from": "crates/zikaron-face/src/reading.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/src/shapes.rs",
+   "from": "crates/zikaron-face/src/shapes.rs"
+  },
+  {
+   "component": "face-core",
+   "home": "crates/eravon-face/tests/evf_edges.rs",
+   "from": "crates/zikaron-face/tests/zkf_edges.rs"
+  },
+  {
+   "component": "face-glue",
+   "home": "crates/eravon-glue/src/face.rs",
+   "from": "crates/zikaron-glue/src/face.rs"
+  },
+  {
+   "component": "page-reads",
+   "home": "crates/eravon-vault/src/reads.rs",
+   "from": "crates/app/src/reads.rs"
+  },
+  {
+   "component": "deploy-table",
+   "home": "crates/eravon-vault/src/deploy.rs",
+   "from": "crates/app/src/deploy.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/fonts/JetBrainsMono-Bold.ttf",
+   "from": "crates/zikaron-ui/fonts/JetBrainsMono-Bold.ttf"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/eravon-cli/src/named.rs",
+   "from": "crates/zikaron-cli/src/named.rs"
+  },
+  {
+   "component": "key-office",
+   "home": "crates/app/src/action/office.rs",
+   "from": "crates/app/src/action/office.rs"
+  },
+  {
+   "component": "key-office",
+   "home": "crates/app/tests/key_office.rs",
+   "from": "crates/app/tests/key_office.rs"
+  },
+  {
+   "component": "first-run",
+   "home": "crates/app/src/steps.rs",
+   "from": "crates/app/src/steps.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/window/drive.rs",
+   "from": "crates/app/src/window/drive.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/window/skeleton.rs",
+   "from": "crates/app/src/window/skeleton.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/src/window/network.rs",
+   "from": "crates/app/src/window/network.rs"
+  },
+  {
+   "component": "identity-page",
+   "home": "crates/app/src/window/identity.rs",
+   "from": "crates/app/src/window/identity.rs"
+  },
+  {
+   "component": "first-run",
+   "home": "crates/app/src/window/wizard.rs",
+   "from": "crates/app/src/window/wizard.rs"
+  },
+  {
+   "component": "machine-backup",
+   "home": "crates/app/src/window/backup.rs",
+   "from": "crates/app/src/window/backup.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/src/platform/menubar.rs",
+   "from": "crates/app/src/platform/menubar.rs"
+  },
+  {
+   "component": "page-reads",
+   "home": "crates/app/tests/frame_reads.rs",
+   "from": "crates/app/tests/frame_reads.rs"
+  },
+  {
+   "component": "identity-page",
+   "home": "crates/app/tests/checks_more/identity_page.rs",
+   "from": "crates/app/tests/checks_more/identity_page.rs"
+  },
+  {
+   "component": "first-run",
+   "home": "crates/app/tests/checks_more/first_run.rs",
+   "from": "crates/app/tests/checks_more/first_run.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/app/tests/checks_more/wiring_points.rs",
+   "from": "crates/app/tests/checks_more/wiring_points.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/setting_rows.rs",
+   "from": "crates/zikaron-ui/tests/setting_rows.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/table_sight.rs",
+   "from": "crates/zikaron-ui/tests/table_sight.rs"
+  },
+  {
+   "component": "cli-desktop",
+   "home": "crates/app/src/action/rest.rs",
+   "from": "crates/app/src/action/rest.rs"
+  },
+  {
+   "component": "app-skeleton",
+   "home": "crates/app/src/probe.rs",
+   "from": "crates/app/src/probe.rs"
+  },
+  {
+   "component": "machine-backup",
+   "home": "crates/eravon-vault/src/rekey.rs",
+   "from": "crates/app/src/rekey.rs"
+  },
+  {
+   "component": "single-writer",
+   "home": null,
+   "from": "crates/app/tests/checks_more/frame_turn.rs"
+  },
+  {
+   "component": "page-reads",
+   "home": null,
+   "from": "crates/app/tests/checks_more/frame_turn.rs"
+  },
+  {
+   "component": "face-glue",
+   "home": null,
+   "from": "crates/zikaron-glue/src/facegate.rs"
+  },
+  {
+   "component": "face-glue",
+   "home": null,
+   "from": "crates/zikaron-send/src/face.rs"
+  },
+  {
+   "component": "log-scan",
+   "home": null,
+   "from": "crates/zikaron-send/tests/receipt_only.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/field_reason.rs",
+   "from": "crates/zikaron-ui/tests/field_reason.rs"
+  },
+  {
+   "component": "ui-kit",
+   "home": "crates/eravon-ui/tests/whole_rows.rs",
+   "from": "crates/zikaron-ui/tests/whole_rows.rs"
+  }
+ ]
+}

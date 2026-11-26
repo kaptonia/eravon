@@ -1,0 +1,65 @@
+[package]
+name = "galeed"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "The galeed/1 core: the [E] and [C] predicates of the law, §3 to §9.5, plus the gl1 fixture binary."
+
+# Third-party cryptography appears in one module only: src/cryptox.rs (mnemonics, derivation,
+# keystore, and the vault's sealing and derivation). No other module uses any of the crates below.
+[dependencies]
+k256 = { version = "0.13", default-features = false, features = ["arithmetic", "ecdsa", "std"] }
+sha2 = { version = "0.10", default-features = false }
+sha3 = { version = "0.10", default-features = false }
+hmac = { version = "0.12", default-features = false }
+age = { version = "0.12", default-features = false }
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+scrypt = { version = "0.11", default-features = false }
+aes = { version = "0.8", default-features = false }
+ctr = { version = "0.9", default-features = false }
+ripemd = { version = "0.1", default-features = false }
+galeed-os = { path = "../galeed-os" }
+# Vault cryptography: these three were already in the lock file as transitive dependencies of age.
+chacha20poly1305 = { version = "0.10.1", default-features = false, features = ["alloc"] }
+hkdf = { version = "0.12.4", default-features = false }
+zeroize = { version = "1.9.0", default-features = false, features = ["alloc"] }
+
+# Fault-injection switches for the conformance gauges: one feature per stage, swapping the live form
+# for the faulty one in the same file.
+[features]
+# The Sepolia trial build: the register's literals as that line spells them (`literals::parse`).
+chain-sepolia = []
+ablate-k1-broken-chain = []
+ablate-k1-misuse = []
+ablate-k1-stamp = []
+ablate-k1-json-canon = []
+ablate-k1-accept-thirteen = []
+ablate-k1-sign-recover = []
+ablate-k1-body-table = []
+ablate-k1-lineage-walk = []
+ablate-k1-audit-walk = []
+# §7.4 retirement (src/audit.rs `has_retired`, and its second form at the retirement's own second
+# `past_retiring_seq`) and §8.2 a migration closing the ledger (src/audit.rs `closes`).
+ablate-k1-retire = []
+ablate-k1-retire-seq = []
+ablate-k1-migration-closes = []
+ablate-k1-basis-form = []
+ablate-k1-basis-registry-class-items = []
+ablate-k1-carried-malformed = []
+ablate-k1-anchor-form-carried = []
+# B031 · the one §9.1 containment test (src/kit.rs `contained`), read by the kit judgment and the scanner.
+ablate-k1-contained = []
+ablate-k1-gl1-audit = []
+ablate-k1-proof-kit = []
+ablate-k1-emitter-proof = []
+ablate-k1-bip39 = []
+ablate-k1-bip32 = []
+ablate-k1-keystore = []
+ablate-k6-passcode-kdf = []
+ablate-k6-aead = []
+ablate-k6-derive = []
+ablate-k6-zeroize = []
+ablate-k5-sign-gate = []
+ablate-k5-checker = []
+ablate-k5-registry = []

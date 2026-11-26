@@ -1,0 +1,1 @@
+sec 7.4/8.1: an entry past the migration at a later, non-adjacent position, carried at the migration's second, is DISCARDED; the ledger ends at the migration; COMPLETE.

@@ -1,0 +1,88 @@
+use app::action::{apply, Action, Applied};
+
+fn scratch(tag: &str) -> std::path::PathBuf {
+    let d = std::env::temp_dir().join(format!("eravon-local-writes-{tag}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&d);
+    std::fs::create_dir_all(&d).expect("scratch");
+    d
+}
+
+fn temps(dir: &std::path::Path) -> Vec<String> {
+    std::fs::read_dir(dir).map(|r| r.flatten().map(|e| e.file_name().to_string_lossy().into_owned()).filter(|n| app::home::is_temp_name(n)).collect()).unwrap_or_default()
+}
+
+#[test]
+fn every_temporary_file_is_one_shape_the_store_reads_as_temporary() {
+    let dir = scratch("shape");
+    let landing = eravon_glue::landing::staging_beside(&dir.join("kit")).expect("a landing's name");
+    let landing = landing.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
+    for n in [landing.as_str(), &eravon_glue::layout::tmp_file_name("0123456789abcdef")] {
+        assert!(app::home::is_temp_name(n), "{n}");
+        assert_eq!(eravon_glue::layout::classify(n), eravon_glue::layout::Kind::Tmp, "{n}");
+    }
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn a_write_that_does_not_land_leaves_no_temporary_file() {
+    let dir = scratch("cut");
+    std::fs::create_dir_all(dir.join("taken").join("inside")).expect("a folder in the way");
+    assert!(app::home::put_at(&dir, "taken", b"x").is_err(), "refused");
+    assert!(temps(&dir).is_empty(), "no temporary file left: {:?}", temps(&dir));
+    app::home::put_at(&dir, "landed", b"y").expect("landed");
+    assert_eq!(std::fs::read(dir.join("landed")).expect("read"), b"y");
+    assert!(temps(&dir).is_empty(), "none after a write that landed");
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn the_sweep_takes_temporary_files_at_any_depth_and_nothing_else() {
+    let dir = scratch("sweep");
+    let deep = dir.join("ledger").join("deeper");
+    std::fs::create_dir_all(&deep).expect("rooms");
+    let t1 = eravon_glue::layout::tmp_file_name("0000000000000001");
+    let t2 = eravon_glue::layout::tmp_file_name("0000000000000002");
+    std::fs::write(dir.join(&t1), b"cut").expect("temp");
+    std::fs::write(deep.join(&t2), b"cut").expect("temp");
+    let t3 = eravon_glue::layout::tmp_file_name("0000000000000003");
+    std::fs::create_dir_all(dir.join(&t3)).expect("a folder");
+    for keep in ["settings.json", ".DS_Store", ".evs-tmp-short"] {
+        std::fs::write(dir.join(keep), b"mine").expect("kept");
+    }
+    assert_eq!(app::home::sweep_temps(&dir), 2);
+    assert!(!dir.join(&t1).exists() && !deep.join(&t2).exists(), "both temporary files went");
+    assert!(dir.join(&t3).is_dir(), "a folder is never swept");
+    for keep in ["settings.json", ".DS_Store", ".evs-tmp-short"] {
+        assert!(dir.join(keep).exists(), "{keep} kept");
+    }
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn the_writer_sweeps_on_opening_and_a_reader_does_not() {
+    if super::alone_in(module_path!(), "the_writer_sweeps_on_opening_and_a_reader_does_not") {
+        return;
+    }
+    super::vault_open();
+    let dir = scratch("open");
+    let root = dir.join("home");
+    let ctx = eravon_ui::egui::Context::default();
+    let mut shell = app::shell::Shell::boot(eravon_ui::skin::dress(&ctx));
+    assert!(matches!(apply(&mut shell, Action::OpenHome { root: root.display().to_string() }), Applied::Homed { .. }), "laid and opened");
+    let home = app::home::Home::open_or_create(root.display().to_string().as_str()).expect("the home");
+    let cut = eravon_glue::layout::tmp_file_name("00000000000000aa");
+    let ledger = home.dir(app::home::Slot::Store);
+    drop(shell);
+    std::fs::write(ledger.join(&cut), b"cut").expect("a cut write");
+    let held = app::lock::take(&home).expect("another writer");
+    let mut reader = app::shell::Shell::boot(eravon_ui::skin::dress(&ctx));
+    assert!(matches!(apply(&mut reader, Action::OpenHome { root: root.display().to_string() }), Applied::Homed { .. }), "opened to read");
+    assert!(ledger.join(&cut).exists(), "a reader sweeps nothing");
+    drop(reader);
+    drop(held);
+    let mut writer = app::shell::Shell::boot(eravon_ui::skin::dress(&ctx));
+    assert!(matches!(apply(&mut writer, Action::OpenHome { root: root.display().to_string() }), Applied::Homed { .. }), "opened to write");
+    assert!(!ledger.join(&cut).exists(), "the writer swept it");
+    drop(writer);
+    let _ = std::fs::remove_dir_all(&dir);
+}

@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"quotes":null,"text_md":"the covenant","version":3},"entryType":"amanah","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xcc523ec532e93e890b22c3e0f2c1a863a1dfe09cfd2f6628e4ffc272f7789a201f5be7abd77ba811999a83014da7bd2d00b0213786af5627415fffc40aeed5d61c","spec":"galeed/1"}
+```

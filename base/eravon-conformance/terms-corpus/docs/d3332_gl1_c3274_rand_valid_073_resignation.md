@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"1<wS_md":{},"2hK7-_md":{"U":[{"UPA)Z[u":"Zy\u00022Y\u0018@{‎~7\u0017","y$y":"#|\r\\y\u0018t\u0011\"E]9Ye}YO\u0012{"},{";Vgj9?C":false,"fiTFaA":false,"g":null}]},"amanah":"0x676d15887a410a68b4d0d0441d36e1ed682147a2196dca534273800d9c415879","category":"unlawful-subject","clause":"*<KQnvtKM{","statement_md":"\u001d","subjectRef":{"kind":"$QcS3"}},"entryType":"resignation","judge":"0x36d8cdef88719213be7a90843b14ffe89444898f","prev":"0xbce7d79fb2f9197dd70bec178627599cc10121a38747351a0245023bdf58b8db","seq":1016749,"sig":"0xefef8a9fcec6fdb22f68241ac055c903dadb1020c7df9acfb122ac74aa395fad6697a1f1ccc472cc70a40f60a608d2905f025f82aaf7ce22f4eaa93ed50f4d451b","spec":"galeed/1"}
+```

@@ -1,0 +1,27 @@
+[package]
+name = "eravon-export"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Dossier export: eravon.dossier/1 assembly, chain re-check before export, self-check refusal, order picking with missing parts noted, output location errors"
+
+[dependencies]
+eravon-os = { path = "../eravon-os" }
+eravon-dossier = { path = "../eravon-dossier" }
+eravon-scan = { path = "../eravon-scan" }
+eravon-store = { path = "../eravon-store" }
+eravon-vault = { path = "../eravon-vault" }
+eravon-recheck = { path = "../eravon-recheck" }
+eravon-orders = { path = "../eravon-orders" }
+eravon-watch = { path = "../eravon-watch" }
+eravon-cands = { path = "../eravon-cands" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-link = { path = "../eravon-link" }
+eravon-goods = { path = "../eravon-goods" }
+eravon-literals = { path = "../eravon-literals" }
+
+[features]

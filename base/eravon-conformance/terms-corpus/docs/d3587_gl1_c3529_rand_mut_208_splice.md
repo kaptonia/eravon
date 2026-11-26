@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"*eYJ`e":true,"effective":6502862990520675,"kind":"4mlhD)","q":[],"statement_md":"\u0005&=)#9uv","to":"0xbfbaf77d96b3e2414dfaa7976d44209d047601e4"},"entryType":"succession","jutement_md":"qn;","subjectRef":{"kind":"hash","note_md":"9s3","sha256":"0x7e465b195bf3f74dcacc9ec8c02fc22a4a7347fa0289eb06a2a866b40581f255"}},"entryType":"resignation","judge":"0x7ec30184c8170e680fcd6d8a29d61b8b8d42752b","prev":"0x1227932fde1827478d1bc13a449fd49b12840ea166daa3653e67026cceea590b","seq":21364,"sig":"0xa8a038f9c301eee6e1fd2a45b75fe55462f9e69599ff81a72ddba1c3f17cc92303707c8131592b200b9164f74c1cfecd5d5e3f998a5e7d8ff7a71b17dfe188b11b","spec":"galeed/1"}
+```

@@ -1,0 +1,11 @@
+[package]
+name = "eravon-os"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "The few operating-system abilities that differ by system: entropy, owner-only files, syncing to disk, atomic replace"
+
+[dependencies]
+
+[features]

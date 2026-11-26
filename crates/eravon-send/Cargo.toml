@@ -1,0 +1,17 @@
+[package]
+name = "eravon-send"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+eravon = { path = "../eravon" }
+eravon-net = { path = "../eravon-net" }
+eravon-glue = { path = "../eravon-glue" }
+eravon-os = { path = "../eravon-os" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-seal = { path = "../eravon-seal" }
+
+[dev-dependencies]
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }

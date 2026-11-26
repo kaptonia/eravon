@@ -1,0 +1,1 @@
+sec 7.4: the retirement is the smallest blockTimestamp of the records carrying the succession, on any chain: chain 2's record at T0+5 retires the key before its chain-1 anchor at T0+10, though that chain's own record of the succession comes later; COMPLETE.

@@ -1,0 +1,23 @@
+[package]
+name = "eravon-scan"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+description = "Scanner: Opened scans by key with proxyCodeHash checks per emitter, OrderTerms rebuilt from calldata, event history, Anchored decoding, judge ledger, reproducible order numbers"
+
+[dependencies]
+eravon-galeed = { path = "../eravon-galeed" }
+eravon-galeed-scan = { path = "../eravon-galeed-scan" }
+eravon-terms = { path = "../eravon-terms" }
+eravon-standard = { path = "../eravon-standard" }
+eravon-chain = { path = "../eravon-chain" }
+eravon-literals = { path = "../eravon-literals" }
+eravon-link = { path = "../eravon-link" }
+eravon-os = { path = "../eravon-os" }
+eravon-send = { path = "../eravon-send" }
+eravon-seal = { path = "../eravon-seal" }
+
+[[bin]]
+name = "erx"
+path = "src/bin/erx.rs"

@@ -1,0 +1,1 @@
+sec 7.4/8.1/8.6: a succession to the root itself carried only by a VOID record, beside the root's own counted entries at seq 1 and 2, all at one second: the VOID record retires the root at that second all the same, so the root's annotation at seq 2 is DISCARDED while the one at seq 1 stands; no ledger entry at seq 1 but the annotation, nothing graded; COMPLETE.

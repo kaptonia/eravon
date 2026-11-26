@@ -1,0 +1,3 @@
+```eravon.terms/1
+{"body":{"statement_md":"s"},"entryType":"migration","judge":"0x01187a68996839920363a58d942b2c51df0da731","prev":"0x5535b62d1c526640a9f669db5b61d6fe6f108bbddf5a084b24127eb2420ae5d2","seq":1,"sig":"0xc60dbdf47a5cef360c5e380a87c4af29015485c3c04f659a2e9f72fe81a1526c54e54cb7d48540f205652396630005af5cb6b6d8c49496667ec5457efb952c7e1c","spec":"galeed/1"}
+```

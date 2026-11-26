@@ -1,0 +1,1 @@
+sec 8.1/8.6: the root's counted record of the fifth entry carries nothing and the bytes ride only in an UNPROVEN record: no ledger entry, the hash MISSING, the position a SEQ_GAP; GAPS.
