@@ -1,13 +1,13 @@
-# ERAVON
+# Eravon
 
 [中文](README.md) | English
 
 Version 0.1.0
 
-ERAVON lets a seller sell goods through payment links whose funds are held on chain until the order completes, with a
+Eravon lets a seller sell goods through payment links whose funds are held on chain until the order completes, with a
 judge or a guild of judges named in the terms to rule a dispute. The seller publishes products and follows orders in
 the desktop app; the buyer opens the payment link in the same desktop app, checks it step by step and pays. Every order
-is settled by its own instance of the ERAVON standard contract, which has no owner and no privileged address; no server
+is settled by its own instance of the Eravon standard contract, which has no owner and no privileged address; no server
 or account sits between the parties.
 
 The command line `eravon` offers the same seller and buyer actions as the window, one verb per action
@@ -43,7 +43,7 @@ Every push to `main` and every pull request builds and runs `cargo test --worksp
 ## Networks
 
 One build knows the two networks of the known network table, Ethereum mainnet and the Sepolia testnet, and treats them
-alike; there is no L2. The logic contract of the ERAVON standard, `Eravon`, is deployed through the public keyless
+alike; there is no L2. The logic contract of the Eravon standard, `Eravon`, is deployed through the public keyless
 CREATE2 deployer and has the same address on both; every order is one EIP-1167 minimal proxy instance of it (runtime
 codeHash `0x9fcd87aa6d3f7b07234d4eba0cd8277506802498b41c377764ef05b3afb5583f`).
 
@@ -220,7 +220,7 @@ No crate depends on `base/` by path.
 | `eravon.terms/1` (terms documents, offers, orders, signatures, fees) | `base/docs/eravon-terms-v1.md` |
 | `eravon.link/1` (payloads, receipts, case packs, settlement offers) | `base/docs/eravon-link-v1.md` |
 | `eravon.dossier/1` (dossiers) | `base/docs/eravon-dossier-v1.md` |
-| ERAVON standard (the on-chain contracts as a `galeed.venue/1` venue) | `base/docs/eravon-standard-v1.md` |
+| Eravon standard (the on-chain contracts as a `galeed.venue/1` venue) | `base/docs/eravon-standard-v1.md` |
 | `galeed/1`, `galeed.roster/1`, `galeed.venue/1`, `galeed.papers/1` | `base/docs/galeed-v1.md`, `base/docs/galeed-roster-v1.md`, `base/docs/galeed-venue-v1.md`, `base/docs/galeed-papers-v1.md` |
 | `courtevidence/1` (evidence manifests) | `base/docs/courtevidence-v1.md` |
 | `eravon.complaint/1` (complaint files) | `docs/complaint.md` |

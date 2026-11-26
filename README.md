@@ -1,10 +1,10 @@
-# ERAVON
+# Eravon
 
 中文 | [English](README.en.md)
 
 版本 0.1.0
 
-ERAVON 让卖家经付款链接出售商品：货款在链上托管到订单完结，条款里写明的一位判官或一个判官行会在发生争议时裁决。卖家在桌面客户端里发布商品、跟进订单；买家在同一个桌面客户端里打开付款链接，逐项核验后付款。每笔订单由它自己的一个 ERAVON 标准合约实例结算，这个合约没有所有者，也没有任何特权地址；买卖双方之间不经任何服务器或账户。
+Eravon 让卖家经付款链接出售商品：货款在链上托管到订单完结，条款里写明的一位判官或一个判官行会在发生争议时裁决。卖家在桌面客户端里发布商品、跟进订单；买家在同一个桌面客户端里打开付款链接，逐项核验后付款。每笔订单由它自己的一个 Eravon 标准合约实例结算，这个合约没有所有者，也没有任何特权地址；买卖双方之间不经任何服务器或账户。
 
 命令行 `eravon` 提供与窗口相同的卖家与买家操作，一个动作一个动词（`seller-<动词>`、`buyer-<动词>`），每个动词在标准输出上答一个 JSON。带 `--desktop <数据目录>` 时，动词交给正在运行、持着那个目录的桌面客户端去做，要签字或发送的请求先在窗口里弹出，由你同意；在应用的「设置 > 命令行与 AI 控制」里打开「经凭据操作」之后，命令行与 AI 应用可以在桌面没开着这一家时，凭各自的程序钥写本机数据。`eravon mcp` 让 AI 应用经模型上下文协议（MCP）调用这些动词；口令、私钥与助记词从不作为参数，替人跑腿的程序也从不持有钱包或私钥。
 
@@ -31,7 +31,7 @@ ERAVON 让卖家经付款链接出售商品：货款在链上托管到订单完�
 
 ## 网络
 
-一次构建认得已知网络表里的两个网络，以太坊主网与 Sepolia 测试网，两者一视同仁，不上 L2。ERAVON 标准合约的逻辑合约 `Eravon` 经公共的无钥 CREATE2 部署器部署，两个网络上地址相同；每笔订单是它的一个 EIP-1167 最小代理实例（运行时 codeHash `0x9fcd87aa6d3f7b07234d4eba0cd8277506802498b41c377764ef05b3afb5583f`）。
+一次构建认得已知网络表里的两个网络，以太坊主网与 Sepolia 测试网，两者一视同仁，不上 L2。Eravon 标准合约的逻辑合约 `Eravon` 经公共的无钥 CREATE2 部署器部署，两个网络上地址相同；每笔订单是它的一个 EIP-1167 最小代理实例（运行时 codeHash `0x9fcd87aa6d3f7b07234d4eba0cd8277506802498b41c377764ef05b3afb5583f`）。
 
 | 网络 | 链号 | 标准合约（逻辑） | 起始区块 | 判官登记簿 |
 |---|---|---|---|---|
@@ -164,7 +164,7 @@ macOS 与 Linux 的包落在 `dist/`，各附一份 `SHA256SUMS-<系统>-<架构
 | `eravon.terms/1`（条款文档、要约、订单、签名、费用） | `base/docs/eravon-terms-v1.md` |
 | `eravon.link/1`（载荷、回执、案件包、和解要约） | `base/docs/eravon-link-v1.md` |
 | `eravon.dossier/1`（案件卷宗） | `base/docs/eravon-dossier-v1.md` |
-| ERAVON 标准（链上合约，作为一处 `galeed.venue/1` 场所） | `base/docs/eravon-standard-v1.md` |
+| Eravon 标准（链上合约，作为一处 `galeed.venue/1` 场所） | `base/docs/eravon-standard-v1.md` |
 | `galeed/1`、`galeed.roster/1`、`galeed.venue/1`、`galeed.papers/1` | `base/docs/galeed-v1.md`、`base/docs/galeed-roster-v1.md`、`base/docs/galeed-venue-v1.md`、`base/docs/galeed-papers-v1.md` |
 | `courtevidence/1`（证据清单） | `base/docs/courtevidence-v1.md` |
 | `eravon.complaint/1`（投诉文件） | `docs/complaint.md` |
