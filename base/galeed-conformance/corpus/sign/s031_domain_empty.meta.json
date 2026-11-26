@@ -1,0 +1,12 @@
+{
+ "domain": "",
+ "input": "s031_domain_empty.bin",
+ "note": "HARNESS/sec 5.6: the empty domain is signed as given; len(M) is 67",
+ "predicted": {
+  "digest": "0x37097ed53b3880bff35ffe2f1e8b58296cc4b7b23e2bccc270b9bbda83153bcf",
+  "presig": "0x12b117902456c463755892309d25892d84aecb71e9b31e383a8fccf9479a6fa7",
+  "sig": "0x52d32939546c0dffa8355aaca6da1d1a0f653a7d5b548e48fbb1607272c99236793f3c84fa661bd0e7162768a9cf4ca0064a579279a61513ccf3383fe37ecf041c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s010_prose_controls.bin",
+ "note": "sec 3.4 item 3: every escape form inside the preimage",
+ "predicted": {
+  "digest": "0x847dca159f38d109a7ce497e197e9e48d92717d793bee4278cda2b339aada7ce",
+  "presig": "0x4be77aaa28885a25569c502130e0193d6c1f8137fe7abfb4790c72b28d220f99",
+  "sig": "0x041bc3f97db73b46eafba04014ae1f6d97cf67d2066dbf8178b6112f3f6e9949026104bf868a06524e5b1f914b226fd65269d4928d15121c392b3253b18f6c301b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

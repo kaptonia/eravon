@@ -1,0 +1,1 @@
+9.1: a receipt that carries no status field carries no status 1, so no transaction of such a receipt is an anchor; the scan answers with no record and does not fail.

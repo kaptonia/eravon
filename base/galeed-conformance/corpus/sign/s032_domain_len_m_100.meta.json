@@ -1,0 +1,12 @@
+{
+ "domain": "ddddddddddddddddddddddddddddddddd",
+ "input": "s032_domain_len_m_100.bin",
+ "note": "sec 5.2: a domain of 33 bytes puts len(M) at 100, three decimal digits",
+ "predicted": {
+  "digest": "0x0e095547d1ea8452f300ecfb104812f08f46d145c6f7e102a26faa7e60a13b7c",
+  "presig": "0x12b117902456c463755892309d25892d84aecb71e9b31e383a8fccf9479a6fa7",
+  "sig": "0x8d03a855f8ec7a69e4e3764bb22e9b17d07ffb0912bd7306047abd4a5eb5f94d707dc0e5ded7ad80f4adccb2f4e7381a8b4bf252326b53dc4a3d4a96c550c6a81b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

@@ -1,0 +1,12 @@
+{
+ "domain": "galeed.dispatch/1",
+ "input": "s026_family_domain.bin",
+ "note": "sec 5.6: a family law's document under its own literal",
+ "predicted": {
+  "digest": "0xa04b8c04c68ac0645ecbc3f725fa3bde3e069220e0873e998b6d3939a053d257",
+  "presig": "0xe0ac4a9e42438d3da16d0a8344cf87fadf8978192f9b2a008fae050c6f1418ba",
+  "sig": "0x4bf4b13352554f3d1ea32fba033b0c42cdfd5d7b5221173dcaffaa4ece2a219221b75d50e627e5c9048918323a78dda6d217c186fc4e7c7d304a208ba773c9ff1b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

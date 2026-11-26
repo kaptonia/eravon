@@ -148,7 +148,7 @@ macOS 与 Linux 的包落在 `dist/`，各附一份 `SHA256SUMS-<系统>-<架构
 | `crates/eravon-ui` | 组件库与外观 |
 | `crates/eravon-pack` | 打包件：第三方许可声明生成器、让包里不带构建机信息的几步、Windows 包的排布、AppImage 运行时的核对 |
 | `vendor/` | 产品所依的 galeed 与 ZIKARON 家族库的冻结快照 |
-| `base/` | 产品实现的规范（`base/docs/`）、标准合约的源码及其钉定的代码摘要、一致性语料 |
+| `base/` | 产品实现的规范（`base/docs/`）及其参考实现与一致性语料，标准合约连同钉定的身份与测试，产品所读的 Galeed 合约与一致性套件。语料里有一份文件不在仓库里，因为 Windows 检不出它的名字：`base/eravon-conformance/dossier-corpus/dossiers/d032_ok_file_name_dots/...`；语料旁的 `gen.py` 会写出它 |
 | `packaging/` | macOS 与 Linux 的打包脚本与图标 |
 | `docs/` | 用户手册（中英两份）、投诉文件的格式（`complaint.md`）与工程说明 |
 | `CLI-SCHEMA.md` | 命令行的输出形状、退出码、拒因与参数 |

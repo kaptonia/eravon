@@ -1,0 +1,3622 @@
+{
+ "seed": 1,
+ "cases": [
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m001_ok_full.json"
+   ],
+   "path": "manifests/m001_ok_full.json",
+   "note": "a manifest with note_md carrying any scalar value",
+   "predicted": {
+    "manifest": "0x97413695866bff02acde3f8b922c0c98a0f1dfb051345f4c1af5e522cb924594",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m002_ok_minimal.json"
+   ],
+   "path": "manifests/m002_ok_minimal.json",
+   "note": "the four required members",
+   "predicted": {
+    "manifest": "0xda11ced5ce428517a3dafcbb225155e5f13744b7d2ccffb5f704d2744c57b17c",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m003_ok_empty_files.json"
+   ],
+   "path": "manifests/m003_ok_empty_files.json",
+   "note": "s2.1: the empty array is permitted",
+   "predicted": {
+    "manifest": "0x44870f5862ad1b1d78bb16d8d74d824e84bf2c13b908e2af78541f2498f05404",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m004_ok_subject_evm.json"
+   ],
+   "path": "manifests/m004_ok_subject_evm.json",
+   "note": "s1: an evm subject with its four members",
+   "predicted": {
+    "manifest": "0x0d74c1e7319107626e177b2c789b6aee896b26236317c3cf80185c830c218bc4",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m005_ok_subject_evm_extra.json"
+   ],
+   "path": "manifests/m005_ok_subject_evm_extra.json",
+   "note": "galeed/1 s6.3: members beyond the kind's table are permitted",
+   "predicted": {
+    "manifest": "0x51003ac5f10c79761921459c9d119d27f0da53b9128e5ef04143f89160d67735",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m006_ok_subject_unknown_kind.json"
+   ],
+   "path": "manifests/m006_ok_subject_unknown_kind.json",
+   "note": "galeed/1 s6.3: an unknown kind is tested for object and token alone",
+   "predicted": {
+    "manifest": "0xdd4260a4bc9d4273f2b14b8e9c63bb920786b35707b308845152cb1938ce0724",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m007_ok_subject_hash_note.json"
+   ],
+   "path": "manifests/m007_ok_subject_hash_note.json",
+   "note": "the hash kind's optional note_md is prose",
+   "predicted": {
+    "manifest": "0xfcd1e55fa368ab95c1c8dbca461f5f6dca84413bc6e6ab5fff4950749ba95182",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m008_ok_note_empty.json"
+   ],
+   "path": "manifests/m008_ok_note_empty.json",
+   "note": "note_md may be the empty string",
+   "predicted": {
+    "manifest": "0x6514d0e239bb8eedd2d1e2906fb80bb6d555afd3a2814f9b80ca69a69df20ca1",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m009_ok_name_space_bytes_zero.json"
+   ],
+   "path": "manifests/m009_ok_name_space_bytes_zero.json",
+   "note": "a skeleton string may carry U+0020; bytes may be 0",
+   "predicted": {
+    "manifest": "0xe3e273c58879f3983e796c36c8812e50b822a5ca8ad9562770a0ecdac7c58e50",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m010_ok_max_bytes_tilde.json"
+   ],
+   "path": "manifests/m010_ok_max_bytes_tilde.json",
+   "note": "bytes at 2^53 - 1; U+007E is inside the skeleton charset",
+   "predicted": {
+    "manifest": "0x887c7d652dffadacb971863b8188bc386c74b3a801c2e1aee9bb814b8678625c",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m011_ok_repeated_items.json"
+   ],
+   "path": "manifests/m011_ok_repeated_items.json",
+   "note": "s2.3: two items may repeat name and sha256",
+   "predicted": {
+    "manifest": "0xd744244fd8775d36588a6e8b5a79eb8ef3df001e4d56f2e9af7c9039fa68a590",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m012_canon_pretty.json"
+   ],
+   "path": "manifests/m012_canon_pretty.json",
+   "note": "galeed/1 s3.5 test 6",
+   "predicted": {
+    "ok": false,
+    "token": "E_NOT_CANONICAL"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m013_canon_trailing_newline.json"
+   ],
+   "path": "manifests/m013_canon_trailing_newline.json",
+   "note": "galeed/1 s3.5: a trailing newline",
+   "predicted": {
+    "ok": false,
+    "token": "E_NOT_CANONICAL"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m014_canon_unsorted.json"
+   ],
+   "path": "manifests/m014_canon_unsorted.json",
+   "note": "galeed/1 s3.4 item 5: member order",
+   "predicted": {
+    "ok": false,
+    "token": "E_NOT_CANONICAL"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m015_canon_dup_key.json"
+   ],
+   "path": "manifests/m015_canon_dup_key.json",
+   "note": "galeed/1 s3.5 test 3",
+   "predicted": {
+    "ok": false,
+    "token": "E_DUP_KEY"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m016_canon_utf8.json"
+   ],
+   "path": "manifests/m016_canon_utf8.json",
+   "note": "galeed/1 s3.5 test 1",
+   "predicted": {
+    "ok": false,
+    "token": "E_UTF8"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m017_canon_value_charset_name.json"
+   ],
+   "path": "manifests/m017_canon_value_charset_name.json",
+   "note": "galeed/1 s3.3: a name is a skeleton string before s2.2 reads it",
+   "predicted": {
+    "ok": false,
+    "token": "E_VALUE_CHARSET"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m018_canon_value_charset_tab.json"
+   ],
+   "path": "manifests/m018_canon_value_charset_tab.json",
+   "note": "galeed/1 s3.3: U+0009 outside a prose subtree",
+   "predicted": {
+    "ok": false,
+    "token": "E_VALUE_CHARSET"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m019_canon_value_charset_del.json"
+   ],
+   "path": "manifests/m019_canon_value_charset_del.json",
+   "note": "galeed/1 s3.3: U+007F outside a prose subtree",
+   "predicted": {
+    "ok": false,
+    "token": "E_VALUE_CHARSET"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m020_canon_key_charset.json"
+   ],
+   "path": "manifests/m020_canon_key_charset.json",
+   "note": "galeed/1 s3.5 test 4",
+   "predicted": {
+    "ok": false,
+    "token": "E_KEY_CHARSET"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m021_canon_number.json"
+   ],
+   "path": "manifests/m021_canon_number.json",
+   "note": "galeed/1 s3.5 test 2: E_NUMBER",
+   "predicted": {
+    "ok": false,
+    "token": "E_NUMBER"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m022_canon_negative_bytes.json"
+   ],
+   "path": "manifests/m022_canon_negative_bytes.json",
+   "note": "galeed/1 s3.2: a sign fails before s2.2 reads bytes",
+   "predicted": {
+    "ok": false,
+    "token": "E_NUMBER"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m023_canon_json.json"
+   ],
+   "path": "manifests/m023_canon_json.json",
+   "note": "galeed/1 s3.5 test 2: E_JSON",
+   "predicted": {
+    "ok": false,
+    "token": "E_JSON"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m024_canon_empty.json"
+   ],
+   "path": "manifests/m024_canon_empty.json",
+   "note": "galeed/1 s3.5 test 2 over the empty byte string",
+   "predicted": {
+    "ok": false,
+    "token": "E_JSON"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m025_canon_depth.json"
+   ],
+   "path": "manifests/m025_canon_depth.json",
+   "note": "galeed/1 s3.5 test 2: E_DEPTH",
+   "predicted": {
+    "ok": false,
+    "token": "E_DEPTH"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m026_root_array.json"
+   ],
+   "path": "manifests/m026_root_array.json",
+   "note": "s2.3: root not an object",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m027_root_string.json"
+   ],
+   "path": "manifests/m027_root_string.json",
+   "note": "s2.3: root a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m028_missing_party.json"
+   ],
+   "path": "manifests/m028_missing_party.json",
+   "note": "s2.3: a required member absent",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_MISSING"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m029_missing_and_extra.json"
+   ],
+   "path": "manifests/m029_missing_and_extra.json",
+   "note": "s2.3 order: missing before closed",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_MISSING"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m030_closed.json"
+   ],
+   "path": "manifests/m030_closed.json",
+   "note": "s2.3: a member beyond the five",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_CLOSED"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m031_closed_note.json"
+   ],
+   "path": "manifests/m031_closed_note.json",
+   "note": "s2.3: note is not note_md",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_CLOSED"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m032_spec_v2.json"
+   ],
+   "path": "manifests/m032_spec_v2.json",
+   "note": "s2.3: spec",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SPEC"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m033_spec_int.json"
+   ],
+   "path": "manifests/m033_spec_int.json",
+   "note": "s2.3: spec not a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SPEC"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m034_spec_and_party.json"
+   ],
+   "path": "manifests/m034_spec_and_party.json",
+   "note": "s2.3 order: spec before party",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SPEC"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m035_subject_evm_missing_id.json"
+   ],
+   "path": "manifests/m035_subject_evm_missing_id.json",
+   "note": "s2.3: a known kind forces its table",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m036_subject_evm_chain_string.json"
+   ],
+   "path": "manifests/m036_subject_evm_chain_string.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member outside its form",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m037_subject_evm_contract_hex32.json"
+   ],
+   "path": "manifests/m037_subject_evm_contract_hex32.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member outside its form",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m038_subject_evm_codehash_hex20.json"
+   ],
+   "path": "manifests/m038_subject_evm_codehash_hex20.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member outside its form",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m039_subject_evm_id_int.json"
+   ],
+   "path": "manifests/m039_subject_evm_id_int.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member outside its form",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m040_subject_evm_missing_chain.json"
+   ],
+   "path": "manifests/m040_subject_evm_missing_chain.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member absent",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m041_subject_evm_missing_contract.json"
+   ],
+   "path": "manifests/m041_subject_evm_missing_contract.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member absent",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m042_subject_evm_missing_codehash.json"
+   ],
+   "path": "manifests/m042_subject_evm_missing_codehash.json",
+   "note": "galeed/1 s6.3 via s2.3: an evm member absent",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m043_subject_kind_evm_upper.json"
+   ],
+   "path": "manifests/m043_subject_kind_evm_upper.json",
+   "note": "galeed/1 s6.3: kind compares bytewise; EVM is an unknown kind and forces no table",
+   "predicted": {
+    "manifest": "0x84500bbf13d7a3d97645f360d9ba589e61f181fc685db2a817e19baf14fbec23",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m044_root_extra_md_control.json"
+   ],
+   "path": "manifests/m044_root_extra_md_control.json",
+   "note": "s1: an extra _md member at the root opens a prose subtree; canonical passes and the closure refuses, E_MANIFEST_CLOSED and never E_VALUE_CHARSET",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_CLOSED"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m045_file_extra_md_control.json"
+   ],
+   "path": "manifests/m045_file_extra_md_control.json",
+   "note": "s1: an extra _md member in a file item opens a prose subtree; E_FILE_CLOSED at index 0",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_CLOSED",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m046_zikaron_extra_md_control.json"
+   ],
+   "path": "manifests/m046_zikaron_extra_md_control.json",
+   "note": "s1: an extra _md member in a zikaron object opens a prose subtree; E_FILE_ZIKARON at index 0",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m047_subject_kind_space.json"
+   ],
+   "path": "manifests/m047_subject_kind_space.json",
+   "note": "s2.3: kind is a token, no U+0020",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m048_subject_kind_empty.json"
+   ],
+   "path": "manifests/m048_subject_kind_empty.json",
+   "note": "s2.3: a token is non-empty",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m049_subject_not_object.json"
+   ],
+   "path": "manifests/m049_subject_not_object.json",
+   "note": "s2.3: subjectRef not an object",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m050_subject_hash_note_int.json"
+   ],
+   "path": "manifests/m050_subject_hash_note_int.json",
+   "note": "s2.3: the hash kind's note_md must be a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m051_subject_hash_upper.json"
+   ],
+   "path": "manifests/m051_subject_hash_upper.json",
+   "note": "s2.3: sha256 outside hex32",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m052_party_upper.json"
+   ],
+   "path": "manifests/m052_party_upper.json",
+   "note": "s2.3: party outside hex20",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_PARTY"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m053_party_short.json"
+   ],
+   "path": "manifests/m053_party_short.json",
+   "note": "s2.3: party short",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_PARTY"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m054_party_int.json"
+   ],
+   "path": "manifests/m054_party_int.json",
+   "note": "s2.3: party not a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_PARTY"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m055_files_object.json"
+   ],
+   "path": "manifests/m055_files_object.json",
+   "note": "s2.3: files not an array",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_FILES"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m056_files_null.json"
+   ],
+   "path": "manifests/m056_files_null.json",
+   "note": "s2.3: files null",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_FILES"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m057_file_string.json"
+   ],
+   "path": "manifests/m057_file_string.json",
+   "note": "s2.3: an element not an object, index 0",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m058_file_missing_bytes_index_1.json"
+   ],
+   "path": "manifests/m058_file_missing_bytes_index_1.json",
+   "note": "s2.3: the second element lacks bytes",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_MISSING",
+    "index": 1
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m059_file_closed.json"
+   ],
+   "path": "manifests/m059_file_closed.json",
+   "note": "s2.3: a member beyond the four",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_CLOSED",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m060_file_missing_and_closed.json"
+   ],
+   "path": "manifests/m060_file_missing_and_closed.json",
+   "note": "s2.3 order: missing before closed within an item",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_MISSING",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m061_file_name_empty.json"
+   ],
+   "path": "manifests/m061_file_name_empty.json",
+   "note": "s2.2: name non-empty",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_NAME",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m062_file_name_int.json"
+   ],
+   "path": "manifests/m062_file_name_int.json",
+   "note": "s2.2: name a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_NAME",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m063_file_sha_short.json"
+   ],
+   "path": "manifests/m063_file_sha_short.json",
+   "note": "s2.2: sha256 hex32",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_SHA256",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m064_file_sha_upper.json"
+   ],
+   "path": "manifests/m064_file_sha_upper.json",
+   "note": "s2.2: sha256 lowercase",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_SHA256",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m065_file_bytes_string.json"
+   ],
+   "path": "manifests/m065_file_bytes_string.json",
+   "note": "s2.2: bytes an int",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_BYTES",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m066_file_bytes_bool.json"
+   ],
+   "path": "manifests/m066_file_bytes_bool.json",
+   "note": "s2.2: bytes not a bool",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_BYTES",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m067_file_mediatype_empty.json"
+   ],
+   "path": "manifests/m067_file_mediatype_empty.json",
+   "note": "s2.2: mediaType non-empty",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_MEDIATYPE",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m068_file_mediatype_null.json"
+   ],
+   "path": "manifests/m068_file_mediatype_null.json",
+   "note": "s2.2: mediaType a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_MEDIATYPE",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m069_file_order_name_before_sha.json"
+   ],
+   "path": "manifests/m069_file_order_name_before_sha.json",
+   "note": "s2.3 order within an item",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_NAME",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m070_file_order_first_faulting_element.json"
+   ],
+   "path": "manifests/m070_file_order_first_faulting_element.json",
+   "note": "s2.3: the first faulting element names the fault",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_NAME",
+    "index": 1
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m071_file_order_index_2.json"
+   ],
+   "path": "manifests/m071_file_order_index_2.json",
+   "note": "s2.3: index counted from 0",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_BYTES",
+    "index": 2
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m072_note_int.json"
+   ],
+   "path": "manifests/m072_note_int.json",
+   "note": "s2.3: note_md a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_NOTE"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m073_note_null.json"
+   ],
+   "path": "manifests/m073_note_null.json",
+   "note": "s2.3: note_md written null is present",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_NOTE"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m074_note_after_files.json"
+   ],
+   "path": "manifests/m074_note_after_files.json",
+   "note": "s2.3 order: files before note_md",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_NAME",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m075_order_closed_before_spec.json"
+   ],
+   "path": "manifests/m075_order_closed_before_spec.json",
+   "note": "s2.3 order: closed before spec",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_CLOSED"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m076_order_subject_before_party.json"
+   ],
+   "path": "manifests/m076_order_subject_before_party.json",
+   "note": "s2.3 order: subjectRef before party",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m077_order_party_before_files.json"
+   ],
+   "path": "manifests/m077_order_party_before_files.json",
+   "note": "s2.3 order: party before files",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_PARTY"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m078_file_order_sha_before_bytes.json"
+   ],
+   "path": "manifests/m078_file_order_sha_before_bytes.json",
+   "note": "s2.3 order within an item: sha256 before bytes",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_SHA256",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m079_file_order_bytes_before_mediatype.json"
+   ],
+   "path": "manifests/m079_file_order_bytes_before_mediatype.json",
+   "note": "s2.3 order within an item: bytes before mediaType",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_BYTES",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m080_file_order_closed_before_name.json"
+   ],
+   "path": "manifests/m080_file_order_closed_before_name.json",
+   "note": "s2.3 order within an item: closed before name",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_CLOSED",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m081_subject_hash_note_null.json"
+   ],
+   "path": "manifests/m081_subject_hash_note_null.json",
+   "note": "galeed/1 s6: note_md written null inside a hash subject is present with a refused form",
+   "predicted": {
+    "ok": false,
+    "token": "E_MANIFEST_SUBJECT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m082_ok_bytes_zero_any_digest.json"
+   ],
+   "path": "manifests/m082_ok_bytes_zero_any_digest.json",
+   "note": "s2.2: no predicate relates bytes to sha256",
+   "predicted": {
+    "manifest": "0xd3290569fee2137a3aabc5c3004c190da0e9514b9494d3a82ffb00ff50a5cecf",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m083_ok_subject_prose_subtree.json"
+   ],
+   "path": "manifests/m083_ok_subject_prose_subtree.json",
+   "note": "s1: an extra member of a subjectRef ending in _md opens a prose subtree",
+   "predicted": {
+    "manifest": "0x4d35f215047a838697f801d74fc26af5a71eca169f30d464273be144487c212a",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m084_subject_extra_non_prose_control.json"
+   ],
+   "path": "manifests/m084_subject_extra_non_prose_control.json",
+   "note": "galeed/1 s3.3: a skeleton value with a control scalar fails at canonical(b)",
+   "predicted": {
+    "ok": false,
+    "token": "E_VALUE_CHARSET"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m085_ok_zikaron_full.json"
+   ],
+   "path": "manifests/m085_ok_zikaron_full.json",
+   "note": "s2.2: the optional fifth member with its four members in form",
+   "predicted": {
+    "manifest": "0xd3e3b44f0b9ceff6f8103094abc878c5db723dabffb3a513692e0d39d7db94de",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m086_ok_zikaron_entry_empty.json"
+   ],
+   "path": "manifests/m086_ok_zikaron_entry_empty.json",
+   "note": "s2.2: 0x alone spells the empty byte string",
+   "predicted": {
+    "manifest": "0x3ef1246d0e3444e3423bf2b6a9ea4494baad16275b2d009ed79cb50087c878ff",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m087_ok_zikaron_some_items.json"
+   ],
+   "path": "manifests/m087_ok_zikaron_some_items.json",
+   "note": "s2.2: the member is per item; items with and without it list side by side",
+   "predicted": {
+    "manifest": "0xff5ae294c6a9fc0aaba5af000f8a77b5a5f966a72ae642f19faca8948461bcb9",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m088_ok_zikaron_chain_zero.json"
+   ],
+   "path": "manifests/m088_ok_zikaron_chain_zero.json",
+   "note": "s2.2: chainId is an int; zero is one",
+   "predicted": {
+    "manifest": "0xe118a80e2697746468582a39d2909a2297fc4aa354f7176de3e5748e7258b9a9",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m089_zikaron_null.json"
+   ],
+   "path": "manifests/m089_zikaron_null.json",
+   "note": "s2.3: zikaron written null is present with a refused form",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m090_zikaron_array.json"
+   ],
+   "path": "manifests/m090_zikaron_array.json",
+   "note": "s2.3: zikaron not an object",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m091_zikaron_missing_tx.json"
+   ],
+   "path": "manifests/m091_zikaron_missing_tx.json",
+   "note": "s2.2: a member of the four absent",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m092_zikaron_extra_member.json"
+   ],
+   "path": "manifests/m092_zikaron_extra_member.json",
+   "note": "s2.2: a member beyond the four",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m093_zikaron_root_short.json"
+   ],
+   "path": "manifests/m093_zikaron_root_short.json",
+   "note": "s2.2: root hex20",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m094_zikaron_root_upper.json"
+   ],
+   "path": "manifests/m094_zikaron_root_upper.json",
+   "note": "s2.2: root lowercase",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m095_zikaron_chain_string.json"
+   ],
+   "path": "manifests/m095_zikaron_chain_string.json",
+   "note": "s2.2: chainId an int",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m096_zikaron_chain_bool.json"
+   ],
+   "path": "manifests/m096_zikaron_chain_bool.json",
+   "note": "s2.2: chainId not a bool",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m097_zikaron_tx_hex20.json"
+   ],
+   "path": "manifests/m097_zikaron_tx_hex20.json",
+   "note": "s2.2: tx hex32",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m098_zikaron_entry_odd.json"
+   ],
+   "path": "manifests/m098_zikaron_entry_odd.json",
+   "note": "s2.2: an even number of digits",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m099_zikaron_entry_upper.json"
+   ],
+   "path": "manifests/m099_zikaron_entry_upper.json",
+   "note": "s2.2: lowercase digits",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m100_zikaron_entry_no_prefix.json"
+   ],
+   "path": "manifests/m100_zikaron_entry_no_prefix.json",
+   "note": "s2.2: the 0x prefix",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m101_zikaron_entry_int.json"
+   ],
+   "path": "manifests/m101_zikaron_entry_int.json",
+   "note": "s2.2: entry a string",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m102_zikaron_index_1.json"
+   ],
+   "path": "manifests/m102_zikaron_index_1.json",
+   "note": "s2.3: the index names the faulting item",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 1
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m103_file_closed_sixth_member.json"
+   ],
+   "path": "manifests/m103_file_closed_sixth_member.json",
+   "note": "s2.3: a member beyond the five",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_CLOSED",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m104_file_order_mediatype_before_zikaron.json"
+   ],
+   "path": "manifests/m104_file_order_mediatype_before_zikaron.json",
+   "note": "s2.3 order within an item: mediaType before zikaron",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_MEDIATYPE",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m105_file_order_zikaron_before_note.json"
+   ],
+   "path": "manifests/m105_file_order_zikaron_before_note.json",
+   "note": "s2.3 order: a file item's zikaron before note_md",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_ZIKARON",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m106_file_order_closed_before_zikaron.json"
+   ],
+   "path": "manifests/m106_file_order_closed_before_zikaron.json",
+   "note": "s2.3 order within an item: closed before zikaron",
+   "predicted": {
+    "ok": false,
+    "token": "E_FILE_CLOSED",
+    "index": 0
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/absent.json"
+   ],
+   "path": "manifests/absent.json",
+   "note": "HARNESS: a path the command cannot read",
+   "predicted": null,
+   "absent": [
+    "manifests/absent.json"
+   ]
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "manifests/m001_ok_full.json",
+    "x"
+   ],
+   "path": "x",
+   "note": "HARNESS: an argument beyond the list",
+   "predicted": null
+  },
+  {
+   "cmd": "check",
+   "args": [],
+   "path": "(none)",
+   "note": "HARNESS: no path",
+   "predicted": null
+  },
+  {
+   "cmd": "digest",
+   "args": [
+    "files/f001_text.bin"
+   ],
+   "path": "files/f001_text.bin",
+   "note": "s2.2: the file-item view of a byte string",
+   "predicted": {
+    "bytes": 42,
+    "sha256": "0x07fd5da2346f497d8ba49acad3c57a90d4fc5022d9bad3b03c828e28e949c4df"
+   }
+  },
+  {
+   "cmd": "digest",
+   "args": [
+    "files/f002_empty.bin"
+   ],
+   "path": "files/f002_empty.bin",
+   "note": "s2.2: the file-item view of a byte string",
+   "predicted": {
+    "bytes": 0,
+    "sha256": "0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  },
+  {
+   "cmd": "digest",
+   "args": [
+    "files/f003_binary.bin"
+   ],
+   "path": "files/f003_binary.bin",
+   "note": "s2.2: the file-item view of a byte string",
+   "predicted": {
+    "bytes": 768,
+    "sha256": "0xf3a25aa93aa2fbba28d79260535bbd6a5eb0fc1c24a8b0f04e12b484c1dfe363"
+   }
+  },
+  {
+   "cmd": "digest",
+   "args": [
+    "files/absent.bin"
+   ],
+   "path": "files/absent.bin",
+   "note": "HARNESS: a path the command cannot read",
+   "predicted": null,
+   "absent": [
+    "files/absent.bin"
+   ]
+  },
+  {
+   "cmd": "digest",
+   "args": [
+    "files/f001_text.bin",
+    "x"
+   ],
+   "path": "x",
+   "note": "HARNESS: an argument beyond the list",
+   "predicted": null
+  },
+  {
+   "cmd": "digest",
+   "args": [],
+   "path": "(none)",
+   "note": "HARNESS: a missing argument",
+   "predicted": null
+  },
+  {
+   "argv": [],
+   "path": "(none)",
+   "note": "HARNESS: no command",
+   "predicted": null
+  },
+  {
+   "argv": [
+    "frobnicate",
+    "files/f001_text.bin"
+   ],
+   "path": "(none)",
+   "note": "HARNESS: an unknown command",
+   "predicted": null
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8"
+   ],
+   "path": "(argument) age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8",
+   "note": "s3.2: a well formed recipient",
+   "predicted": {
+    "ok": true
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecxq"
+   ],
+   "path": "(argument) age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecxq",
+   "note": "s3.2: the checksum does not verify",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "AGE175TH5PS2NLHGA4Z4GJ3WT424ETRKDLVWHPXCFR6E92U2CJVYS2QS92ECX8"
+   ],
+   "path": "(argument) AGE175TH5PS2NLHGA4Z4GJ3WT424ETRKDLVWHPXCFR6E92U2CJVYS2QS92ECX8",
+   "note": "s3.2: uppercase",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age15th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8"
+   ],
+   "path": "(argument) age15th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8",
+   "note": "s3.2: sixty-one characters",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8q"
+   ],
+   "path": "(argument) age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8q",
+   "note": "s3.2: sixty-three characters",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "aeg175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8"
+   ],
+   "path": "(argument) aeg175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8",
+   "note": "s3.2: the human-readable part is age",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age75th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8q"
+   ],
+   "path": "(argument) age75th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8q",
+   "note": "s3.2: no separator at position 4",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5pb2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8"
+   ],
+   "path": "(argument) age175th5pb2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8",
+   "note": "s3.2: a character outside the Bech32 alphabet",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age1ktzgamcxf3pgzumyy3jak7j8a0yxg238fcwsln7r64ryyftmcdr3h93elk"
+   ],
+   "path": "(argument) age1ktzgamcxf3pgzumyy3jak7j8a0yxg238fcwsln7r64ryyftmcdr3h93elk",
+   "note": "s3.2: the four padding bits are not zero, though the checksum verifies",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    ""
+   ],
+   "path": "(argument) ",
+   "note": "s3.2: the empty string",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age1"
+   ],
+   "path": "(argument) age1",
+   "note": "s3.2: the prefix alone",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+   ],
+   "path": "(argument) age1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+   "note": "s3.2: a data part whose checksum fails",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvyQ2qs92ecx8"
+   ],
+   "path": "(argument) age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvyQ2qs92ecx8",
+   "note": "s3.2: mixed case",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5cu47z"
+   ],
+   "path": "(argument) age1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5cu47z",
+   "note": "s3.2: the all-zero key spells a recipient",
+   "predicted": {
+    "ok": true
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age1lllllllllllllllllllllllllllllllllllllllllllllllllllskxlyh4"
+   ],
+   "path": "(argument) age1lllllllllllllllllllllllllllllllllllllllllllllllllllskxlyh4",
+   "note": "s3.2: the all-ones key spells a recipient",
+   "predicted": {
+    "ok": true
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age1jfnuhdjmwwvynvhmj5kej6hdpw2rf0hrsgw34g23gv6rnhnadt9sttg994"
+   ],
+   "path": "(argument) age1jfnuhdjmwwvynvhmj5kej6hdpw2rf0hrsgw34g23gv6rnhnadt9sttg994",
+   "note": "s3.2: the Bech32m spelling of a key (BIP-350's constant) is refused",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5ps2nlhga4z4gj3wt424etékdlvwhpxcfr6e92u2cjvys2qs92ecx8"
+   ],
+   "path": "(argument) age175th5ps2nlhga4z4gj3wt424etékdlvwhpxcfr6e92u2cjvys2qs92ecx8",
+   "note": "s3.2: a scalar value above U+007E fails for that reason alone",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "age175th5ps2nlhga4z4gj3wt424etrkdlvwhpxcfr6e92u2cjvys2qs92ecx8",
+    "x"
+   ],
+   "path": "(argument)",
+   "note": "HARNESS: an argument beyond the list",
+   "predicted": null
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [],
+   "path": "(argument)",
+   "note": "HARNESS: no argument",
+   "predicted": null
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a001_one.json"
+   ],
+   "path": "audits/a001_one.json",
+   "note": "s4.2 item 5: the single binding at the greatest seq",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a002_one_unordered_records.json"
+   ],
+   "path": "audits/a002_one_unordered_records.json",
+   "note": "the anchor set is a set; the order of the records carries nothing",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a003_none.json"
+   ],
+   "path": "audits/a003_none.json",
+   "note": "s4.2 item 1: no keybinding",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a004_none_empty.json"
+   ],
+   "path": "audits/a004_none_empty.json",
+   "note": "s4.2 item 1: an empty anchor set",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a005_gap.json"
+   ],
+   "path": "audits/a005_gap.json",
+   "note": "s4.2 item 3: position 1 is missing",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xa02f9a375e141aa3a6cc028f0a8a5457d1ca3cddebf3dbb036f81bd7eb59db71",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a006_fork.json"
+   ],
+   "path": "audits/a006_fork.json",
+   "note": "s4.2 item 2: two bindings at the top position; the list is ordered by entry_id at equal seq",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000001,
+      "entry_id": "0x38d2f05f7fc90c81f80d50fab2b90e76e4c0f5aadc1e493231acefcb97a37224",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 1
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a007_fork_with_annotation.json"
+   ],
+   "path": "audits/a007_fork_with_annotation.json",
+   "note": "s4.2 item 2: an equivocation at the top position with a non-binding",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a008_broken_prev.json"
+   ],
+   "path": "audits/a008_broken_prev.json",
+   "note": "s4.2 item 4: PREV_MISMATCH is hard and no gap or fork is at play",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x88271918cebd815341065ffba69a164309182057fa12dfa7ca0f704cb039fe4b",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a009_excluded_other_judge.json"
+   ],
+   "path": "audits/a009_excluded_other_judge.json",
+   "note": "s4.1: an entry outside the lineage, carried by its own signer, is no binding",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a010_excluded_other_judge_carried_by_root.json"
+   ],
+   "path": "audits/a010_excluded_other_judge_carried_by_root.json",
+   "note": "s4.1: the root's counted record carries a stranger's binding: CARRIED_MALFORMED is hard, and the stranger's entry is no binding, so none",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a011_malformed_ignored.json"
+   ],
+   "path": "audits/a011_malformed_ignored.json",
+   "note": "s4.1: a malformed byte string carried by a stranger is no binding and grounds no finding",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a012_malformed_carried_by_root_broken.json"
+   ],
+   "path": "audits/a012_malformed_carried_by_root_broken.json",
+   "note": "s4.2 item 4: malformed bytes carried by the root's own counted record are CARRIED_MALFORMED, hard: broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a013_duplicates_collapse.json"
+   ],
+   "path": "audits/a013_duplicates_collapse.json",
+   "note": "s4.1: byte-identical copies carried by three records collapse, so no fork",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a014_binding_carried_by_void_record.json"
+   ],
+   "path": "audits/a014_binding_carried_by_void_record.json",
+   "note": "s4.1 with galeed/1 s8.6: a later binding carried only by a VOID record is no ledger entry; the pick is relative to the scan and names the earlier binding",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a015_binding_carried_by_unproven_record.json"
+   ],
+   "path": "audits/a015_binding_carried_by_unproven_record.json",
+   "note": "s4.2 rule 3: a binding carried only by an UNPROVEN record whose hash no counted record has is a hole (the label is UNPROVEN); the pick is withheld",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a016_binding_hash_only_gap.json"
+   ],
+   "path": "audits/a016_binding_hash_only_gap.json",
+   "note": "s4.2 rule 3: a counted record of the next binding carries nothing; the hash is MISSING, a hole, and the pick is withheld",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a017_unproven_record_hash_also_counted_no_hole.json"
+   ],
+   "path": "audits/a017_unproven_record_hash_also_counted_no_hole.json",
+   "note": "s4.2 rule 3: an UNPROVEN record whose hash a counted record carries as a ledger entry is no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a018_unproven_record_of_stranger_discarded_no_hole.json"
+   ],
+   "path": "audits/a018_unproven_record_of_stranger_discarded_no_hole.json",
+   "note": "s4.2 rule 3: an UNPROVEN record from a stranger is discarded and stands in no unproven row; no hole, one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a019_missing_hash_above_top_is_hole.json"
+   ],
+   "path": "audits/a019_missing_hash_above_top_is_hole.json",
+   "note": "s4.2 rule 3: a counted anchor of nothing at any position is a hole; the pick is withheld whatever the hash was",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a020_candidates_order.json"
+   ],
+   "path": "audits/a020_candidates_order.json",
+   "note": "s4.1: seq descending; a gap at 3",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000400,
+      "entry_id": "0x71d372553e004205d4fca855c7b488904af4e5b746d3abd5c6339570dd1162fe",
+      "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+      "recipientForm": true,
+      "seq": 4
+     },
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a021_recipient_form_false.json"
+   ],
+   "path": "audits/a021_recipient_form_false.json",
+   "note": "s4.1: a recipient outside s3.2 is carried with recipientForm false; the pick is not withheld",
+   "predicted": {
+    "binding": {
+     "effective": 5,
+     "entry_id": "0x106398e0dcc3da3bb32b46fe167595edf9517b288f0919b825af932cc0eeb46b",
+     "recipient": "age1old",
+     "recipientForm": false,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a022_lineage_successor.json"
+   ],
+   "path": "audits/a022_lineage_successor.json",
+   "note": "s4.1: a binding signed by the successor key is in the lineage, carried in the second the root handed off",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a023_successor_binding_carried_by_retired_root.json"
+   ],
+   "path": "audits/a023_successor_binding_carried_by_retired_root.json",
+   "note": "s4.1 with galeed/1 s7.4: the successor's binding carried by the root's record after the root retired is DISCARDED and no ledger entry; no binding",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a024_lineage_successor_own_anchor.json"
+   ],
+   "path": "audits/a024_lineage_successor_own_anchor.json",
+   "note": "s4.1: the successor's binding carried by the successor's own record",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a025_root_is_current_key.json"
+   ],
+   "path": "audits/a025_root_is_current_key.json",
+   "note": "s4.1: the same ledger read under the successor's key as root; the root's records are discarded there, the genesis and the succession fall outside that lineage, position 2 is the first held, and the pick is withheld for the gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a026_fork_over_gap.json"
+   ],
+   "path": "audits/a026_fork_over_gap.json",
+   "note": "s4.2 order: fork at the top is decided before a gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 2,
+      "entry_id": "0xa9b919fdb95f2c0b4eabc69c2c1b78bc789273967c3f8729eca0fc8a30f3c519",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1,
+      "entry_id": "0xf1651e331e93112910e2576e140cf25426d7de22e7a41dc86ee7695e3fda7710",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a027_equivocation_below_top.json"
+   ],
+   "path": "audits/a027_equivocation_below_top.json",
+   "note": "s4.2: an equivocation below the top is a hard finding, not a fork; no gap: broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a028_equivocation_below_top_with_gap.json"
+   ],
+   "path": "audits/a028_equivocation_below_top_with_gap.json",
+   "note": "s4.2 order: gap before broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000300,
+      "entry_id": "0xeaeb8ab4e07811e1b7874b306e3a4f0b05659051df33c4a0b296ab1c01df6ccc",
+      "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+      "recipientForm": true,
+      "seq": 3
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a029_extra_body_members.json"
+   ],
+   "path": "audits/a029_extra_body_members.json",
+   "note": "galeed/1 s6.9: extra body members change nothing; effective is carried",
+   "predicted": {
+    "binding": {
+     "effective": 7,
+     "entry_id": "0x92e30b76bc240a9b2ed1d3f1617f5da42a9a6d0af6f8db010c3f489a142a9585",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a030_genesis_not_carried.json"
+   ],
+   "path": "audits/a030_genesis_not_carried.json",
+   "note": "the genesis is carried by no record: a gap at 0",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a031_unread_root_upper.json"
+   ],
+   "path": "audits/a031_unread_root_upper.json",
+   "note": "s4.1: a root outside hex20 is no audit input; unread",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a032_unread_root_array.json"
+   ],
+   "path": "audits/a032_unread_root_array.json",
+   "note": "s4.1: a file whose root value is not an object is no audit input; unread",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a033_unread_unreadable.json"
+   ],
+   "path": "audits/a033_unread_unreadable.json",
+   "note": "s4.1: a file the reader refuses; unread, never misuse",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a034_unread_entry_0X.json"
+   ],
+   "path": "audits/a034_unread_entry_0X.json",
+   "note": "s4.1 with galeed/1 s9.2: an entry outside the transport spelling; unread",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a035_unread_basis_member.json"
+   ],
+   "path": "audits/a035_unread_basis_member.json",
+   "note": "s4.1 with galeed/1 s9.4: a basis with a member beyond its list; unread",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a036_unread_basis_absent.json"
+   ],
+   "path": "audits/a036_unread_basis_absent.json",
+   "note": "s4.1: a required member absent; unread",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a037_unread_record_unreached.json"
+   ],
+   "path": "audits/a037_unread_record_unreached.json",
+   "note": "s4.1 with galeed/1 s9.4: a record no chains object reaches; unread",
+   "predicted": {
+    "pick": "unread"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a038_upper_digits_ok.json"
+   ],
+   "path": "audits/a038_upper_digits_ok.json",
+   "note": "HARNESS: transport digits of either case",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a039_escaped_entry.json"
+   ],
+   "path": "audits/a039_escaped_entry.json",
+   "note": "HARNESS: the transport spelling is decided on the decoded string; escapes in an entry",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a040_empty_anchor_set_none.json"
+   ],
+   "path": "audits/a040_empty_anchor_set_none.json",
+   "note": "s4.2 item 1: a valid audit input with no record holds no binding",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a041_basis_covers_no_chain_none.json"
+   ],
+   "path": "audits/a041_basis_covers_no_chain_none.json",
+   "note": "s4.2 item 1: a basis that covers no chain and no record",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a042_equivocation_above_top.json"
+   ],
+   "path": "audits/a042_equivocation_above_top.json",
+   "note": "s4.2: top is the greatest seq among the bindings; an equivocation above it is a hard finding, not a fork",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a043_shared_prev_same_seq_at_top.json"
+   ],
+   "path": "audits/a043_shared_prev_same_seq_at_top.json",
+   "note": "s4.2: k3 at seq 3 and a3 at seq 3 share a seq: position 3 equals top, fork",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000300,
+      "entry_id": "0x8bbcd36000d702b6e6d2f533ac2c9a888113b9fc84124f28e78136203e5cbbaf",
+      "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+      "recipientForm": true,
+      "seq": 3
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a044_shared_prev_position_is_smaller_seq.json"
+   ],
+   "path": "audits/a044_shared_prev_position_is_smaller_seq.json",
+   "note": "s4.2: k2 at seq 2 and j3 at seq 3 share prev k1; the equivocation's position is 2, which is top: fork",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a045_shared_prev_below_top_after_bindings.json"
+   ],
+   "path": "audits/a045_shared_prev_below_top_after_bindings.json",
+   "note": "s4.2: k3 at 3 and j4 at 4 share prev k2; position 3 equals top 3: fork",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000300,
+      "entry_id": "0x34b3245554ae1d72158f6ee8462f413cb8f439d58c7bcd975534b8aa63419c05",
+      "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+      "recipientForm": true,
+      "seq": 3
+     },
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a046_shared_prev_pair_straddling_top.json"
+   ],
+   "path": "audits/a046_shared_prev_pair_straddling_top.json",
+   "note": "s4.2: k3 (seq 3) and j5 (seq 5) share prev k2, position 3, while top is 4: not a fork; hard, so broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000400,
+      "entry_id": "0x51827561dde5f8ec12df78859e4b9ff9ca7fb4e7d2751acb0fd5dab66fc632fc",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 4
+     },
+     {
+      "effective": 1700000300,
+      "entry_id": "0x34b3245554ae1d72158f6ee8462f413cb8f439d58c7bcd975534b8aa63419c05",
+      "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+      "recipientForm": true,
+      "seq": 3
+     },
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a047_shared_prev_upper_entry_is_top_binding.json"
+   ],
+   "path": "audits/a047_shared_prev_upper_entry_is_top_binding.json",
+   "note": "s4.2: judgment at 1 and keybinding at 2 share prev genesis; position 1, top 2: not a fork; PREV_MISMATCH at 2 is hard, so broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0x24b7bdfebc9c4810fd83f6006eba13b22ee8530074ac5af234313eb08da14d78",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a048_fork_order_small_effective_first.json"
+   ],
+   "path": "audits/a048_fork_order_small_effective_first.json",
+   "note": "s4.1: at equal seq the list is by entry_id bytewise; here the binding with the smaller effective sorts first",
+   "predicted": {
+    "list": [
+     {
+      "effective": 9,
+      "entry_id": "0x0d0c63248be0fc462419f0faf1c299682f7e9b39e157ae5883741975fb35e7e6",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     },
+     {
+      "effective": 10,
+      "entry_id": "0x605f2062e9aeba4a74a7f0bf16b6eab49ac934f90bce1dfc3cd5932a133c0945",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a049_fork_order_large_effective_first.json"
+   ],
+   "path": "audits/a049_fork_order_large_effective_first.json",
+   "note": "s4.1: the same fork with the other entry_id order; effective decides nothing",
+   "predicted": {
+    "list": [
+     {
+      "effective": 2,
+      "entry_id": "0x124f816a4f3ba1a9f12998f986f1d3285eea7b10b54805bc9c790dcf65913974",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 1
+     },
+     {
+      "effective": 1,
+      "entry_id": "0x4a99c9378276618875727f799294b53b253b7fae91d5f61365698d48d7c02c5a",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "fork"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a050_retired_key_binding_certain_broken.json"
+   ],
+   "path": "audits/a050_retired_key_binding_certain_broken.json",
+   "note": "s4.1 with galeed/1 s7.4: the root key binds again at the position after it handed the seat on, carried in that same second: the record is DISCARDED and no binding stands; none",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a051_root_binding_carried_by_successor_same_second.json"
+   ],
+   "path": "audits/a051_root_binding_carried_by_successor_same_second.json",
+   "note": "s4.2 rule 4 with galeed/1 s7.4, s8.1: the root key binds again at the position after it handed the seat on, and the successor's record carries that binding in the same second: the successor has not retired at its record, so the binding is a ledger entry signed out of office, a certain AUTHORITY_MISMATCH, hard; broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xfad6e17090043593c4f730cd2097a61da5265d71043087e3eb574b94eeade927",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a052_retired_key_binding_after_retirement.json"
+   ],
+   "path": "audits/a052_retired_key_binding_after_retirement.json",
+   "note": "s4.1 with galeed/1 s7.4: the root key's binding carried after its retirement is DISCARDED; no binding",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a053_retired_key_binding_after_hole_gap.json"
+   ],
+   "path": "audits/a053_retired_key_binding_after_hole_gap.json",
+   "note": "s4.1 with galeed/1 s7.4: the handing key's binding after a hole, at a position after its handing off and carried in that second, is DISCARDED; no binding stands; none",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a054_root_mismatch_alone_broken.json"
+   ],
+   "path": "audits/a054_root_mismatch_alone_broken.json",
+   "note": "s4.2 rule 4: a genesis signed by the successor under the root's audit is ROOT_MISMATCH, hard and alone; broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0x8c061f7c59e92e5a1a007f616247bf6f6cee09db813470baa6f5944cd3f9e2f5",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a055_hole_above_top.json"
+   ],
+   "path": "audits/a055_hole_above_top.json",
+   "note": "s4.2 rule 3: a hole above the top binding withholds the pick like any other",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a056_recipient_form_false_at_top_above_valid.json"
+   ],
+   "path": "audits/a056_recipient_form_false_at_top_above_valid.json",
+   "note": "s4.2: a top binding whose recipient fails s3.2 is the pick all the same; no fall-through to the earlier valid one",
+   "predicted": {
+    "binding": {
+     "effective": 6,
+     "entry_id": "0x8b25d4816778de30ecff276b9a835dae5428f2838106c959b0b865ea4befa368",
+     "recipient": "age1old",
+     "recipientForm": false,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a057_ledger_binding_beside_root_carried_stranger_entry.json"
+   ],
+   "path": "audits/a057_ledger_binding_beside_root_carried_stranger_entry.json",
+   "note": "s4.2 rule 4: the root carries a stranger's binding beside its own: CARRIED_MALFORMED FOREIGN is hard; broken with the ledger's one binding",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a058_recipient_with_quote_and_backslash.json"
+   ],
+   "path": "audits/a058_recipient_with_quote_and_backslash.json",
+   "note": "s3.2/s4.1: a recipient token carrying a quotation mark and a backslash; the answer escapes them as galeed/1 s3.4 spells a string",
+   "predicted": {
+    "binding": {
+     "effective": 8,
+     "entry_id": "0xf1bde3ab80f88ab0a6f0c468f734827a955e6d2ffeb1473649cc0fd720ac1df4",
+     "recipient": "age1\"q\\x",
+     "recipientForm": false,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a059_binding_at_max_seq.json"
+   ],
+   "path": "audits/a059_binding_at_max_seq.json",
+   "note": "a binding at seq 2^53 - 1 after a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 9,
+      "entry_id": "0x105f73673b92dd5ba6006c551a544b21e1123871296db72849effd93a21aa9fa",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 9007199254740991
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a060_shared_prev_pair_then_gap.json"
+   ],
+   "path": "audits/a060_shared_prev_pair_then_gap.json",
+   "note": "s4.2: k2 (seq 2) and j3 (seq 3) share prev k1 at position 2 while top is 5: no fork; the hole at 4 answers gap before the hard finding",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000500,
+      "entry_id": "0xd6c9cdca69b7722bbcd4be388ffc5edbf21034c8bbacb17cec52cbd3b9140d3d",
+      "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+      "recipientForm": true,
+      "seq": 5
+     },
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     },
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a061_unproven_junk_no_hole.json"
+   ],
+   "path": "audits/a061_unproven_junk_no_hole.json",
+   "note": "s4.2 rule 3: the root's UNPROVEN record carries junk; its hash is a MALFORMED row, bytes the scan read, so no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a062_unproven_stranger_entry_no_hole.json"
+   ],
+   "path": "audits/a062_unproven_stranger_entry_no_hole.json",
+   "note": "s4.2 rule 3: the root's UNPROVEN record carries a stranger's binding; its hash is an EXCLUDED row, bytes the scan read, so no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a063_missing_bytes_only_in_void_carrier_hole.json"
+   ],
+   "path": "audits/a063_missing_bytes_only_in_void_carrier_hole.json",
+   "note": "s4.2 rule 3: the counted record of the next binding carries nothing and its bytes ride only in a VOID record: read only in a record that did not count, a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a064_missing_bytes_only_in_discarded_carrier_hole.json"
+   ],
+   "path": "audits/a064_missing_bytes_only_in_discarded_carrier_hole.json",
+   "note": "s4.2 rule 3: the counted record carries nothing and the bytes ride only in a stranger's discarded record: a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a065_missing_malformed_bytes_in_discarded_carrier_no_hole.json"
+   ],
+   "path": "audits/a065_missing_malformed_bytes_in_discarded_carrier_no_hole.json",
+   "note": "s4.2 rule 3: the root's counted record carries nothing under a hash whose bytes a stranger's discarded record carries and which are no entry: MISSING and MALFORMED, GAPS, yet no hole and no hard finding; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a066_missing_malformed_bytes_in_void_carrier_no_hole.json"
+   ],
+   "path": "audits/a066_missing_malformed_bytes_in_void_carrier_no_hole.json",
+   "note": "s4.2 rule 3: the same with the root's VOID record as the carrier of the junk: MISSING and MALFORMED, no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a067_missing_foreign_entry_in_discarded_carrier_no_hole.json"
+   ],
+   "path": "audits/a067_missing_foreign_entry_in_discarded_carrier_no_hole.json",
+   "note": "s4.2 rule 3: the counted record carries nothing under a stranger's binding that only the stranger's discarded record carries: MISSING and EXCLUDED, no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a068_top_binding_relayed_by_stranger_only.json"
+   ],
+   "path": "audits/a068_top_binding_relayed_by_stranger_only.json",
+   "note": "s4.1 with galeed/1 s8.1: the judge's later binding carried only by a stranger's counted record, which the trim of galeed/1 s8.1 discards: no ledger entry, no commitment of a lineage key, no hole; COMPLETE and one naming the earlier binding",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a069_void_record_carrying_nothing_no_hole.json"
+   ],
+   "path": "audits/a069_void_record_carrying_nothing_no_hole.json",
+   "note": "s4.2 rule 3: a VOID record of the root carrying nothing under the later binding's hash is no commitment the report lists as missing or unproven: no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a070_successor_root_binding_relayed_by_root_only.json"
+   ],
+   "path": "audits/a070_successor_root_binding_relayed_by_root_only.json",
+   "note": "s4.1: under the successor as root, the successor's binding was sent only from the root's key, so every record is discarded: an empty ledger, COMPLETE; none",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a071_successor_root_signed_nothing.json"
+   ],
+   "path": "audits/a071_successor_root_signed_nothing.json",
+   "note": "s4.1: the ledger read under the successor as root, the root's records discarded and the successor having signed nothing: an empty ledger, COMPLETE; none",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a072_successor_root_signed_only_annotation.json"
+   ],
+   "path": "audits/a072_successor_root_signed_only_annotation.json",
+   "note": "s4.1: under the successor as root the successor signed an annotation and no binding: positions 0 and 1 fall outside the lineage, GAPS, and rule 1 answers none before rule 3",
+   "predicted": {
+    "pick": "none"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a073_void_bytes_beside_unproven_nobytes_gap.json"
+   ],
+   "path": "audits/a073_void_bytes_beside_unproven_nobytes_gap.json",
+   "note": "s4.2 rule 3: the later binding's bytes ride only in a VOID record while an UNPROVEN record of the root commits to its hash carrying nothing: the unproven row's hash is no ledger entry, a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a074_middle_binding_void_only_gap.json"
+   ],
+   "path": "audits/a074_middle_binding_void_only_gap.json",
+   "note": "s4.2 rule 3: the binding at seq 1 rides only in a VOID record while seq 2 is counted; position 1 is unfilled, a SEQ_GAP, a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a075_void_only_later_binding_below_counted_annotation_gap.json"
+   ],
+   "path": "audits/a075_void_only_later_binding_below_counted_annotation_gap.json",
+   "note": "s4.2 rule 3: the later binding at seq 2 rides only in a VOID record while a counted annotation at seq 3 sits above it: position 2 is unfilled, a SEQ_GAP, limb 1's hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a076_skew_succession_void_on_another_chain_earlier.json"
+   ],
+   "path": "audits/a076_skew_succession_void_on_another_chain_earlier.json",
+   "note": "s4.1 with galeed/1 s7.4: the succession carried by the root's VOID record on another chain at 995 retires it there for every chain; its binding at 1000 and its succession at 1010 are DISCARDED, and the pick falls back to the binding below them with no hole",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a077_skew_succession_counted_on_another_chain_earlier.json"
+   ],
+   "path": "audits/a077_skew_succession_counted_on_another_chain_earlier.json",
+   "note": "s4.2 rule 3: the same succession counted on the other chain at 995 is a ledger entry; the binding at 1000 is DISCARDED and its position a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a078_skew_successor_reanchors_binding.json"
+   ],
+   "path": "audits/a078_skew_successor_reanchors_binding.json",
+   "note": "s4.1 with galeed/1 s8.6: the successor re-anchors the binding the skew left after the retirement; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a079_migration_closed_ledger_one.json"
+   ],
+   "path": "audits/a079_migration_closed_ledger_one.json",
+   "note": "s4.1/s6: a ledger closed by a migration answers with its last binding; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a080_migration_binding_above_same_second.json"
+   ],
+   "path": "audits/a080_migration_binding_above_same_second.json",
+   "note": "s4.1 with galeed/1 s7.4: a binding above the migration, carried at the migration's own second, is DISCARDED; one names the last binding below the migration",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a081_migration_binding_above_later.json"
+   ],
+   "path": "audits/a081_migration_binding_above_later.json",
+   "note": "s4.1 with galeed/1 s7.4: the binding above the migration carried a second later is DISCARDED; one names the last binding below the migration",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a082_migration_new_law_genesis_same_second.json"
+   ],
+   "path": "audits/a082_migration_new_law_genesis_same_second.json",
+   "note": "s4.2 rule 4 with galeed/1 s8.4: new-law bytes the key carries at the migration's second are CARRIED_MALFORMED; broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a083_migration_new_law_genesis_later.json"
+   ],
+   "path": "audits/a083_migration_new_law_genesis_later.json",
+   "note": "s4.2 rule 3 gloss: new-law bytes carried a second later by the retired key are DISCARDED and MALFORMED, no finding and no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a084_retired_root_unproven_commitment_after.json"
+   ],
+   "path": "audits/a084_retired_root_unproven_commitment_after.json",
+   "note": "s4.2 rule 3: the retired root's UNPROVEN record of a later binding, a second after its retirement, is DISCARDED and in no unproven row: no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a085_retired_root_unproven_commitment_same_second.json"
+   ],
+   "path": "audits/a085_retired_root_unproven_commitment_same_second.json",
+   "note": "s4.2 rule 3: at the retirement's second the root's UNPROVEN record of a hash no ledger entry has is a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a086_retired_root_hash_only_commitment_after.json"
+   ],
+   "path": "audits/a086_retired_root_hash_only_commitment_after.json",
+   "note": "s4.2 rule 3: the retired root's counted record carrying only a later binding's hash, after its retirement, is DISCARDED: no MISSING row, no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a087_retired_root_hash_only_commitment_same_second.json"
+   ],
+   "path": "audits/a087_retired_root_hash_only_commitment_same_second.json",
+   "note": "s4.2 rule 3: at the retirement's second the root's commitment to the hash is MISSING, a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a088_skew_succession_strangers_record_on_another_chain_earlier.json"
+   ],
+   "path": "audits/a088_skew_succession_strangers_record_on_another_chain_earlier.json",
+   "note": "s4.1 with galeed/1 s7.4: a stranger's record on another chain at 995 carrying the root's succession retires the root whatever its sender; the binding at 1000 and the succession at 1010 are DISCARDED; one names the binding below",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a089_skew_succession_unproven_on_another_chain_earlier.json"
+   ],
+   "path": "audits/a089_skew_succession_unproven_on_another_chain_earlier.json",
+   "note": "s4.1, s4.2 rule 3 with galeed/1 s7.4: the root's UNPROVEN record on another chain at 995 retires it whatever its verdict; the binding and the succession are DISCARDED, and the UNPROVEN row's hash is no ledger entry, a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a090_migration_first_carried_void_on_another_chain_earlier.json"
+   ],
+   "path": "audits/a090_migration_first_carried_void_on_another_chain_earlier.json",
+   "note": "s6 with galeed/1 s7.4: the migration's first record, VOID on another chain at 995, retires the root before its last binding was carried; that binding is DISCARDED, no key can re-anchor it, and one names the binding below",
+   "predicted": {
+    "binding": {
+     "effective": 1700000000,
+     "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+     "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+     "recipientForm": true,
+     "seq": 1
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a091_missing_bytes_only_in_retired_root_record_after.json"
+   ],
+   "path": "audits/a091_missing_bytes_only_in_retired_root_record_after.json",
+   "note": "s4.2 rule 3: the successor's counted record commits to its later binding's hash alone, and the bytes ride only in the root's record at 1150, which the trim of galeed/1 s8.1 discarded: a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a092_unproven_nobytes_bytes_only_in_retired_root_record_after.json"
+   ],
+   "path": "audits/a092_unproven_nobytes_bytes_only_in_retired_root_record_after.json",
+   "note": "s4.2 rule 3: the successor's UNPROVEN record commits to the hash alone and the bytes ride only in the root's record at 1150; discarded, a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a093_missing_malformed_bytes_in_retired_root_record_after.json"
+   ],
+   "path": "audits/a093_missing_malformed_bytes_in_retired_root_record_after.json",
+   "note": "s4.2 rule 3: the successor commits to the hash of bytes that are no entry that ride only in the root's record at 1150; discarded: MALFORMED or EXCLUDED, no hole and no finding; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a094_missing_foreign_entry_in_retired_root_record_after.json"
+   ],
+   "path": "audits/a094_missing_foreign_entry_in_retired_root_record_after.json",
+   "note": "s4.2 rule 3: the successor commits to the hash of a stranger's binding that ride only in the root's record at 1150; discarded: MALFORMED or EXCLUDED, no hole and no finding; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a095_missing_bytes_only_in_retired_root_record_same_second.json"
+   ],
+   "path": "audits/a095_missing_bytes_only_in_retired_root_record_same_second.json",
+   "note": "s4.2 rule 3: the successor's counted record commits to its later binding's hash alone, and the bytes ride only in the root's record at 1000, the root's retirement second, where the record counts: the binding is a ledger entry; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000300,
+     "entry_id": "0x2189264537f078446e9d2f7b9b413628e4cfd757913c20b72edc84cbf6debd0a",
+     "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+     "recipientForm": true,
+     "seq": 3
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a096_unproven_nobytes_bytes_only_in_retired_root_record_same_second.json"
+   ],
+   "path": "audits/a096_unproven_nobytes_bytes_only_in_retired_root_record_same_second.json",
+   "note": "s4.2 rule 3: the successor's UNPROVEN record commits to the hash alone and the bytes ride only in the root's record at 1000; at the retirement's second the binding is a ledger entry; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000300,
+     "entry_id": "0x2189264537f078446e9d2f7b9b413628e4cfd757913c20b72edc84cbf6debd0a",
+     "recipient": "age1prdfhgjv3csm34xgpsapypen42ktcydayhuz4e9tq9f2dwrdff9sl5hut4",
+     "recipientForm": true,
+     "seq": 3
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a097_missing_malformed_bytes_in_retired_root_record_same_second.json"
+   ],
+   "path": "audits/a097_missing_malformed_bytes_in_retired_root_record_same_second.json",
+   "note": "s4.2 rule 3: the successor commits to the hash of bytes that are no entry that ride only in the root's record at 1000; counted at the retirement's second: CARRIED_MALFORMED, a hard finding; broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a098_missing_foreign_entry_in_retired_root_record_same_second.json"
+   ],
+   "path": "audits/a098_missing_foreign_entry_in_retired_root_record_same_second.json",
+   "note": "s4.2 rule 3: the successor commits to the hash of a stranger's binding that ride only in the root's record at 1000; counted at the retirement's second: CARRIED_MALFORMED, a hard finding; broken",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000100,
+      "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+      "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+      "recipientForm": true,
+      "seq": 2
+     }
+    ],
+    "pick": "candidates",
+    "reason": "broken"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a099_void_and_discarded_carriers_of_a_later_binding.json"
+   ],
+   "path": "audits/a099_void_and_discarded_carriers_of_a_later_binding.json",
+   "note": "s4.2 rule 3: a later binding whose bytes only the successor's VOID record and the retired root's discarded record carry, its hash committed to by no other record, is no act of the ledger and no hole; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xda7bbcd194efdfebaba50d139c858814b43aff14a2e945c69c14daa0b7bf27a3",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a100_root_binding_anchored_after_its_retirement.json"
+   ],
+   "path": "audits/a100_root_binding_anchored_after_its_retirement.json",
+   "note": "s4.2 rule 3 with galeed/1 s7.4: the root's own binding at a position it held, anchored only after its retirement, is DISCARDED and its position a hole; gap",
+   "predicted": {
+    "list": [
+     {
+      "effective": 1700000000,
+      "entry_id": "0x83deedd427c0fe36e88b7e8c0b84512ddfb66d0ffcb224cbe740a10c3763c586",
+      "recipient": "age1c3zgyqfavlqlva5fzd2h055v6lxghlpjgf0s36qklfkuntruxqns5689ph",
+      "recipientForm": true,
+      "seq": 1
+     }
+    ],
+    "pick": "candidates",
+    "reason": "gap"
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a101_root_binding_reanchored_by_successor.json"
+   ],
+   "path": "audits/a101_root_binding_reanchored_by_successor.json",
+   "note": "s4.1 with galeed/1 s8.6: the successor re-anchors that binding; one",
+   "predicted": {
+    "binding": {
+     "effective": 1700000100,
+     "entry_id": "0xce60046509f89b0b2ebd217cacfbc664a9c4c2dcb9342a1ac4cad21a48e0d349",
+     "recipient": "age1zhvwyczcv8zmserhhqs6uxh2zedyhyhszcsu5t7vntycnd8sr86qhw3ccn",
+     "recipientForm": true,
+     "seq": 2
+    },
+    "pick": "one"
+   }
+  },
+  {
+   "cmd": "recipient-check",
+   "args": [
+    "-h"
+   ],
+   "path": "(argument)",
+   "note": "HARNESS: -h is a recipient argument, not an option; it fails the form",
+   "predicted": {
+    "ok": false,
+    "token": "E_RECIPIENT"
+   }
+  },
+  {
+   "cmd": "check",
+   "args": [
+    "--"
+   ],
+   "path": "--",
+   "note": "HARNESS: a file named -- is a path like any other",
+   "predicted": {
+    "manifest": "0x267bacaa1c026307a37851a132824e338242b4923c58c00e437e399019fd5303",
+    "ok": true
+   }
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/a001_one.json",
+    "x"
+   ],
+   "path": "x",
+   "note": "HARNESS: an argument beyond the list",
+   "predicted": null
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [],
+   "path": "(none)",
+   "note": "HARNESS: a missing argument",
+   "predicted": null
+  },
+  {
+   "cmd": "pick-recipient",
+   "args": [
+    "audits/absent.json"
+   ],
+   "path": "audits/absent.json",
+   "note": "HARNESS: a path the command cannot read",
+   "predicted": null,
+   "absent": [
+    "audits/absent.json"
+   ]
+  }
+ ]
+}

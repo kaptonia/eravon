@@ -1,0 +1,1 @@
+9.1: the sender of an EIP-2930 transaction (type 1) with an access list is recovered over that type's signing payload; the registry log it carries is a record with its entry, and the chain's answers to the codeless test at both boundaries give the verdict counted.

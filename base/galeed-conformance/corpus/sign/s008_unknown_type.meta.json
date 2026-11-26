@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s008_unknown_type.bin",
+ "note": "sec 6.8: B6 of an unknown type with an empty body",
+ "predicted": {
+  "digest": "0xf25a673fb79d2ec424c586d960aa898b54ebeacb09bac1a31fe3d806607bcb68",
+  "presig": "0xf665675d2dee06e74863003397a39efc396fa5dd54472682bd539e29c7bf62aa",
+  "sig": "0xaa738a32ca1825ff875a93c5526dcf9c12ccf832fc652d13b3c00947f61ef7cd292b6b3a295af4a31df4137c7c4f02c2a7ad063f6cc055300739c5c83a6c08c71c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

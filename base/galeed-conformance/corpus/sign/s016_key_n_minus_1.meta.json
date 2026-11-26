@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s016_key_n_minus_1.bin",
+ "note": "sec 5: private key n - 1",
+ "predicted": {
+  "digest": "0xd95a68c186ebb2d2b4e660e23f35aaa1b3b5edfda6554cac2b4f0e70e7fc2949",
+  "presig": "0xd74eff76c2735e9522267c2dc90ee996e0f71189834454f6bf1a3c0dcb0373fd",
+  "sig": "0xe3748efc687f0c870c350905d7d6fb41139a242668c4cfae8045b3dcbd3c1aff780eeac952809c1877148f0039db4b06154a5689548a0ca9ddea6bdc011748c71c",
+  "signer": "0x80c0dbf239224071c59dd8970ab9d542e3414ab2"
+ },
+ "privkey": "0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364140"
+}

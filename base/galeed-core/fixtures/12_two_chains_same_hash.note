@@ -1,0 +1,1 @@
+9.2, 9.4: one entry anchored on chain 31337 and on chain 7777. Two records, one exchange log per chainId; the basis lists the chains in ascending order as 9.4 requires, and 9.5 bounds the entry once per chain.

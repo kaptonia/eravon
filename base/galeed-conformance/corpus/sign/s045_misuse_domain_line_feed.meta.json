@@ -1,0 +1,7 @@
+{
+ "domain": "galeed/1\n",
+ "input": "s045_misuse_domain_line_feed.bin",
+ "note": "HARNESS: a domain carrying a line feed is misuse",
+ "predicted": null,
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

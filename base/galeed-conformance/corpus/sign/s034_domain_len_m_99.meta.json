@@ -1,0 +1,12 @@
+{
+ "domain": "dddddddddddddddddddddddddddddddd",
+ "input": "s034_domain_len_m_99.bin",
+ "note": "sec 5.2: len(M) at 99, the digit width below",
+ "predicted": {
+  "digest": "0xcddac171194204a460094a35481f1fb16afffd8b91e4227da95056e2b8f9d6f5",
+  "presig": "0x12b117902456c463755892309d25892d84aecb71e9b31e383a8fccf9479a6fa7",
+  "sig": "0x1c77d36c7d37edf3e39453b6f180870e8181deb0bc25f8a6cc8ecf09fbee037c60cd8c4e8e891886fee4c05cbd68bd60d1c388effbecfa5ef5719f28532aadfa1c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

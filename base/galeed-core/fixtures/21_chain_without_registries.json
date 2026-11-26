@@ -1,0 +1,30 @@
+{
+  "basis": {
+    "chains": [
+      {
+        "chainId": 31337,
+        "fromBlock": 28,
+        "registries": [],
+        "senders": [
+          "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        ],
+        "toBlock": 28
+      }
+    ]
+  },
+  "expected": "{\"anchors\":[],\"basis\":{\"chains\":[{\"chainId\":31337,\"fromBlock\":28,\"registries\":[],\"senders\":[\"0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc\"],\"toBlock\":28}]}}",
+  "rpc": {
+    "31337": [
+      {
+        "method": "eth_chainId",
+        "params": [],
+        "result": "0x7a69"
+      },
+      {
+        "method": "eth_blockNumber",
+        "params": [],
+        "result": "0x1c"
+      }
+    ]
+  }
+}

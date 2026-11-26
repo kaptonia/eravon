@@ -1,0 +1,1 @@
+One illustration, 2000 × 3000 px, PNG, 草稿先行。

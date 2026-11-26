@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s007_annotation.bin",
+ "note": "sec 5.1: B6 of an annotation",
+ "predicted": {
+  "digest": "0xfb021681c90c2600f8191e72b0a647ac0dce87cbe1e4f15f7c2954e1f062a876",
+  "presig": "0x62d64907cd59eb4a7a1077e0d364311799547bf33653edda6962a3125a89cb23",
+  "sig": "0x1aca4e57e4e4cfc82fce743cfb8f4cc67fcaec553321e5fd1ab6797f6192f1821831cef932fe543613142be2aa6481a9aa29758e2c08785bc6d574e116816fee1c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

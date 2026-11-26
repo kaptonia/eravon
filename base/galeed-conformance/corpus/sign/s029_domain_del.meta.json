@@ -1,0 +1,12 @@
+{
+ "domain": "venue.doc/1\u007f",
+ "input": "s029_domain_del.bin",
+ "note": "HARNESS: a domain is any bytes below 0x80 without a line feed; 0x7F is signed as given",
+ "predicted": {
+  "digest": "0xf6c2fcba4573d15a6d82752badd4c4c52eaa5418a90529759b10135779e2ff3b",
+  "presig": "0x116f623279e7b0ddb73048ed598d45e4a8e268dc973f720ffce339d6986b12c6",
+  "sig": "0xcc69344125ca7274e40e0e7620e1dc987fe6e8d391ead09635d112c76820cb552bd44ce468fdce5037b62ef6066b475ef44924dbb9c3f983aee243e423855c021b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

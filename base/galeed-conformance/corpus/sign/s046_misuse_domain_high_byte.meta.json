@@ -1,0 +1,7 @@
+{
+ "domain": "venue.doc/\u00e9",
+ "input": "s046_misuse_domain_high_byte.bin",
+ "note": "HARNESS: a domain carrying a byte at or above 0x80 is misuse",
+ "predicted": null,
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

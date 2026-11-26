@@ -1,0 +1,7 @@
+{
+ "domain": "galeed/1",
+ "input": "s040_misuse_key_zero.bin",
+ "note": "HARNESS: the scalar 0 is outside [1, n - 1]",
+ "predicted": null,
+ "privkey": "0x0000000000000000000000000000000000000000000000000000000000000000"
+}

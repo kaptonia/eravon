@@ -1,0 +1,1 @@
+9.4: two logs of one transaction carrying one hash, one whose data carries nothing and one whose data carries the bytes, are one record, and that record carries the entry since one of the logs carried the bytes.

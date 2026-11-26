@@ -1,0 +1,20 @@
+{
+  "basis": {
+    "chains": [
+      {
+        "chainId": 1,
+        "fromBlock": 0,
+        "registries": [
+          {
+            "codeHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ],
+        "senders": [],
+        "toBlock": 10
+      }
+    ]
+  },
+  "expected": "{\"ok\":false,\"reason\":\"NO_LABEL\"}",
+  "rpc": {}
+}

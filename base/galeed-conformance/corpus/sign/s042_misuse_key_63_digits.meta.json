@@ -1,0 +1,7 @@
+{
+ "domain": "galeed/1",
+ "input": "s042_misuse_key_63_digits.bin",
+ "note": "HARNESS: sixty-three digits",
+ "predicted": null,
+ "privkey": "0x2b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

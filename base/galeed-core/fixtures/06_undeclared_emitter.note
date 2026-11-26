@@ -1,0 +1,1 @@
+9.1: two registries of one code, one declared. The undeclared contract's well-formed log is never read; the declared one's is a record.

@@ -1,0 +1,10 @@
+{
+ "domain": "galeed/1",
+ "extra_args": [
+  "x"
+ ],
+ "input": "s054_misuse_extra_argument.bin",
+ "note": "HARNESS: an argument beyond the list",
+ "predicted": null,
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

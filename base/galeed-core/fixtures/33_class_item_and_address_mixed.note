@@ -1,0 +1,1 @@
+9.4: registries listing an address and a class item; the scan queries by sender topic, admits the registry's log by its address without reading its code and the venue's by its code, one record each.

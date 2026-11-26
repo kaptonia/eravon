@@ -1,0 +1,66 @@
+{
+  "basis": {
+    "chains": [
+      {
+        "chainId": 31337,
+        "fromBlock": 23,
+        "registries": [
+          "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+        ],
+        "senders": [
+          "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        ],
+        "toBlock": 23
+      }
+    ]
+  },
+  "expected": "{\"anchors\":[],\"basis\":{\"chains\":[{\"chainId\":31337,\"fromBlock\":23,\"registries\":[\"0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0\"],\"senders\":[\"0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc\"],\"toBlock\":23}]}}",
+  "rpc": {
+    "31337": [
+      {
+        "method": "eth_chainId",
+        "params": [],
+        "result": "0x7a69"
+      },
+      {
+        "method": "eth_blockNumber",
+        "params": [],
+        "result": "0x17"
+      },
+      {
+        "method": "eth_getLogs",
+        "params": [
+          {
+            "address": [
+              "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+            ],
+            "fromBlock": "0x17",
+            "toBlock": "0x17",
+            "topics": [
+              [
+                "0x8fceab7ac1d1542f1c820e270378e117f1de5e5002d3620c47f310e7f97e2a78"
+              ]
+            ]
+          }
+        ],
+        "result": [
+          {
+            "address": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "blockHash": "0x56bed9f693840b2f8eecb66ef2ea84d0b673b43e0c90b67591ab1cbaa9074fba",
+            "blockNumber": "0x17",
+            "blockTimestamp": "0x6ad23d56",
+            "data": "0xd49cd30933a196d4c11d96eebf0dadf729a1df6b8b86619ca0c0862e751beb91",
+            "logIndex": "0x0",
+            "removed": false,
+            "topics": [
+              "0x8fceab7ac1d1542f1c820e270378e117f1de5e5002d3620c47f310e7f97e2a78",
+              "0x0000000000000000000000003c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+            ],
+            "transactionHash": "0x49469ed598d0872c400fde547f6c5f07d653051c32a4a79d80b4a6a2c0a65e55",
+            "transactionIndex": "0x0"
+          }
+        ]
+      }
+    ]
+  }
+}

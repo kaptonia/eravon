@@ -1,0 +1,1 @@
+9.1: a transaction that carries no secp256k1 signature (a system or deposit transaction; r and s are zero and the node asserts a from field) has no sender in this grammar. A log of the form it carries is not an anchor whatever its topics hold.

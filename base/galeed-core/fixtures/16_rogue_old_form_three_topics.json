@@ -1,0 +1,50 @@
+{
+  "basis": {
+    "chains": [
+      {
+        "chainId": 31337,
+        "fromBlock": 24,
+        "registries": [
+          "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+        ],
+        "senders": [
+          "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        ],
+        "toBlock": 24
+      }
+    ]
+  },
+  "expected": "{\"anchors\":[],\"basis\":{\"chains\":[{\"chainId\":31337,\"fromBlock\":24,\"registries\":[\"0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0\"],\"senders\":[\"0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc\"],\"toBlock\":24}]}}",
+  "rpc": {
+    "31337": [
+      {
+        "method": "eth_chainId",
+        "params": [],
+        "result": "0x7a69"
+      },
+      {
+        "method": "eth_blockNumber",
+        "params": [],
+        "result": "0x18"
+      },
+      {
+        "method": "eth_getLogs",
+        "params": [
+          {
+            "address": [
+              "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+            ],
+            "fromBlock": "0x18",
+            "toBlock": "0x18",
+            "topics": [
+              [
+                "0x8fceab7ac1d1542f1c820e270378e117f1de5e5002d3620c47f310e7f97e2a78"
+              ]
+            ]
+          }
+        ],
+        "result": []
+      }
+    ]
+  }
+}

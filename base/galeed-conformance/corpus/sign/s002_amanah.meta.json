@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s002_amanah.bin",
+ "note": "sec 5.1: B6 of an amanah with one venue",
+ "predicted": {
+  "digest": "0x16d0146e6122f331283c7e49b47190b4f54731b0ec2da282af25b4ef0798717e",
+  "presig": "0x99342287326c078e8511d18799cdea48ab917445c07d943e302b612e2d2f2ea0",
+  "sig": "0x9f60d06ce3e4e210c84f8ce34a5ce31fa23d0a95531fc9f5ff459ab911c93ebb0b2eb789d71ee4d10dc56efc1f5192aa0426f40401f754845a528f52fe50faf11b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

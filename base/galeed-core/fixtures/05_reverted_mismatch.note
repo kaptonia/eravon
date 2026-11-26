@@ -1,0 +1,1 @@
+9.1: the reference registry refuses a call whose entry does not hash (sha256) to its hash; the transaction reverts, status 0, no log, no record.

@@ -1,0 +1,1 @@
+9.1: the sender is the address recovered from the transaction's own signature; a node whose from field names another address changes nothing, and the record names the recovered sender.

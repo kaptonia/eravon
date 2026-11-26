@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s014_body_named_sig.bin",
+ "note": "sec 5.1: a member named sig inside body sits inside B6",
+ "predicted": {
+  "digest": "0xc8e39cdad57ef36d8a33c6307f9186e7155bc3acfc2fcc40e13a41a496aec522",
+  "presig": "0x550d9c777a6fc0067450ca5fc5022f06d766058f1461cecde4fc4515bfa8f6ec",
+  "sig": "0xd15ad17ebffe8b36e66160a89fd9529ac749c65927a3fdcbe134609dca2649ce0903acbca65dab40c530b0721e305407c7a8b4957a127f80797cb05419ec59cb1c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

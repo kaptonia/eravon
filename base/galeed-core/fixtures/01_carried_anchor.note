@@ -1,0 +1,1 @@
+9.1, 9.2, 9.3: the form. A declared registry emits Anchored(sender, hash, entry) in a status-1 transaction from a sender the basis declares; topic 2 sits in the calldata at offset 4 and the data is the ABI encoding of bytes whose sha256 is topic 2. One record, verdict counted, carrying the entry.

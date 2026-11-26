@@ -1,0 +1,1 @@
+9.1: a declared contract emits the form with topic 2 derived from its argument (keccak256 of the encoded argument), which appears nowhere in the calldata at a word boundary; no anchor, whatever the data carries.

@@ -1,0 +1,1 @@
+9.1: the data encodes the empty byte string (an offset word of 32 and a length word of 0) and topic 2 is sha256 of nothing; the record carries the empty entry, spelled 0x.

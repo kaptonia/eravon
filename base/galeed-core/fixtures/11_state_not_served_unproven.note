@@ -1,0 +1,1 @@
+9.3: the endpoint refuses eth_getCode for the sender's boundaries. The record exists and carries its entry, the verdict is UNPROVEN, and the recording carries the node's error verbatim; under a root equal to the sender, 8.7 labels the audit UNPROVEN and 8.6 makes the bytes no ledger entry.

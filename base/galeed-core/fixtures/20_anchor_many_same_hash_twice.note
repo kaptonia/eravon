@@ -1,0 +1,1 @@
+9.4: anchorCarriedMany with one entry twice emits two logs and yields one record, since a record is at most one per (chainId, blockNumber, tx, hash), carrying the entry.

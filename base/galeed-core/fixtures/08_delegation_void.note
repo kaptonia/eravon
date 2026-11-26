@@ -1,0 +1,1 @@
+9.3, 5.7: the sender installed an EIP-7702 delegation designator before anchoring. The log is the form and the record carries the entry, but the sending address has code at both boundaries: verdict VOID, and 8.6 makes the bytes no ledger entry.

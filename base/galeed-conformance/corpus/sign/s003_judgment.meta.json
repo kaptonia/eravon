@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s003_judgment.bin",
+ "note": "sec 5.1: B6 of a judgment carrying every optional field",
+ "predicted": {
+  "digest": "0x739d38fba12c935b0cda2c325251387bb7a6f83e71055425e0db39c641e7a8bd",
+  "presig": "0x9509583c7233bb166c4a6782650d7617dde7c0c02f6199766abafbf0cf8e7e6f",
+  "sig": "0x1e1c164393601ae4e8b1e5b6a834af015632985d47823f886fd3b731b6c7ccee6d0b12aea60ef90d92858b4163e41eb555da2051a6914489c53edbfdfc921c791c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

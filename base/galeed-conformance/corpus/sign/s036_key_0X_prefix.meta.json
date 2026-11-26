@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s036_key_0X_prefix.bin",
+ "note": "HARNESS: the key with a 0X prefix",
+ "predicted": {
+  "digest": "0xb73f296b7c53c0fb8e261d2230d5ea24c9b2c17dcc44c800060abe28e7f2372d",
+  "presig": "0x12b117902456c463755892309d25892d84aecb71e9b31e383a8fccf9479a6fa7",
+  "sig": "0x5eee159629913381e924979e2d4492a4baceaca3b0ec9807e931d4903806d4ef36b804cfffcd66133b197326d4da48dc7ca3ec7792167c126b635a8564b62d8e1c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0X12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

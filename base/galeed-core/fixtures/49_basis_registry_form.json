@@ -1,0 +1,17 @@
+{
+  "basis": {
+    "chains": [
+      {
+        "chainId": 1,
+        "fromBlock": 0,
+        "registries": [
+          "0x00"
+        ],
+        "senders": [],
+        "toBlock": 10
+      }
+    ]
+  },
+  "expected": "{\"ok\":false,\"reason\":\"NO_LABEL\"}",
+  "rpc": {}
+}

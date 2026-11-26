@@ -1,0 +1,1 @@
+9.1: a non-canonical anchorCarriedMany encoding places the hash at calldata offset 105, which is neither a multiple of 32 nor 4 plus one. The registry emits the form with the entry; the law declines to read the hash there, and the log is no anchor.

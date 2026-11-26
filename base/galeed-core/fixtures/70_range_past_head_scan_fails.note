@@ -1,0 +1,1 @@
+9.4: the declared range reaches block 3 while the chain's head (eth_blockNumber) is 2; a range that reaches past the head is a failure of the scan. The fixture's expected is null.

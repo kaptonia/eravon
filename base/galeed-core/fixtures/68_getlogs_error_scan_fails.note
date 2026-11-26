@@ -1,0 +1,1 @@
+9.4: the chain answers eth_getLogs with an error; the verifier did not obtain every log the completeness rule enumerates, so the basis is not scanned and the replay fails (exit 2). The fixture's expected is null.

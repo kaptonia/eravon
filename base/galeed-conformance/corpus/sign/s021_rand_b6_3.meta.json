@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s021_rand_b6_3.bin",
+ "note": "randomized B6 with a randomized private key",
+ "predicted": {
+  "digest": "0x4e42431368ce2568989db99905c0a4abd102507626d3c2173fce1d326fda2d3d",
+  "presig": "0xf91f1f8831392b9ebeabeba2edb99f7ad33c1fcb7261e833706d81b967129db6",
+  "sig": "0x007535042b8d0a9e3e6d08a0acd6047c93487e8a36afcdfb63020391a104a820279f04c4ef9fc57999b6bf848c934fe2d8c48fcb94a1e9aa9e261190eab8798d1b",
+  "signer": "0x5c869c282484c0e1e1d1b7d0a39830815d8909a9"
+ },
+ "privkey": "0xaccd9984b88c61128e91e0d972ed9bb39520978238319570fed732a3a55dad19"
+}

@@ -1,0 +1,30 @@
+[profile.default]
+src = "src"
+test = "test"
+out = "out"
+libs = ["lib"]
+# The standard's identity is a codeHash (standard s13): every compiler
+# setting below (solc through cbor_metadata) is part of it, and a different
+# one is a different standard; fs_permissions and the fuzz and invariant
+# sections change no artifact byte.
+solc = "0.8.28"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+bytecode_hash = "none"
+cbor_metadata = false
+fs_permissions = [{ access = "read", path = "./" }]
+# the venue replay of a drawing venue spends billions of gas in one test
+# (galeed-conformance/venue-replay README); like fs_permissions, these two
+# change no artifact byte
+gas_limit = "18446744073709551615"
+memory_limit = 4294967296
+
+[fuzz]
+runs = 256
+
+[invariant]
+runs = 64
+depth = 32
+fail_on_revert = false

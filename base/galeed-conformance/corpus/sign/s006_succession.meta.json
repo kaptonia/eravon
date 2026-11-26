@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s006_succession.bin",
+ "note": "sec 5.1: B6 of a succession",
+ "predicted": {
+  "digest": "0x476dc54f090eff1b10b0f84ef5a26b28624dbe249f168410b5596498bbc6b095",
+  "presig": "0x8f3dc891e5bedf8c1b919ac2065816e4c108c97ba0f6384206128683d7bf8137",
+  "sig": "0xb580a5fedecc288b782f9bae6704ed262463fbb25f70e57f305192eeee14a4783d27336146d2e1195dcba0a9bee082bb73972606d5c4b67f6819abc1d80609721c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

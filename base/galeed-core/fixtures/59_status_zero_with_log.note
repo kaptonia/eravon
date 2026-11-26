@@ -1,0 +1,1 @@
+9.1: the node returns a log of the form from a transaction whose receipt carries status 0; the log is no anchor.

@@ -1,0 +1,1 @@
+9.1: a transaction whose legacy signature carries v = 27 or 28 names no chain, so it is not an anchor under this grammar; the node's from field is never read.

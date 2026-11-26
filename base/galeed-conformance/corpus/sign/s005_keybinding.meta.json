@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s005_keybinding.bin",
+ "note": "sec 5.1: B6 of a keybinding",
+ "predicted": {
+  "digest": "0xee826d4086d5572ca49704f14a5386323f963d23fefdc2711f4d80ffa2fc795a",
+  "presig": "0x4036943ca66f61f60348289dc4799a2b26d0b03337abee5988b254d93a0a13f7",
+  "sig": "0x526144d979180c1302fd4368587fe60bf9425a7353a44692a6b47ea97a5581851544eb2d5f481f44beeed0ac5fc28fe2ee3b4a80b8b634d9d640bff1ad1327d51b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

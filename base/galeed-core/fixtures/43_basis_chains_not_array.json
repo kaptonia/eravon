@@ -1,0 +1,7 @@
+{
+  "basis": {
+    "chains": {}
+  },
+  "expected": "{\"ok\":false,\"reason\":\"NO_LABEL\"}",
+  "rpc": {}
+}

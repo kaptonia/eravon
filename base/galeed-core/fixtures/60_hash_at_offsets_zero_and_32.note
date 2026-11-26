@@ -1,0 +1,1 @@
+9.1: the containment test admits a 32-byte window beginning at a multiple of 32 as well as at 4 plus one: calldata that is the hash alone (offset 0) and calldata of one zero word then the hash (offset 32) each carry the hash; two records with their entries.

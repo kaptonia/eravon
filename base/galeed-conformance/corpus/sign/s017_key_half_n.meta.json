@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s017_key_half_n.bin",
+ "note": "sec 5: private key (n - 1) / 2",
+ "predicted": {
+  "digest": "0x06f3008ec61f5e5757bcdbdf6684a1e3b311af26d2fab7a1bda532c891ad5a5a",
+  "presig": "0xd7c9dbe8bda161a3de804beba278e7b0405f5128f9ee23fc65988379a64a119f",
+  "sig": "0x3968b89d6f447abfe16c64d71080716e51e3750eb6f996c07284f49dfda9e1146a48934874e1fe53a44802f1dfb2be094c85aef3057474c6b4eb3292f90c0fa21b",
+  "signer": "0x3b3c67f57f74ce72a02978b0492620b1a661da43"
+ },
+ "privkey": "0x7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0"
+}

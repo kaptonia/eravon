@@ -1,0 +1,12 @@
+{
+ "domain": "venue.doc/1",
+ "input": "s027_other_literal.bin",
+ "note": "sec 5.6/5.7: a document under a literal no domain of this law spells",
+ "predicted": {
+  "digest": "0x474d57b47d0b6375a65440425221e84ec93493eb28387623a49a907c5f68972d",
+  "presig": "0x116f623279e7b0ddb73048ed598d45e4a8e268dc973f720ffce339d6986b12c6",
+  "sig": "0xae2a95928920e5d0a589a095b1482ad5a5025d82c1c858a957b452592b3b76a46dd0d9301319210b0e67ac1ebbce3475f7d4b4cc82963424430f3f03aa3cf50d1c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

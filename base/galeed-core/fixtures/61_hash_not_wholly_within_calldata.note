@@ -1,0 +1,1 @@
+9.1: the calldata ends one byte before the end of the window where the hash would lie; a window must lie wholly within the calldata, so the log is no anchor.

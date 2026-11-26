@@ -1,0 +1,1 @@
+9.1: a legacy EIP-155 transaction whose signature names chain 1 inside a block of chain 31337; a transaction whose envelope names another chain than the one the log sits on is not an anchor.

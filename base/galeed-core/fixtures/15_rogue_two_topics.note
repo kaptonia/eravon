@@ -1,0 +1,1 @@
+9.1: a log from a declared registry carrying two topics under the form's topic 0 (the hash travels in the data) is not an anchor, whatever its topics hold.

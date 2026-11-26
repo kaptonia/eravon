@@ -1,0 +1,12 @@
+{
+ "domain": "venue.doc/1\t",
+ "input": "s028_domain_tab.bin",
+ "note": "HARNESS: a domain is any bytes below 0x80 without a line feed; a tab is signed as given",
+ "predicted": {
+  "digest": "0x2dc08e7dc7d2749f872a4b57492ea958adeb5064aa27a5b06b62afea9e7f002a",
+  "presig": "0x116f623279e7b0ddb73048ed598d45e4a8e268dc973f720ffce339d6986b12c6",
+  "sig": "0xcb23ce113d67817ef7fe2fc681c6d48ebd26268b10afef2bb9332008d923a8ea21d32f414a50d9e3d42f6c7d3619678fca0ef695dea5d9ae0fe32f33147d7d851c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

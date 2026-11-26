@@ -1,0 +1,1 @@
+9.1, 9.4: the node answers a transaction object whose chainId was altered, so the signed bytes no longer hash to the transaction's hash; the node is answering about other bytes, the verifier cannot tell the sender, and the scan fails before any field of the envelope decides anything. The fixture's expected is null.

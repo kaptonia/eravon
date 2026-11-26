@@ -1,0 +1,1 @@
+9.2, 9.4: a node that returns the form's log for one transaction hash in two blocks yields two records, since a record is one per (chainId, blockNumber, tx, hash) and the block is read from the log.

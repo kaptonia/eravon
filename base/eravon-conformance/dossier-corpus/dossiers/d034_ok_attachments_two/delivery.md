@@ -1,0 +1,1 @@
+A download link posted within the delivery window; delivered when the link opens.

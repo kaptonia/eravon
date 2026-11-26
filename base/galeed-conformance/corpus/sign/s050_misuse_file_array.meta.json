@@ -1,0 +1,7 @@
+{
+ "domain": "galeed/1",
+ "input": "s050_misuse_file_array.bin",
+ "note": "HARNESS: a file whose value is not an object is misuse",
+ "predicted": null,
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

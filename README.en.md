@@ -204,7 +204,7 @@ is made from that folder). Every package carries the third-party notices (`THIRD
 | `crates/eravon-ui` | The widget library and skin |
 | `crates/eravon-pack` | Packaging pieces: the third-party notices generator, the steps that keep the building machine out of a package, laying out the Windows package, checking the AppImage runtime |
 | `vendor/` | Frozen snapshots of the galeed and ZIKARON family libraries the product builds on |
-| `base/` | The specifications the product implements (`base/docs/`), the standard contract's source with its pinned code digests, conformance corpora |
+| `base/` | The specifications the product implements (`base/docs/`) with their reference implementations and conformance corpora, the standard's contracts with their pinned identity and tests, and the Galeed contracts and conformance suite the product reads. One corpus file is not in the repository, because Windows cannot check out its name: `base/eravon-conformance/dossier-corpus/dossiers/d032_ok_file_name_dots/...`; `gen.py` beside the corpus writes it |
 | `packaging/` | Packaging scripts for macOS and Linux, and the icons |
 | `docs/` | The user manual in English and Chinese, the complaint file format (`complaint.md`) and engineering notes |
 | `CLI-SCHEMA.md` | Output shapes, exit codes, refusals and flags of the command line |

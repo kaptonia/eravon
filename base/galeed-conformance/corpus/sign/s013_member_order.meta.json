@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s013_member_order.bin",
+ "note": "sec 3.4 item 5: bytewise key order inside the preimage",
+ "predicted": {
+  "digest": "0x0bb79b76e7745498ee8657b2b61186742f3f116bc1f5b00565c47d07a0cfd611",
+  "presig": "0x94155c288b4520d32cdfa2599da6804be8a45412e6cd131e7471caa267e963cf",
+  "sig": "0xb14f8d8f8b824a7b46ece9e4b30f4afc5e19790fd6429b2966a470d84bf0a82359ee4eacad72c6172dbe6fbeb7d69986f3a51bb8078caa7096b7ca9e8777a0411c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

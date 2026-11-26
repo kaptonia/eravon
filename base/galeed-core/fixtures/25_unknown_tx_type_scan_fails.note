@@ -1,0 +1,1 @@
+9.1, 9.4: a transaction of a type this scanner cannot decode (0x10) that carries a signature (r and s nonzero) is one the verifier cannot tell the sender of; the verifier has not scanned the basis, and the replay fails (exit 2). The fixture's expected is null.

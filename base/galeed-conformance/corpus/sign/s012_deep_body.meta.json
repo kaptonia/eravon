@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s012_deep_body.bin",
+ "note": "sec 3.4: a deeply nested body inside B6",
+ "predicted": {
+  "digest": "0xbb6f60f616b31fd551d9bf957eaff21ab3e9086610de8892961bafc914ac6034",
+  "presig": "0xe6ed030801f7fd879f89c6d772dfeb71b049851a69abc49007526a9a6d796b98",
+  "sig": "0x508d3831fe437821f3bd0cf9ea76bd6ffacf3340329bafea86c362856496d2863004c91c42300927fbf58affc9781ca5b2b6fa7f42c8587b33bbc12129c521521c",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

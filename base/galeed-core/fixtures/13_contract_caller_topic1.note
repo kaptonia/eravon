@@ -1,0 +1,1 @@
+9.1: a contract calls the declared registry, so topic 1 is the contract and never the transaction's sender. The hash does sit in the calldata; the log is still no anchor.

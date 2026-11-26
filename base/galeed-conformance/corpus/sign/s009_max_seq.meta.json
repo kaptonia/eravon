@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s009_max_seq.bin",
+ "note": "sec 3.2: seq at 2^53 - 1 inside the preimage",
+ "predicted": {
+  "digest": "0x82ac6a0fc8954e99bd1f59e2dae258fe5a140df1c6d9d089d5078c767bc23402",
+  "presig": "0x62ffb31dbdb0266fbfb47f637d81dab62d953123aff947f9b820a07d4a98fb16",
+  "sig": "0xaa0fa123ec751d0a6d0e97a4d2cbbd978ab7c46f4d285b138941188f617346ad4a6c0ebe92d8f9ae241f4800ff5c35a224851905f6354f242d757b2d897de8541b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}

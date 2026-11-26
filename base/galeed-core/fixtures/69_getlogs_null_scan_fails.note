@@ -1,0 +1,1 @@
+9.4: the chain answers eth_getLogs with null, which is no array of logs; a chain that did not answer is a failure of the scan and never an empty result. The fixture's expected is null.

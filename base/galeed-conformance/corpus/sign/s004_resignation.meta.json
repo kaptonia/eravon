@@ -1,0 +1,12 @@
+{
+ "domain": "galeed/1",
+ "input": "s004_resignation.bin",
+ "note": "sec 5.1: B6 of a resignation",
+ "predicted": {
+  "digest": "0xe811bfd6cd7ea6079b50b15dd2a11093bd2fd44b46a7edd2751c7e52e65f3a89",
+  "presig": "0x6a99c19550320a4c461373ee6291ef5e9ad09333a28e7e1f424d72806eaede77",
+  "sig": "0xbb1f0c835a504a3aa8b1ed3b022bae08757775f2967806d19df569c335bb9b1a70557af25feb27953660ca67df3a50d070fc123cabd61880ec1633fd02cb52ce1b",
+  "signer": "0x01187a68996839920363a58d942b2c51df0da731"
+ },
+ "privkey": "0x12b726799caec8c088e0e456d9234e34e442da6c61a9e337ac89d490fdd7cdd1"
+}
